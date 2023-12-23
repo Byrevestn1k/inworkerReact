@@ -1,0 +1,53 @@
+header .container {
+    display: flex;
+    justify-content: space-between;
+
+    /* border-bottom: 1px solid rgb(204, 204, 204); */
+}
+
+header {
+    background: #cccccc;
+    background: linear-gradient(180deg, rgba(204, 204, 204, 1) 0%, #ffffff 100%);
+}
+
+.container {
+    padding: 10px;
+    margin: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logotype {
+    margin-right: 20px;
+    /* background: url(../../images/header/inworker_shapka.jpg) no-repeat center;
+    background-size: contain;;
+   height: 150px;
+   width: 300px; */
+}
+
+.main a,
+.map a,
+.blog a,
+.services a {
+    padding: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #00b7cc;
+    font-weight: bold;
+    text-align: center;
+}
+
+.main,
+.map,
+.blog,
+.services {
+    text-align: center;
+    padding: 20px;
+    /* width: 160px; */
+    /* margin-top: 20px; */
+}
