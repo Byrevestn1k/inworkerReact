@@ -1,0 +1,127 @@
+@media (max-width: 1066px) {
+    .main,
+    .map,
+    .blog,
+    .services {
+        text-align: center;
+        /* width: 133px; */
+    }
+}
+
+@media (max-width: 1066px) {
+    .vidgets {
+        flex-direction: row;
+        justify-content: center;
+        /* flex-wrap: wrap; */
+    }
+    header .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    section .container {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 835px) {
+    footer {
+        .container {
+            flex-direction: column;
+            .header {
+                order: 1;
+            }
+            .corporation {
+                order: 2;
+                text-align: center;
+            }
+        }
+    }
+    .vidgets {
+        flex-wrap: wrap;
+        &__item {
+            width: 100%;
+        }
+    }
+    .rubrica__discription {
+        flex-direction: column;
+        .image {
+            max-width: 50%;
+        }
+    }
+    .navigation_linck {
+        background: rgb(204, 204, 204);
+        background: linear-gradient(180deg, rgba(204, 204, 204, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+    .navigation_linck li {
+        position: relative;
+    }
+    .dropdown-item {
+        left: 0;
+        top: 100%;
+        z-index: 5;
+        width: 100%;
+        background: rgb(204, 204, 204);
+        background: linear-gradient(0deg, rgba(204, 204, 204, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+    .arrowRight:after {
+        rotate: 0deg;
+    }
+    .navigation ul li:hover::after {
+        rotate: 90deg;
+    }
+    header .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .header {
+        margin-top: 10px;
+        /* width: 100%; */
+        justify-content: center;
+    }
+    .logotype img {
+        width: 100%;
+    }
+    .main,
+    .map,
+    .blog,
+    .services {
+        text-align: center;
+    }
+    .main a,
+    .map a,
+    .blog a,
+    .services a {
+        margin: 20px auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 535px) {
+    .rubrica__discription {
+        .image {
+            max-width: 100%;
+        }
+    }
+    aside {
+        display: none;
+    }
+    .comments {
+        background: none;
+    }
+    .comments__tabs {
+        margin-left: 0px;
+    }
+    .comments__comments {
+        margin-left: 10px;
+        display: none;
+    }
+}
+
+.hidden{
+display: none;
+}

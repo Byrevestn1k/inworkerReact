@@ -23,49 +23,49 @@ const Navigation = () => {
          id: uuidv4(),
          text: 'Categoties',
          isUppercasetext: true,
-         path: CATEGIRIES_PATH,
+         // path: CATEGIRIES_PATH,
          isCategiries: true,
       },
       {
          id: uuidv4(),
          text: 'Add Categories',
          isUppercasetext: true,
-         path: ADD_CATEGORIES_FORM_PATH,
+         // path: ADD_CATEGORIES_FORM_PATH,
          isCategiries: false,
       },
       {
          id: uuidv4(),
          text: 'CategotiesValentine',
          isUppercasetext: true,
-         path: CATEGIRIES_VALENTINE_PATH,
+         // path: CATEGIRIES_VALENTINE_PATH,
          isCategiries: true,
       },
       {
          id: uuidv4(),
          text: 'AddCategoriesValentine',
          isUppercasetext: true,
-         path: ADD_CATEGORIES_FORM_VALENTINE_PATH,
+         // path: ADD_CATEGORIES_FORM_VALENTINE_PATH,
          isCategiries: false,
       },
       {
          id: uuidv4(),
          text: 'Blog',
          isUppercasetext: true,
-         path: BLOG_PATH,
+         // path: BLOG_PATH,
          isCategiries: false,
       },
       {
          id: uuidv4(),
          text: 'Add Blogs',
          isUppercasetext: true,
-         path: ADD_VLAD_BLOGS_PATH,
+         // path: ADD_VLAD_BLOGS_PATH,
          isCategiries: false,
       },
       {
          id: uuidv4(),
          text: 'Product',
          isUppercasetext: true,
-         path: PRODUCTS_PATH,
+         // path: PRODUCTS_PATH,
          isCategiries: false,
       },
 
@@ -73,21 +73,21 @@ const Navigation = () => {
          id: uuidv4(),
          text: 'AddProductsLera',
          isUppercasetext: true,
-         path: ADD_LERA_PRODUCTS_PATH,
+         // path: ADD_LERA_PRODUCTS_PATH,
          isCategiries: false,
       },
       {
          id: uuidv4(),
          text: 'ProductsLera',
          isUppercasetext: true,
-         path: PRODUCTS_LERA_PATH,
+         // path: PRODUCTS_LERA_PATH,
          isCategiries: false,
       },
        {
            id: uuidv4(),
            text: "BlogLena",
            isUppercasetext: true,
-           path: BLOG_LENA_PATH,
+         //   path: BLOG_LENA_PATH,
            isCategiries: false,
        },
        // {
@@ -118,6 +118,7 @@ const Navigation = () => {
               isCategiries={element.isCategiries}
             />
           </Link>
+        
         );
       })}
     </nav>

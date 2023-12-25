@@ -24,30 +24,5 @@ header {
 
 .logotype {
     margin-right: 20px;
-    /* background: url(../../images/header/inworker_shapka.jpg) no-repeat center;
-    background-size: contain;;
-   height: 150px;
-   width: 300px; */
 }
 
-.main a,
-.map a,
-.blog a,
-.services a {
-    padding: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #00b7cc;
-    font-weight: bold;
-    text-align: center;
-}
-
-.main,
-.map,
-.blog,
-.services {
-    text-align: center;
-    padding: 20px;
-    /* width: 160px; */
-    /* margin-top: 20px; */
-}

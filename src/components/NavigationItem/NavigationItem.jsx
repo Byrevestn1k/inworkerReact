@@ -1,82 +1,81 @@
 import './navigationitem.css';
 import { Link } from "react-router-dom";
 // import { ABOUT_PATH, BLOG_PATH, HOME_PATH } from "../../constants/constants";
-// import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect, useState, createContext } from 'react';
+import { useState,  } from 'react';
 import { createRequestPath } from "../../helpers/helpers";
 import { CARTEGORIES_LIST_ENDPOINT } from "../../constants/endpoints";
 
-export let DataCategoriesContext = createContext()
+// export let DataCategoriesContext = createContext()
 
 const NavigationItem = (props) => {
    const { text, isUppercasetext, isCategiries } = props
 
    const [data, setData] = useState([])
-   const [fetching, setFetching] = useState(false)
-   const [fetchError, setFetchError] = useState(null);
-   useEffect(function () {
-      setFetching(true)
-      fetch(createRequestPath(CARTEGORIES_LIST_ENDPOINT))
-         .then(response => response.json())
-         .then(resp => {
-            setFetching(false)
-            setData(resp)
+   // const [fetching, setFetching] = useState(false)
+   // const [fetchError, setFetchError] = useState(null);
+   // useEffect(function () {
+   //    setFetching(true)
+   //    fetch(createRequestPath(CARTEGORIES_LIST_ENDPOINT))
+   //       .then(response => response.json())
+   //       .then(resp => {
+   //          setFetching(false)
+   //          setData(resp)
 
 
-         })
-         .catch(err => {
+   //       })
+   //       .catch(err => {
 
-            setFetching(false)
-            setFetchError(err)
-         });
-   }, [])
+   //          setFetching(false)
+   //          setFetchError(err)
+   //       });
+   // }, [])
 
 
 
-   let categories = [
-      {
-         id: uuidv4(),
-         title: 'Item',
-         isUppercasetext: true,
-         // urlSlug: HOME_PATH,
-         isCategiries: false,
-      },
-      // {
-      //    "title": "string",
-      //    "priority": 0,
-      //    "urlSlug": "string",
-      //    "image": "string"
-      //  },
-      {
-         id: uuidv4(),
-         title: 'Item',
-         isUppercasetext: true,
-         // urlSlug: BLOG_PATH,
-         isCategiries: false,
-      },
-      {
-         id: uuidv4(),
-         title: 'Item',
-         isUppercasetext: true,
-         // urlSlug: ABOUT_PATH,
-         isCategiries: false,
-      },
+   // let categories = [
+   //    {
+   //       id: uuidv4(),
+   //       title: 'Item',
+   //       isUppercasetext: true,
+   //       // urlSlug: HOME_PATH,
+   //       isCategiries: false,
+   //    },
+   //    // {
+   //    //    "title": "string",
+   //    //    "priority": 0,
+   //    //    "urlSlug": "string",
+   //    //    "image": "string"
+   //    //  },
+   //    {
+   //       id: uuidv4(),
+   //       title: 'Item',
+   //       isUppercasetext: true,
+   //       // urlSlug: BLOG_PATH,
+   //       isCategiries: false,
+   //    },
+   //    {
+   //       id: uuidv4(),
+   //       title: 'Item',
+   //       isUppercasetext: true,
+   //       // urlSlug: ABOUT_PATH,
+   //       isCategiries: false,
+   //    },
 
-   ];
+   // ];
 
 
    return (
 
       <div className='nav-item'>
-         {!isUppercasetext ? text.toUpperCase() : text}
+         {/* {!isUppercasetext ? text.toUpperCase() : text}
          {isCategiries &&
             (
 
                <>
                   <div className='nav-arrow_down'>
                      &#9660;</div>
-                  <div className='navigatin-categiries hidden'  >
+                  <div className='navigatin-categiries hidden'  > */}
                      {
                         data.map((element) => {
 
@@ -92,10 +91,10 @@ const NavigationItem = (props) => {
                            )
                         })
                      }
-                  </div>
-               </>
-            )
-         }
+                  {/* </div> */}
+               {/* </> */}
+            {/* )
+         } */}
       </div>
 
    )

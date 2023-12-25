@@ -1,5 +1,10 @@
+import { useState } from "react"
+
+
 
 export function adaptiveHeader() {
+let  [width, setWidth]= useState()
+console.log(document.documentElement.clientWidth);
     window.addEventListener("DOMContentLoaded", (e) => {
         let logotype = document.querySelector(`.logotype img`)
         let header = document.querySelector(`.header`)

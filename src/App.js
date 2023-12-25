@@ -1,5 +1,6 @@
 
 import './App.css';
+import './adaptive.css';
 import Header from './components/Header';
 
 
