@@ -9,7 +9,7 @@ import { CARTEGORIES_LIST_ENDPOINT } from "../../constants/endpoints";
 // export let DataCategoriesContext = createContext()
 
 const NavigationItem = (props) => {
-   const { text, isUppercasetext, isCategiries } = props
+   const { text, isUppercasetext, isCategiries, isFooter } = props
    const [fetching, setFetching] = useState(false)
    const [fetchError, setFetchError] = useState(null);
 
@@ -42,6 +42,7 @@ const NavigationItem = (props) => {
          isCategiries: false,
       },
 
+
    ];
    const [data, setData] = useState(categories)
    useEffect(function () {
@@ -63,37 +64,36 @@ const NavigationItem = (props) => {
 
 
 
-  
+
 
    return (
 
       <div className='nav-item'>
-         
-         <div>{!isUppercasetext ? text.toUpperCase() : text }</div>
+
+         <div>{!isUppercasetext ? text.toUpperCase() : text}</div>
+
          {isCategiries &&
             (
-
                <>
-                  <div className='nav-arrow_down'>&#9660;</div>
+                  <div className='nav-arrow_down'></div>
                   <div className='navigatin-categiries hidden'>
                      {
                         data.map((element) => {
 
-                           return ( 
-   
-                              // <Link key={uuidv4()} to={element.urlSlug}>
-                                 <div className="navigatin-categiries-item">
-                                    {element.title}
-                                 </div>
-                              // </Link>
+                           return (
 
+                              // <Link key={uuidv4()} to={element.urlSlug}>
+                              <div className="navigatin-categiries-item">
+                                 {element.title}
+                              </div>
+                              // </Link>
                            )
                         })
                      }
                   </div>
                </>
-             )
-         } 
+            )
+         }
       </div>
 
    )

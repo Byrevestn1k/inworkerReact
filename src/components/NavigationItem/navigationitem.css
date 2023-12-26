@@ -31,12 +31,13 @@ display: flex;
 }
 
 .nav-arrow_down{
-    width: 15px;
-    height: 15px;
-    margin-left: 10px;
-    content: '&darr;';
+    width: 20px;
+    height: 20px;
+    /* margin-left: 10px; */
     transition: 500ms;
-    
+    background: url(../../images/nav/arrow_down.png) no-repeat center;
+    background-size: contain;
+    align-self: center;
 }
  .navigatin-categiries-item{
     /* border-bottom: 1px solid #000; */
@@ -44,7 +45,7 @@ display: flex;
     padding: 5px;
 }
 .navigatin-categiries-item:hover{
-    border-bottom: 1px solid #00b7cc;
+    border-bottom: 1px solid #89d747;
     background:#f1f1f1;
 
 }
