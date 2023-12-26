@@ -1,8 +1,6 @@
 header .container {
     display: flex;
     justify-content: space-between;
-
-    /* border-bottom: 1px solid rgb(204, 204, 204); */
 }
 
 header {
@@ -10,9 +8,13 @@ header {
     background: linear-gradient(180deg, rgba(204, 204, 204, 1) 0%, #ffffff 100%);
 }
 
-.container {
+header .container {
     padding: 10px;
-    margin: 10px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .header {

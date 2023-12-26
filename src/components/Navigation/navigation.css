@@ -1,53 +1,12 @@
 .navigation{
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-position: relative;
-}
-.nav-item{
-    padding: 10px;
-    margin: 10px;
-    border-bottom: 1px solid #000;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     position: relative;
 }
 
-.navigation a{
-   text-decoration: none;
-   color: black;
-}
-
-.nav-arrow_down{
-    width: 15px;
-    height: 15px;
-    margin-left: 10px;
-    content: '&darr;';
-    transition: 500ms;
-    
-}
- .navigatin-categiries-item{
-    border-bottom: 1px solid #000;
-    text-align-last: left;
-    padding: 5px;
-}
 .navigatin-categiries{
-
-display: none;
-}
-.nav-item:hover{
-    background:#dbd9d9
-}
-.nav-item:hover .navigatin-categiries{
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 40px;
-    width: 100%;
-    z-index: 5;
-    background:#dbd9d9;
+    display: none;
 }
 
-.nav-item:hover .nav-arrow_down{
-    transform: translate( 0, 10px);
-}
 

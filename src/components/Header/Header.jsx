@@ -17,14 +17,8 @@ const Header = () => {
                             <div className="stroke"></div>
                         </div>
                         <Logotype/>
-                        <div className="header">
-                            <Navigation/>
+                        <Navigation/>
 
-                            {/* <div className="main"><a href="">Главная</a></div>
-                            <div className="blog"><a href="">блог</a></div>
-                            <div className="map"><a href="">Mini games</a></div>
-                            <div className="services"><a href="">Мои услуги</a></div> */}
-                        </div>
                     </div>
                     
                 </header>
