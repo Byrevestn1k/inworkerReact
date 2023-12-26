@@ -9,7 +9,7 @@ import { CARTEGORIES_LIST_ENDPOINT } from "../../constants/endpoints";
 // export let DataCategoriesContext = createContext()
 
 const NavigationItem = (props) => {
-   const { text, isUppercasetext, isCategiries } = props
+   const { text, isUppercasetext, isCategiries, isFooter } = props
    const [fetching, setFetching] = useState(false)
    const [fetchError, setFetchError] = useState(null);
 
@@ -41,6 +41,7 @@ const NavigationItem = (props) => {
          // urlSlug: ABOUT_PATH,
          isCategiries: false,
       },
+      
 
    ];
    const [data, setData] = useState(categories)
@@ -70,6 +71,7 @@ const NavigationItem = (props) => {
       <div className='nav-item'>
          
          <div>{!isUppercasetext ? text.toUpperCase() : text }</div>
+      
          {isCategiries &&
             (
 
@@ -78,7 +80,8 @@ const NavigationItem = (props) => {
                   <div className='navigatin-categiries hidden'>
                      {
                         data.map((element) => {
-
+                           if(isFooter){
+                              console.log(isFooter);
                            return ( 
    
                               // <Link key={uuidv4()} to={element.urlSlug}>
@@ -87,7 +90,25 @@ const NavigationItem = (props) => {
                                  </div>
                               // </Link>
 
-                           )
+                           )}
+                           else{
+                              
+                              if(element.isFooter){
+                          
+                                 return
+                              }
+                              else{
+                                 return ( 
+         
+                                    // <Link key={uuidv4()} to={element.urlSlug}>
+                                       <div className="navigatin-categiries-item">
+                                          {element.title}
+                                       </div>
+                                    // </Link>
+      
+                                 )}
+                        
+                           }
                         })
                      }
                   </div>

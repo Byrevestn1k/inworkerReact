@@ -1,4 +1,11 @@
 footer {
     background: rgb(204, 204, 204);
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(204, 204, 204, 1) 100%);
+    font-size: 14px;
+}
+
+footer .container{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }

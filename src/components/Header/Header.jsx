@@ -16,7 +16,7 @@ const Header = () => {
                             <div className="stroke"></div>
                         </div>
                         <Logotype/>
-                        <Navigation/>
+                        <Navigation isFooter={false}/>
 
                     </div>
                     

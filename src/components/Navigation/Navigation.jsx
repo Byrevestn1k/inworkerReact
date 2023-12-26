@@ -42,6 +42,22 @@ const Navigation = () => {
          path: PRODUCTS_PATH,
          isCategiries: true,
       },
+      {
+        id: uuidv4(),
+        text: 'Карта сайту',
+        isUppercasetext: true,
+        // path: PRODUCTS_PATH,
+        isCategiries: false,
+        isFooter: true
+     },
+     {
+      id: uuidv4(),
+      text: 'Контакти',
+      isUppercasetext: true,
+      // path: PRODUCTS_PATH,
+      isCategiries: false,
+      isFooter: true
+   },
    ];
 
   return (
@@ -54,6 +70,7 @@ const Navigation = () => {
               text={element.text}
               isUppercasetext={element.isUppercasetext}
               isCategiries={element.isCategiries}
+              isFooter={element.isFooter}
             />
           // </Link>
         
