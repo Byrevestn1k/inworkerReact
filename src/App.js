@@ -3,13 +3,15 @@ import './App.css';
 import './adaptive.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Main from './components/Main';
 
 
 function App() {
   return (
     <div className="App">
-        <Header/>
-        <Footer/>
+      <Header />
+      <Main />
+      <Footer />
     </div>
   );
 }

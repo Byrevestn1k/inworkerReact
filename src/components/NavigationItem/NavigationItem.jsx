@@ -41,7 +41,7 @@ const NavigationItem = (props) => {
          // urlSlug: ABOUT_PATH,
          isCategiries: false,
       },
-      
+
 
    ];
    const [data, setData] = useState(categories)
@@ -64,57 +64,36 @@ const NavigationItem = (props) => {
 
 
 
-  
+
 
    return (
 
       <div className='nav-item'>
-         
-         <div>{!isUppercasetext ? text.toUpperCase() : text }</div>
-      
+
+         <div>{!isUppercasetext ? text.toUpperCase() : text}</div>
+
          {isCategiries &&
             (
-
                <>
-                  <div className='nav-arrow_down'>&#9660;</div>
+                  <div className='nav-arrow_down'></div>
                   <div className='navigatin-categiries hidden'>
                      {
                         data.map((element) => {
-                           if(isFooter){
-                              console.log(isFooter);
-                           return ( 
-   
-                              // <Link key={uuidv4()} to={element.urlSlug}>
-                                 <div className="navigatin-categiries-item">
-                                    {element.title}
-                                 </div>
-                              // </Link>
 
-                           )}
-                           else{
-                              
-                              if(element.isFooter){
-                          
-                                 return
-                              }
-                              else{
-                                 return ( 
-         
-                                    // <Link key={uuidv4()} to={element.urlSlug}>
-                                       <div className="navigatin-categiries-item">
-                                          {element.title}
-                                       </div>
-                                    // </Link>
-      
-                                 )}
-                        
-                           }
+                           return (
+
+                              // <Link key={uuidv4()} to={element.urlSlug}>
+                              <div className="navigatin-categiries-item">
+                                 {element.title}
+                              </div>
+                              // </Link>
+                           )
                         })
                      }
                   </div>
                </>
-             )
-         } 
+            )
+         }
       </div>
 
    )
