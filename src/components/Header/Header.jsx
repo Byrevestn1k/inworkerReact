@@ -7,7 +7,6 @@ import Logotype from '../Logotype/Logotype';
 const Header = () => {
 
     
-    
     return (	
                 <header>
                     <div className="container">

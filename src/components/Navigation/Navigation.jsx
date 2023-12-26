@@ -1,7 +1,7 @@
 import "./navigation.css";
 import NavigationItem from "../NavigationItem/NavigationItem";
 import { v4 as uuidv4 } from "uuid";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import {
     PRODUCTS_PATH,
@@ -111,13 +111,13 @@ const Navigation = () => {
     <nav className="navigation">
       {navElements.map((element) => {
         return (
-          <Link key={element.id} to={element.path}>
+          // <Link key={element.id} to={element.path}>
             <NavigationItem
               text={element.text}
               isUppercasetext={element.isUppercasetext}
               isCategiries={element.isCategiries}
             />
-          </Link>
+          // </Link>
         
         );
       })}

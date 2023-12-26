@@ -1,5 +1,5 @@
 import './navigationitem.css';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import { ABOUT_PATH, BLOG_PATH, HOME_PATH } from "../../constants/constants";
 import { v4 as uuidv4 } from 'uuid';
 import { useState,  } from 'react';
@@ -81,12 +81,12 @@ const NavigationItem = (props) => {
 
                            return (
 
-                              <Link key={uuidv4()} to={element.urlSlug}>
+                              // <Link key={uuidv4()} to={element.urlSlug}>
 
                                  <div className="navigatin-categiries-item">
                                     {element.title}
                                  </div>
-                              </Link>
+                              // </Link>
 
                            )
                         })
