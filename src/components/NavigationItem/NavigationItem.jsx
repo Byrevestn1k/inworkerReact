@@ -4,7 +4,7 @@ import { ABOUT_PATH, BLOG_PATH, HOME_PATH } from "../../constants/pathNames";
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState, createContext } from 'react';
 import { createRequestPath } from "../../helpers/helpers";
-import { CARTEGORIES_LIST_ENDPOINT } from "../../constants/endpoints";
+import { BLOGS_LIST_ENDPOINT} from "../../constants/endpoints";
 
 // export let DataCategoriesContext = createContext()
 
@@ -47,7 +47,7 @@ const NavigationItem = (props) => {
    const [data, setData] = useState(categories)
    useEffect(function () {
       setFetching(true)
-      fetch(createRequestPath(CARTEGORIES_LIST_ENDPOINT))
+      fetch(createRequestPath(BLOGS_LIST_ENDPOINT))
          .then(response => response.json())
          .then(resp => {
             setFetching(false)
@@ -82,11 +82,11 @@ const NavigationItem = (props) => {
 
                            return (
 
-                              // <Link key={uuidv4()} to={element.urlSlug}>
+                              <Link key={uuidv4()} to={element.text}>
                               <div className="navigatin-categiries-item">
-                                 {element.title}
+                                 {element.name}
                               </div>
-                              // </Link>
+                              </Link>
                            )
                         })
                      }

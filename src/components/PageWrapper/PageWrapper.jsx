@@ -1,4 +1,4 @@
-import styles from './page-wrapper.css';
+import './page-wrapper.css';
 
 const PageWrapper = ({ children }) => {
   return <div className="wrapper">{children}</div>;

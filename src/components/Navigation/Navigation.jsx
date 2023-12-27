@@ -28,7 +28,7 @@ const Navigation = ({ isFooter }) => {
       text: 'Блог',
       isUppercasetext: true,
       path: BLOG_PATH,
-      isCategiries: false,
+      isCategiries: true,
     },
     {
       id: uuidv4(),
@@ -42,7 +42,7 @@ const Navigation = ({ isFooter }) => {
       text: 'Мої послуги',
       isUppercasetext: true,
       path: PRODUCTS_PATH,
-      isCategiries: true,
+      isCategiries: false,
     },
     {
       id: uuidv4(),
@@ -96,7 +96,6 @@ const Navigation = ({ isFooter }) => {
                     isFooter={element?.isFooter}
                   />
                 </Link>
-
               )
             }
           }
