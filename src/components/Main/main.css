@@ -1,5 +1,12 @@
-.main {
+.main{
+    flex: 1 1 auto;
+}
+.main .wrapper {
     font-size: 14px;
+    display: flex;
+    width: 100%;
+}
+.main-information{
     flex: 1 1 auto;
 }
 

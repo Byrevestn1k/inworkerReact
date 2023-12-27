@@ -96,7 +96,6 @@ const Navigation = ({ isFooter }) => {
                     isFooter={element?.isFooter}
                   />
                 </Link>
-
               )
             }
           }

@@ -1,0 +1,62 @@
+
+h5.menu-panel_item {
+    margin: 0;
+    background: #3594b3;
+    background: linear-gradient(310deg, rgba(53, 148, 179, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+}
+
+h5.menu-panel_item:after {
+    content: "+";
+    display: inline-block;
+    margin-left: 10px;
+    color: #f9fa57;
+    transform: rotate(90deg);
+    transition: 400ms;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+h5.menu-panel_item.minus:after {
+    content: "-";
+    display: inline-block;
+    margin-left: 0 0 0 10px;
+    color: #f9fa57;
+    rotate: 270deg;
+    transition: 400ms;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.arrowRight:after {
+    content: "";
+    margin-left: 20px;
+    width: 15px;
+    height: 15px;
+    background: url(../../images/nav/right-arrow-svgrepo-com.svg) no-repeat center center;
+    background-size: cover;
+    rotate: 90deg;
+}
+
+.dropdown-item {
+    margin: 0;
+    padding: 0;
+    display: none;
+    transition: 1.5s;
+    list-style-type: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: max-content;
+    background: rgb(243, 242, 242);
+    /* background: rgb(204, 204, 204);
+    background: linear-gradient(270deg, rgba(204, 204, 204, 1) 0%, rgba(255, 255, 255, 1) 100%); */
+}
+
+ul.dropdown-item li:hover {
+    border-bottom: 1px solid #88d746 !important;
+    cursor: pointer;
+}
+
