@@ -1,13 +1,15 @@
 import "./navigation.css";
 import NavigationItem from "../NavigationItem/NavigationItem";
 import { v4 as uuidv4 } from "uuid";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {
   HOME_PATH,
   PRODUCTS_PATH,
   BLOG_PATH,
   MINI_GAMES_PATH,
+  SITEMAP_PATH, 
+  CONTACT_PATH,
 } from "../../constants/pathNames";
 
 const Navigation = ({ isFooter }) => {
@@ -46,7 +48,7 @@ const Navigation = ({ isFooter }) => {
       id: uuidv4(),
       text: 'Карта сайту',
       isUppercasetext: true,
-      // path: PRODUCTS_PATH,
+      path: SITEMAP_PATH,
       isCategiries: false,
       isFooter: true
     },
@@ -55,7 +57,7 @@ const Navigation = ({ isFooter }) => {
       id: uuidv4(),
       text: 'Контакти',
       isUppercasetext: true,
-      // path: PRODUCTS_PATH,
+      path:CONTACT_PATH,
       isCategiries: false,
 
     },
@@ -67,15 +69,15 @@ const Navigation = ({ isFooter }) => {
         {navElements.map((element) => {
           if (isFooter) {
             return (
-              // <Link key={element.id} to={element.path}>
-              <NavigationItem
-                isFooterShow={isFooter}
-                text={element.text}
-                isUppercasetext={element.isUppercasetext}
-                isCategiries={element.isCategiries}
-                isFooter={element?.isFooter}
-              />
-              // </Link>
+              <Link key={element.id} to={element.path}>
+                <NavigationItem
+                  isFooterShow={isFooter}
+                  text={element.text}
+                  isUppercasetext={element.isUppercasetext}
+                  isCategiries={element.isCategiries}
+                  isFooter={element?.isFooter}
+                />
+              </Link>
 
             )
           }
@@ -85,15 +87,15 @@ const Navigation = ({ isFooter }) => {
             }
             else {
               return (
-                // <Link key={element.id} to={element.path}>
-                <NavigationItem
-                  isFooterShow={isFooter}
-                  text={element.text}
-                  isUppercasetext={element.isUppercasetext}
-                  isCategiries={element.isCategiries}
-                  isFooter={element?.isFooter}
-                />
-                // </Link>
+                <Link key={element.id} to={element.path}>
+                  <NavigationItem
+                    isFooterShow={isFooter}
+                    text={element.text}
+                    isUppercasetext={element.isUppercasetext}
+                    isCategiries={element.isCategiries}
+                    isFooter={element?.isFooter}
+                  />
+                </Link>
 
               )
             }
