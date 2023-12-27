@@ -33,16 +33,15 @@ display: flex;
 .nav-arrow_down{
     width: 20px;
     height: 20px;
-    /* margin-left: 10px; */
+    align-self: center;
     transition: 500ms;
     background: url(../../images/nav/arrow_down.png) no-repeat center;
     background-size: contain;
-    align-self: center;
 }
  .navigatin-categiries-item{
     /* border-bottom: 1px solid #000; */
-    text-align-last: left;
-    padding: 5px;
+    text-align: left;
+    padding: 10px;
 }
 .navigatin-categiries-item:hover{
     border-bottom: 1px solid #89d747;
