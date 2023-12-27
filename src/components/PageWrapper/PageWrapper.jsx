@@ -1,7 +1,7 @@
-import styles from './page-wrapper.module.css';
+import styles from './page-wrapper.css';
 
 const PageWrapper = ({ children }) => {
-  return <div className={styles['common']}>{children}</div>;
+  return <div className="wrapper">{children}</div>;
 };
 
 export default PageWrapper;
