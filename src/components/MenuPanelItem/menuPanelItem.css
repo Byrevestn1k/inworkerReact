@@ -1,5 +1,8 @@
-
-h5.menu-panel_item {
+h5 {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.menu-panel_item {
     margin: 0;
     background: #3594b3;
     background: linear-gradient(310deg, rgba(53, 148, 179, 1) 0%, rgba(0, 212, 255, 1) 100%);
@@ -8,18 +11,18 @@ h5.menu-panel_item {
     cursor: pointer;
 }
 
-h5.menu-panel_item:after {
+.menu-panel_item:after {
     content: "+";
     display: inline-block;
     margin-left: 10px;
     color: #f9fa57;
-    transform: rotate(90deg);
+    /* transform: rotate(90deg); */
     transition: 400ms;
     font-weight: bold;
     font-size: 20px;
 }
 
-h5.menu-panel_item.minus:after {
+.menu-panel_item.minus:after {
     content: "-";
     display: inline-block;
     margin-left: 0 0 0 10px;

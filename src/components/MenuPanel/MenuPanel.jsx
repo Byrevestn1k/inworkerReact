@@ -1,20 +1,22 @@
 
 import "./menuPanel.css";
 
-import PageWrapper from "../PageWrapper/PageWrapper";
-import { Route, Routes } from "react-router";
-import {
-    BLOG_PATH, HOME_PATH, CATEGIRIES_PATH, PRODUCTS_PATH, MINI_GAMES_PATH, CONTACT_PATH, SITEMAP_PATH
-   
-  } from "../../constants/pathNames";
+import MenuPanelItem from "../MenuPanelItem";
+import { useContext } from "react";
+import { DataContext } from "../../App";
 
 const MenuPanel = () => {
-
+    let {data}=useContext(DataContext) 
     return (
-    <div className="menu-panel">  MEnu
-            <ul>
-              
-            </ul>
+    <div className="menu-panel"> 
+        {
+        data.map((el)=>{
+                return(
+                    <MenuPanelItem title={el.title} url={el.urlSlug}/>
+                )
+            }
+        )
+        }
     </div>
     )
 };

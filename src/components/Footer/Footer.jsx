@@ -13,7 +13,7 @@ const Footer = () => {
             <PageWrapper>
                 <div class="container">
                     <div class="corporation">
-                        <p>2022 - <span class="this-year">{new Date().getFullYear()}</span></p>
+                        <p>2023 - <span class="this-year">{new Date().getFullYear()}</span></p>
                         <p>All rights reserved&#169;</p>
                         <p>Копирование информации без указания прямой ссылки на сайт <span class="this-site"><b>{ document.domain}</b></span> является
                             нарушением авторских прав.</p>
