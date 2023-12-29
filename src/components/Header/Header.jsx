@@ -4,33 +4,35 @@ import Logotype from '../Logotype/Logotype';
 import PageWrapper from "../PageWrapper/PageWrapper";
 import { createPortal } from "react-dom";
 import AdaptiveNavButton from "../AdaptiveNavButton/AdaptiveNavButton"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
     let [buttonNavigation, setButtonNavigation] = useState(false);
-    let [width, setWidth] = useState();
-    window.addEventListener("DOMContentLoaded", (e) => {
-        setWidth(document.documentElement.clientWidth )
-        if (width < 535) {
+    let [onClickNavButFlag, setOnClickNavButFlaf] = useState(false);
+     //адаптивний хеадер при загрузці
+       useEffect(()=>{
+        if (document.documentElement.clientWidth < 535) {
             setButtonNavigation(true);
             }
         else {
             setButtonNavigation(false);
         }
-    })
+
+       }, [])
+   
+
     //адаптивний хеадер при загрузці
 
     //адаптивний хеадер при зміні розміру вікна
-    window.addEventListener("resize", (e) => {
-    setWidth(document.documentElement.clientWidth )
-    if (width < 535) {
-        setButtonNavigation(true);
-        }
-    else {
-        setButtonNavigation(false);
+        window.addEventListener("resize", (e) => {
+        if (document.documentElement.clientWidth < 535) {
+            setButtonNavigation(true);
+            }
+        else {
+            setButtonNavigation(false);
 
-    }
-    })
+        }
+        })
     return (
         
             <header onChange={
@@ -42,7 +44,7 @@ const Header = () => {
                 <PageWrapper>
                 <div className="container">
                     <Logotype />
-                    {buttonNavigation?<AdaptiveNavButton onClick={setButtonNavigation}/>:<Navigation  isFooter={false} />}
+                    {buttonNavigation?<AdaptiveNavButton onClick={setButtonNavigation} onClickNavButFlaf={onClickNavButFlag}/>:<Navigation  isFooter={false} />}
                 </div>
                 </PageWrapper>
             </header>

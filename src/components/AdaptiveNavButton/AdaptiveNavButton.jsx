@@ -6,37 +6,16 @@ import { createPortal } from "react-dom";
 let portalElement = document.querySelector('#portal')
 
 const AdaptiveNavButton = ({onClick}) => {
-	let [closeButton, setCloseButton] = useState(false);
 
-	// let [flagshowMessageDelete, setFlagshowMessageDelete] = useState(true)
-	// const onCloseAdaptiveNavButton = () => {
-	// 	setDeleteCategory(false)
-	// }
 	function onClickNavButtonHendler (){
-		onClick(false)
-		setCloseButton(true)
+		onClick(false)//перемикач для кнопки-нав/звичайною навігацією 
 	}
-
-	function onClickNavButtonCloseHendler(){
-		setCloseButton(false)
-	}
-
-	let navButton = (
+	return 	(
 		<div onClick={onClickNavButtonHendler} className="button-menu">
             <div className="stroke"></div>
             <div className="stroke"></div>
             <div className="stroke"></div>
         </div>
-	)
-
-	let closeNavButton = (
-			<div onClick={onClickNavButtonCloseHendler} className="button-close">
-	
-			</div>
-	)
-	let element = closeButton?closeNavButton:navButton;
-	return 	(
-		element
 	)
 }
 
