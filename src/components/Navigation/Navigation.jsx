@@ -11,6 +11,8 @@ import {
   SITEMAP_PATH, 
   CONTACT_PATH,
 } from "../../constants/pathNames";
+import { useEffect, useState } from "react";
+import MenuPanel from "../MenuPanel/MenuPanel";
 
 const Navigation = ({ isFooter }) => {
 
@@ -62,7 +64,29 @@ const Navigation = ({ isFooter }) => {
 
     },
   ];
+  //адаптивне меню, ховаєм в кнопку нав
+  let [isShowPAnel, setIisShowPAnel] = useState(false)
+  //адаптивна панель меню при загрузці
+  useEffect(()=>{
+      if (document.documentElement.clientWidth < 535) {
+          setIisShowPAnel(true)
+          }
+      else {
+          setIisShowPAnel(false)
+      }
+     }, [])
+  //адаптивна панель меню при загрузці
 
+  //адаптивна панель меню при зміні розміру вікна
+      window.addEventListener("resize", () => {
+      if (document.documentElement.clientWidth < 535) {
+          setIisShowPAnel(true)
+          }
+      else {
+          setIisShowPAnel(false)
+      }
+      })
+      //адаптивне меню, ховаєм в кнопку нав
   return (
     <div className="header">
       <nav className="navigation">
@@ -82,6 +106,7 @@ const Navigation = ({ isFooter }) => {
             )
           }
           else {
+           
             if (element.isFooter === true) {
               return
             }
@@ -98,8 +123,13 @@ const Navigation = ({ isFooter }) => {
                 </Link>
               )
             }
+         
           }
-        })}
+           
+        })
+        
+        }
+        {isShowPAnel?<MenuPanel/>:null}
       </nav>
     </div>
   );
