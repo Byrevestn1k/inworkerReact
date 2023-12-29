@@ -1,8 +1,9 @@
 .navigation{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     position: relative;
+    flex: 1 1 auto;
 }
 
 .navigatin-categiries{

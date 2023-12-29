@@ -6,7 +6,7 @@ import {
     BLOG_PATH, HOME_PATH, CATEGIRIES_PATH, PRODUCTS_PATH, MINI_GAMES_PATH, CONTACT_PATH, SITEMAP_PATH
    
   } from "../../constants/pathNames";
-import MenuPanel from "../MenuPanel/MenuPanel";
+import MenuPanel from "../MenuPanel//MenuPanel";
 
 const Main = () => {
 

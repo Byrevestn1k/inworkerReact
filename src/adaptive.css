@@ -1,12 +1,3 @@
-@media (max-width: 1066px) {
-    .main,
-    .map,
-    .blog,
-    .services {
-        text-align: center;
-        /* width: 133px; */
-    }
-}
 
 @media (max-width: 1066px) {
     .vidgets {
@@ -73,6 +64,9 @@
     .navigation ul li:hover::after {
         rotate: 90deg;
     }
+
+  
+
     header .container {
         flex-direction: column;
         align-items: center;
@@ -86,22 +80,28 @@
     .logotype img {
         width: 100%;
     }
-    .main,
-    .map,
-    .blog,
-    .services {
-        text-align: center;
+
+    .main .wrapper {
+        flex-direction: column;
+        align-items: center;
     }
-    .main a,
-    .map a,
-    .blog a,
-    .services a {
-        margin: 20px auto;
-        width: 100%;
-    }
+
 }
 
 @media (max-width: 535px) {
+    .header{
+       width: 100%;
+    }
+      .navigation{
+        flex-direction: column;
+        align-items: center;
+       
+    }
+    .nav-item{
+        
+    }
+    
+    
     .rubrica__discription {
         .image {
             max-width: 100%;
