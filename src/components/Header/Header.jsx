@@ -5,17 +5,20 @@ import PageWrapper from "../PageWrapper/PageWrapper";
 import { createPortal } from "react-dom";
 import AdaptiveNavButton from "../AdaptiveNavButton/AdaptiveNavButton"
 import { useEffect, useState } from "react";
+import AdaptiveNavButtonCloce from "../AdaptiveNavButtonCloce/AdaptiveNavButtonCloce";
 
 const Header = () => {
-    let [buttonNavigation, setButtonNavigation] = useState(false);
-    let [onClickNavButFlag, setOnClickNavButFlaf] = useState(false);
+    let [buttonNavigation, setButtonNavigation] = useState(false);// перемикач між кнопкою-нав та навігацією
+    let [onClickNavCloseFlag, setOnClickNavCloseFlag] = useState(true);//перемикач між кнопкою-нав та кнопкою Х
      //адаптивний хеадер при загрузці
        useEffect(()=>{
         if (document.documentElement.clientWidth < 535) {
             setButtonNavigation(true);
+            setOnClickNavCloseFlag(false)
             }
         else {
             setButtonNavigation(false);
+            setOnClickNavCloseFlag(false)
         }
        }, [])
     //адаптивний хеадер при загрузці
@@ -24,9 +27,11 @@ const Header = () => {
         window.addEventListener("resize", (e) => {
         if (document.documentElement.clientWidth < 535) {
             setButtonNavigation(true);
+            setOnClickNavCloseFlag(false)
             }
         else {
             setButtonNavigation(false);
+            setOnClickNavCloseFlag(false)
         }
         })
 
@@ -35,7 +40,11 @@ const Header = () => {
                 <PageWrapper>
                 <div className="container">
                     <Logotype />
-                    {buttonNavigation?<AdaptiveNavButton onClick={setButtonNavigation} onClickNavButFlaf={onClickNavButFlag}/>:<Navigation  isFooter={false} />}
+                    {buttonNavigation?
+                    <AdaptiveNavButton onClick={setButtonNavigation} onClickClose={setOnClickNavCloseFlag}/>:
+                    <><Navigation  isFooter={false} />{onClickNavCloseFlag?
+                    <AdaptiveNavButtonCloce onClick={setOnClickNavCloseFlag}  onClickClose={setButtonNavigation}/>:
+                    null}</>}
                 </div>
                 </PageWrapper>
             </header>

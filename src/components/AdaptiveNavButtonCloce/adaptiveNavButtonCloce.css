@@ -1,0 +1,21 @@
+
+ .button-close {
+   width: 30px;
+   height: 30px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+   margin-bottom: 20px;
+   position: absolute;
+   right: 20px;
+   top: 20px;
+   background: url(../../images/nav/close-nav-button.com) no-repeat center;
+   background-size: contain;  
+
+}
+
+.button-close:active{
+  transform: rotate(360deg);
+  transition: 1000ms;
+}

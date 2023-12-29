@@ -1,9 +1,10 @@
 
 import './adaptiveNavButton.css'
-const AdaptiveNavButton = ({onClick}) => {
+const AdaptiveNavButton = ({onClick, onClickClose}) => {
 
 	function onClickNavButtonHendler (){
 		onClick(false)//перемикач для кнопки-нав/звичайною навігацією 
+		onClickClose(true)
 	}
 	return 	(
 		<div onClick={onClickNavButtonHendler} className="button-menu">
@@ -13,5 +14,4 @@ const AdaptiveNavButton = ({onClick}) => {
         </div>
 	)
 }
-
 export default AdaptiveNavButton;

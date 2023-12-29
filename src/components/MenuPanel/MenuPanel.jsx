@@ -1,6 +1,6 @@
 
 import "./menuPanel.css";
-
+import { v4 as uuidv4 } from 'uuid';
 import MenuPanelItem from "../MenuPanelItem";
 import { useContext } from "react";
 import { DataContext } from "../../App";
@@ -12,7 +12,7 @@ const MenuPanel = () => {
         {
         data.map((el)=>{
                 return(
-                    <MenuPanelItem title={el.title} url={el.urlSlug}/>
+                    <MenuPanelItem key={uuidv4()} title={el.title} url={el.urlSlug}/>
                 )
             }
         )

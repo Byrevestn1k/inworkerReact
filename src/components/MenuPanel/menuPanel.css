@@ -1,6 +1,6 @@
 .menu-panel {
     width: 20%;
-    min-width: 200px;
+    width: max-content;
     margin: 20px 10px;
     font-size: 18px;
     text-transform: uppercase;
