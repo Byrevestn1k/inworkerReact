@@ -17,10 +17,7 @@ const Header = () => {
         else {
             setButtonNavigation(false);
         }
-
        }, [])
-   
-
     //адаптивний хеадер при загрузці
 
     //адаптивний хеадер при зміні розміру вікна
@@ -30,17 +27,11 @@ const Header = () => {
             }
         else {
             setButtonNavigation(false);
-
         }
         })
-    return (
-        
-            <header onChange={
-                (e)=>{
-                    console.log(e.target);
 
-                }
-            }>
+    return (
+            <header>
                 <PageWrapper>
                 <div className="container">
                     <Logotype />
@@ -48,10 +39,7 @@ const Header = () => {
                 </div>
                 </PageWrapper>
             </header>
-        
-
-
-    )
+        )
 };
 
 export default Header;
