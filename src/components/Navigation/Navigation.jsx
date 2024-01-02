@@ -2,7 +2,6 @@ import "./navigation.css";
 import NavigationItem from "../NavigationItem/NavigationItem";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
-
 import {
   HOME_PATH,
   PRODUCTS_PATH,
@@ -12,7 +11,8 @@ import {
   CONTACT_PATH,
 } from "../../constants/pathNames";
 import { useEffect, useState } from "react";
-import MenuPanel from "../MenuPanel/MenuPanel";
+import NavMenuPanel from "../NavNenuPanel/NavNenuPanel";
+import { WIDTH_MONITOR } from "../../constants/constants";
 
 const Navigation = ({ isFooter }) => {
 
@@ -68,7 +68,7 @@ const Navigation = ({ isFooter }) => {
   let [isShowPAnel, setIisShowPAnel] = useState(false)
   //адаптивна панель меню при загрузці
   useEffect(()=>{
-      if (document.documentElement.clientWidth < 535) {
+      if (document.documentElement.clientWidth < WIDTH_MONITOR) {
           setIisShowPAnel(true)
           }
       else {
@@ -79,7 +79,7 @@ const Navigation = ({ isFooter }) => {
 
   //адаптивна панель меню при зміні розміру вікна
       window.addEventListener("resize", () => {
-      if (document.documentElement.clientWidth < 535) {
+      if (document.documentElement.clientWidth < WIDTH_MONITOR) {
           setIisShowPAnel(true)
           }
       else {
@@ -129,7 +129,10 @@ const Navigation = ({ isFooter }) => {
         })
         
         }
-        {isShowPAnel?<MenuPanel/>:null}
+        {
+          
+          !isFooter && isShowPAnel?<NavMenuPanel/>:null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
+        }
       </nav>
     </div>
   );

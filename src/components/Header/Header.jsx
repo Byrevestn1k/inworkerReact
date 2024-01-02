@@ -5,6 +5,7 @@ import PageWrapper from "../PageWrapper/PageWrapper";
 import AdaptiveNavButton from "../AdaptiveNavButton/AdaptiveNavButton"
 import { useEffect, useState } from "react";
 import AdaptiveNavButtonCloce from "../AdaptiveNavButtonCloce/AdaptiveNavButtonCloce";
+import { WIDTH_MONITOR } from "../../constants/constants";
 
 const Header = () => {
     let [buttonNavigation, setButtonNavigation] = useState(false);// перемикач між кнопкою-нав та навігацією
@@ -12,7 +13,7 @@ const Header = () => {
     let [isShowNavigation, setIsShowNavigation] = useState(true);//перемикач між кнопкою-нав та кнопкою Х
      //адаптивний хеадер при загрузці
        useEffect(()=>{
-        if (document.documentElement.clientWidth < 535) {
+        if (document.documentElement.clientWidth < WIDTH_MONITOR) {
             setButtonNavigation(true);
             setOnClickNavCloseFlag(false)
             }
@@ -25,7 +26,7 @@ const Header = () => {
 
     //адаптивний хеадер при зміні розміру вікна
         window.addEventListener("resize", () => {
-        if (document.documentElement.clientWidth < 535) {
+        if (document.documentElement.clientWidth < WIDTH_MONITOR) {
             setButtonNavigation(true);
             setOnClickNavCloseFlag(false)
             }
