@@ -31,6 +31,7 @@ const Navigation = ({ isFooter }) => {
       isUppercasetext: true,
       path: BLOG_PATH,
       isCategiries: true,
+      
     },
     {
       id: uuidv4(),
