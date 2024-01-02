@@ -1,6 +1,5 @@
 .menu-panel {
-    width: 20%;
-    width: max-content;
+    min-width: 20%;
     margin: 20px 10px;
     font-size: 18px;
     text-transform: uppercase;
@@ -62,11 +61,6 @@
     position: relative;
 }
 
-.menu-panel {
-    /* background: rgb(204, 204, 204);
-    background: linear-gradient(51deg, rgba(204, 204, 204, 1) 0%, rgba(255, 255, 255, 1) 100%);*/
-    background: rgb(243, 242, 242);
-}
 
 .menu-panel_linck {
     position: relative;
