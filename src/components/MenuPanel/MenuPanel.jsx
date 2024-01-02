@@ -4,29 +4,30 @@ import { v4 as uuidv4 } from 'uuid';
 import MenuPanelItem from "../MenuPanelItem";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../App";
+import { WIDTH_MONITOR } from "../../constants/constants";
 
 const MenuPanel = () => {
     let {data}=useContext(DataContext)
     let [isShowPAnel, setIisShowPAnel] = useState(false)
     //адаптивна панель меню при загрузці
     useEffect(()=>{
-        if (document.documentElement.clientWidth < 535) {
+        if (document.documentElement.clientWidth < WIDTH_MONITOR) {
             setIisShowPAnel(false)
             }
         else {
             setIisShowPAnel(true)
         }
        }, [])
-    //адаптивна панель меню при загрузці
+    //адаптивна панель меню при загрузці+
 
     //адаптивна панель меню при зміні розміру вікна
         window.addEventListener("resize", () => {
-        if (document.documentElement.clientWidth < 535) {
-            setIisShowPAnel(false)
+            if (document.documentElement.clientWidth < WIDTH_MONITOR) {
+                setIisShowPAnel(false)
             }
-        else {
-            setIisShowPAnel(true)
-        }
+            else {
+                setIisShowPAnel(true)
+            }
         })
     
     return (
