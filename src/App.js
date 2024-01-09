@@ -8,6 +8,7 @@ import Main from './components/Main';
 import { CARTEGORIES_LIST_ENDPOINT } from './constants/endpoints';
 import { useContext, useEffect, useState, createContext } from 'react';
 import { createRequestPath } from './helpers/helpers';
+import DataBase from './components/DataBase/DataBase';
 
 export let DataContext = createContext()
 
@@ -34,6 +35,7 @@ function App() {
     <div className="App">
       <DataContext.Provider value={{data}}>
         <Header />
+        <DataBase/>
           <Main/>
         <Footer />
       </DataContext.Provider>
