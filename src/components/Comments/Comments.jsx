@@ -26,21 +26,21 @@ const Comments = () => {
     
     return (
         <article>
-            <div class="comments">
-                <h3 class="comments__title">Your Coments</h3>
-                <div class="comments__tabs">
-                    <div class="comments__tabsitem active-tab">site</div>
-                    <div class="comments__tabsitem ">VK</div>
-                    <div class="comments__tabsitem ">FS</div>
+            <div className="comments">
+                <h3 className="comments__title">Your Coments</h3>
+                <div className="comments__tabs">
+                    <div className="comments__tabsitem active-tab">site</div>
+                    <div className="comments__tabsitem ">VK</div>
+                    <div className="comments__tabsitem ">FS</div>
                 </div>
-                <div class="comments__field">
-                    <div class="comments__comments active">
+                <div className="comments__field">
+                    <div className="comments__comments active">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat asperiores quo quae
                             numquam. Minus eos dolore repudiandae eveniet sunt itaque aspernatur nam porro
                             facere
                             illo reiciendis quam maxime, quasi laudantium?</p>
                     </div>
-                    <div class="comments__comments">
+                    <div className="comments__comments">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat asperiores quo quae
                         </p>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat asperiores quo quae
@@ -56,7 +56,7 @@ const Comments = () => {
                             facere
                             illo reiciendis quam maxime, quasi laudantium?</p>
                     </div>
-                    <div class="comments__comments">
+                    <div className="comments__comments">
                         <p>
                             numquam. Minus eos dolore repudiandae eveniet sunt itaque aspernatur nam porro
                             facere

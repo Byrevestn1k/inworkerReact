@@ -1,0 +1,54 @@
+
+.button-menu{
+   width: 50px;
+   height: 50px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+   margin-bottom: 20px;
+   position: absolute;
+   right: 20px;
+   top: 20px;
+ 
+}
+
+.button-menu:active{
+   transform: rotate(360deg);
+   transition: 1000ms;
+}
+.stroke {
+   height: 3px;
+   width: 100%;
+   background: #00b7cc;
+   transition: 500ms;
+}
+
+.nav-hidden, .button-close {
+   position: absolute;
+   top: -300px;
+   transition: 500ms;
+}
+
+.nav-visible {
+   width: 92%;
+   position: absolute;
+   top: 0px;
+   transition: 500ms;
+}
+
+.button-menu-in-nav {
+   position: absolute;
+   top: 15px;
+   right: 20px;
+   z-index: 5;
+   rotate: 450deg;
+   transition: 1.5s;
+}
+
+.button-menu-in-nav .stroke {
+   background: #fff;
+   transition: 1.5s;
+   rotate: -360deg;
+   width: 25px;
+}
