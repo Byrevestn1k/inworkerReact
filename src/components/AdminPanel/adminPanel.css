@@ -1,54 +1,24 @@
+.admin-panel{
+   padding: 20px;
+}
 
-.button-menu{
-   width: 50px;
-   height: 50px;
+.admin-header span{
+   font-weight: bold; 
+
+}
+
+.admin-header {
    display: flex;
-   flex-direction: column;
-   justify-content: space-around;
+   justify-content: space-between;
    align-items: center;
-   margin-bottom: 20px;
-   position: absolute;
-   right: 20px;
-   top: 20px;
- 
+   background: rgb(204, 204, 204);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(204, 204, 204, 1) 100%);
+   padding: 10px;
+
 }
 
-.button-menu:active{
-   transform: rotate(360deg);
-   transition: 1000ms;
-}
-.stroke {
-   height: 3px;
-   width: 100%;
-   background: #00b7cc;
-   transition: 500ms;
-}
-
-.nav-hidden, .button-close {
-   position: absolute;
-   top: -300px;
-   transition: 500ms;
-}
-
-.nav-visible {
-   width: 92%;
-   position: absolute;
-   top: 0px;
-   transition: 500ms;
-}
-
-.button-menu-in-nav {
-   position: absolute;
-   top: 15px;
-   right: 20px;
-   z-index: 5;
-   rotate: 450deg;
-   transition: 1.5s;
-}
-
-.button-menu-in-nav .stroke {
-   background: #fff;
-   transition: 1.5s;
-   rotate: -360deg;
-   width: 25px;
+.admin-header-name{
+display: flex;
+align-items: center;
+gap: 20px;
 }

@@ -4,11 +4,30 @@ import "./adminPanel.css";
 // import { getFirestore } from "firebase/firestore";
 // import { collection, addDoc, getDocs } from "firebase/firestore";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, getDoc } from 'firebase/firestore/lite';
 import { DataContext } from "../../App";
+import inworker_shapka_mini from '../../images/header/inworker_shapka_mini.png';
+import { getDatabase } from "firebase/database";
+
 
 function AdminPanel() {
+  function getAllDocuments() {
+    const collectionRef = collection(db, 'cities');
+    const querySnapshot = getDocs(collectionRef);
+    console.log(querySnapshot);
+    // querySnapshot.forEach((doc) => { console.log(doc.id, '=>', doc.data()); });
+  }
+  async function getDocument(documentId) {
+    const documentRef = getDoc(db, 'cities', documentId);
+    const documentSnapshot = await getDoc(documentRef);
+    if (documentSnapshot.exists()) {
+      console.log('Document data:', documentSnapshot.data());
+    }
+    else { console.log('No such document'); }
+  }
   let { setAdminflag } = useContext(DataContext)
+  let logoWidth = 50;
+
   const firebaseConfig = {
     apiKey: "AIzaSyCwTaUs78OePapYbHiStDkrcndp9F7N8rg",
     authDomain: "inworker-9e2b3.firebaseapp.com",
@@ -22,17 +41,38 @@ function AdminPanel() {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  useEffect(() => {
+  function getCities(db) {
+    const citiesCol = collection(db, 'cities');
+    const citySnapshot = getDoc(citiesCol);
+    const cityList = citySnapshot.docs.map(doc => doc.data());
+    return cityList;
+  }
 
+  function getAllDocuments() {
+    const collectionRef = collection(db, 'collection_name');
+    const querySnapshot = getDocs(collectionRef);
+    querySnapshot.forEach((doc) => { console.log(doc.id, '=>', doc.data()); });
+  }
+  useEffect(() => {
+    getDocument('BJ')
   })
-  function setAdminflagHandler() {
+  function setAdminflagHandler() {//перемикає адмінпанель
     setAdminflag(false)
   }
 
   return (
-    <div>ADMIN
+    <div className="admin-panel">
+      <div className="admin-header">
 
-      <button onClick={setAdminflagHandler}>Close</button>
+        <div className="admin-header-name">
+          <div >
+            <img src={inworker_shapka_mini} width={logoWidth} alt="" />
+          </div>
+          Adminpanel of <span>{document.domain}</span> site</div>
+        <button onClick={setAdminflagHandler}>Close</button>
+
+      </div>
+
     </div>
 
   );

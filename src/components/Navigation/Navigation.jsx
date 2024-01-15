@@ -129,7 +129,6 @@ const Navigation = ({ isFooter }) => {
               return
             }
             if (element.text === 'admin') {
-              console.log(`admin`);
               return <Link key={element.id} to={element.path}>
                 <button onClick={setAdminflagHandler}>
                   <NavigationItem
