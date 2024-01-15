@@ -9,36 +9,46 @@ import { CARTEGORIES_LIST_ENDPOINT } from './constants/endpoints';
 import { useContext, useEffect, useState, createContext } from 'react';
 import { createRequestPath } from './helpers/helpers';
 import DataBase from './components/DataBase/DataBase';
+import AdminPanel from './components/AdminPanel';
+import { ADMIN_PATH } from './constants/pathNames';
 
 export let DataContext = createContext()
 
 function App() {
-  
+
   const [data, setData] = useState([])
   const [fetching, setFetching] = useState(false)
   const [fetchError, setFetchError] = useState(null);
+  let [adminFlag, setAdminflag] = useState(false)
   useEffect(function () {
     setFetching(true)
     fetch(createRequestPath(CARTEGORIES_LIST_ENDPOINT))
-        .then(response => response.json())
-        .then(resp => {
-            setFetching(false)
-            setData(resp)
-        })
-        .catch(err => {
-            setFetching(false)
-            setFetchError(err)
-        });
-}, [])
+      .then(response => response.json())
+      .then(resp => {
+        setFetching(false)
+        setData(resp)
+      })
+      .catch(err => {
+        setFetching(false)
+        setFetchError(err)
+      });
+  }, [])
 
   return (
     <div className="App">
-      <DataContext.Provider value={{data}}>
-        <Header />
-        <DataBase/>
-          <Main/>
-        <Footer />
-      </DataContext.Provider>
+      {adminFlag ?
+        <Routes>
+          <Route path={ADMIN_PATH} element={<AdminPanel />} />
+        </Routes> :
+        <DataContext.Provider value={{ data, setAdminflag }}>
+          <Header />
+          {/* <DataBase/> */}
+          <Main />
+          <Footer />
+        </DataContext.Provider>}
+
+
+
     </div>
   );
 }

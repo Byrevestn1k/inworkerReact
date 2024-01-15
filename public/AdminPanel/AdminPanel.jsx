@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./dataBase.css";
+import "./adminPanel.css";
 // import { initializeApp } from "firebase/app";
 // import { getFirestore } from "firebase/firestore";
 // import { collection, addDoc, getDocs } from "firebase/firestore";
@@ -11,13 +11,13 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 
 
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  console.log(cityList);
-}
+// // Get a list of cities from your database
+// async function getCities(db) {
+//   const citiesCol = collection(db, 'cities');
+//   const citySnapshot = await getDocs(citiesCol);
+//   const cityList = citySnapshot.docs.map(doc => doc.data());
+//   console.log(cityList);
+// }
 
 // try {
 //   const docRef = await addDoc(collection(db, "users"), {
@@ -33,7 +33,7 @@ async function getCities(db) {
 
 
 
-function DataBase() {
+function AdminPanel() {
 
   const firebaseConfig = {
     apiKey: "AIzaSyCwTaUs78OePapYbHiStDkrcndp9F7N8rg",
@@ -60,14 +60,14 @@ function DataBase() {
     //   console.error("Error adding document: ", e);
     // }
 
-    getCities(`cities`)
+
   })
 
 
   return (
-    <div>DATABASE</div>
+    <div>ADMIN</div>
 
   );
 }
 
-export default DataBase;
+export default AdminPanel;

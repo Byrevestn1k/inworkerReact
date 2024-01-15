@@ -7,15 +7,18 @@ import {
   PRODUCTS_PATH,
   BLOG_PATH,
   MINI_GAMES_PATH,
-  SITEMAP_PATH, 
+  SITEMAP_PATH,
   CONTACT_PATH,
+  ADMIN_PATH,
 } from "../../constants/pathNames";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import NavMenuPanel from "../NavNenuPanel/NavNenuPanel";
 import { WIDTH_MONITOR } from "../../constants/constants";
+import { func } from "prop-types";
+import { DataContext } from "../../App";
 
 const Navigation = ({ isFooter }) => {
-
+  let { setAdminflag } = useContext(DataContext)
   const navElements = [
     {
       id: uuidv4(),
@@ -31,7 +34,7 @@ const Navigation = ({ isFooter }) => {
       isUppercasetext: true,
       path: BLOG_PATH,
       isCategiries: true,
-      
+
     },
     {
       id: uuidv4(),
@@ -60,7 +63,16 @@ const Navigation = ({ isFooter }) => {
       id: uuidv4(),
       text: 'Контакти',
       isUppercasetext: true,
-      path:CONTACT_PATH,
+      path: CONTACT_PATH,
+      isCategiries: false,
+
+    },
+    {
+      isFooter: false,
+      id: uuidv4(),
+      text: 'admin',
+      isUppercasetext: false,
+      path: ADMIN_PATH,
       isCategiries: false,
 
     },
@@ -68,26 +80,31 @@ const Navigation = ({ isFooter }) => {
   //адаптивне меню, ховаєм в кнопку нав
   let [isShowPAnel, setIisShowPAnel] = useState(false)
   //адаптивна панель меню при загрузці
-  useEffect(()=>{
-      if (document.documentElement.clientWidth < WIDTH_MONITOR) {
-          setIisShowPAnel(true)
-          }
-      else {
-          setIisShowPAnel(false)
-      }
-     }, [])
+  useEffect(() => {
+    if (document.documentElement.clientWidth < WIDTH_MONITOR) {
+      setIisShowPAnel(true)
+    }
+    else {
+      setIisShowPAnel(false)
+    }
+  }, [])
   //адаптивна панель меню при загрузці
 
   //адаптивна панель меню при зміні розміру вікна
-      window.addEventListener("resize", () => {
-      if (document.documentElement.clientWidth < WIDTH_MONITOR) {
-          setIisShowPAnel(true)
-          }
-      else {
-          setIisShowPAnel(false)
-      }
-      })
-      //адаптивне меню, ховаєм в кнопку нав
+  window.addEventListener("resize", () => {
+    if (document.documentElement.clientWidth < WIDTH_MONITOR) {
+      setIisShowPAnel(true)
+
+    }
+    else {
+      setIisShowPAnel(false)
+    }
+  })
+
+  function setAdminflagHandler() {
+    setAdminflag(true)
+  }
+  //адаптивне меню, ховаєм в кнопку нав
   return (
     <div className="header">
       <nav className="navigation">
@@ -107,9 +124,24 @@ const Navigation = ({ isFooter }) => {
             )
           }
           else {
-           
+
             if (element.isFooter === true) {
               return
+            }
+            if (element.text === 'admin') {
+              console.log(`admin`);
+              return <Link key={element.id} to={element.path}>
+                <button onClick={setAdminflagHandler}>
+                  <NavigationItem
+                    isFooterShow={isFooter}
+                    text={element.text}
+                    isUppercasetext={element.isUppercasetext}
+                    isCategiries={element.isCategiries}
+                    isFooter={element?.isFooter}
+                  />
+                </button>
+              </Link>
+
             }
             else {
               return (
@@ -124,15 +156,15 @@ const Navigation = ({ isFooter }) => {
                 </Link>
               )
             }
-         
+
           }
-           
+
         })
-        
+
         }
         {
-          
-          !isFooter && isShowPAnel?<NavMenuPanel/>:null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
+
+          !isFooter && isShowPAnel ? <NavMenuPanel /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
         }
       </nav>
     </div>
