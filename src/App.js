@@ -37,9 +37,11 @@ function App() {
   return (
     <div className="App">
       {adminFlag ?
-        <Routes>
-          <Route path={ADMIN_PATH} element={<AdminPanel />} />
-        </Routes> :
+        <DataContext.Provider value={{ data, setAdminflag }}>
+          <Routes>
+            <Route path={ADMIN_PATH} element={<AdminPanel />} />
+          </Routes>
+        </DataContext.Provider> :
         <DataContext.Provider value={{ data, setAdminflag }}>
           <Header />
           {/* <DataBase/> */}
