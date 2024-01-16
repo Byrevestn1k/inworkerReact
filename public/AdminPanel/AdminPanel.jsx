@@ -1,49 +1,23 @@
 import { useEffect, useState } from "react";
-import "./dataBase.css";
+import "./adminPanel.css";
+// import { initializeApp } from "firebase/app";
+// import { getFirestore } from "firebase/firestore";
+// import { collection, addDoc, getDocs } from "firebase/firestore";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, getDocs, collection, setDoc, getDoc, doc, addDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCwTaUs78OePapYbHiStDkrcndp9F7N8rg",
-  authDomain: "inworker-9e2b3.firebaseapp.com",
-  databaseURL: "https://inworker-9e2b3-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "inworker-9e2b3",
-  storageBucket: "inworker-9e2b3.appspot.com",
-  messagingSenderId: "964740146101",
-  appId: "1:964740146101:web:2e4a1333bf7736920eeffc",
-  measurementId: "G-J5H0JLTDD9"
-};  
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 
 
-const docRef = doc(db, "categories", "dUK5vGjbqQeGWo2PdBKw");
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-  console.log("Document data:", docSnap.data());
-} else {
-  // docSnap.data() will be undefined in this case
-  console.log("No such document!");
-}
-
-function DataBase() {
-  let [data, setData] = useState()
-
-  useEffect(()=>{
-
-    },[])
-  
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  console.log(cityList);
-}
+// // Get a list of cities from your database
+// async function getCities(db) {
+//   const citiesCol = collection(db, 'cities');
+//   const citySnapshot = await getDocs(citiesCol);
+//   const cityList = citySnapshot.docs.map(doc => doc.data());
+//   console.log(cityList);
+// }
 
 // try {
 //   const docRef = await addDoc(collection(db, "users"), {
@@ -57,6 +31,9 @@ async function getCities(db) {
 // }
 
 
+
+
+function AdminPanel() {
 
   const firebaseConfig = {
     apiKey: "AIzaSyCwTaUs78OePapYbHiStDkrcndp9F7N8rg",
@@ -88,10 +65,9 @@ async function getCities(db) {
 
 
   return (
-    <div>DATABASE
-    </div>
+    <div>ADMIN</div>
 
   );
 }
 
-export default DataBase;
+export default AdminPanel;

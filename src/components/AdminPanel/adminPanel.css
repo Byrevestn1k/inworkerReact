@@ -1,0 +1,24 @@
+.admin-panel{
+   padding: 20px;
+}
+
+.admin-header span{
+   font-weight: bold; 
+
+}
+
+.admin-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background: rgb(204, 204, 204);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(204, 204, 204, 1) 100%);
+   padding: 10px;
+
+}
+
+.admin-header-name{
+display: flex;
+align-items: center;
+gap: 20px;
+}
