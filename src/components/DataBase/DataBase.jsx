@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./dataBase.css";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, getDocs, collection, setDoc, getDoc, doc, addDoc } from 'firebase/firestore/lite';
+// Follow this pattern to import other Firebase services
+// import { } from 'firebase/<service>';
 
-import { collection, setDoc, getDoc, doc  } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCwTaUs78OePapYbHiStDkrcndp9F7N8rg",
   authDomain: "inworker-9e2b3.firebaseapp.com",
@@ -35,19 +36,7 @@ function DataBase() {
   useEffect(()=>{
 
     },[])
-   
- 
-// import { initializeApp } from "firebase/app";
-// import { getFirestore } from "firebase/firestore";
-// import { collection, addDoc, getDocs } from "firebase/firestore";
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
-
-
-
-
+  
 // Get a list of cities from your database
 async function getCities(db) {
   const citiesCol = collection(db, 'cities');
@@ -68,9 +57,6 @@ async function getCities(db) {
 // }
 
 
-
-
-function DataBase() {
 
   const firebaseConfig = {
     apiKey: "AIzaSyCwTaUs78OePapYbHiStDkrcndp9F7N8rg",
@@ -103,9 +89,6 @@ function DataBase() {
 
   return (
     <div>DATABASE
-      {
-     
-    }
     </div>
 
   );
