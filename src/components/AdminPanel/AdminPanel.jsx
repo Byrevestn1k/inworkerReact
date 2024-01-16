@@ -11,20 +11,33 @@ import { getDatabase } from "firebase/database";
 
 
 function AdminPanel() {
-  function getAllDocuments() {
-    const collectionRef = collection(db, 'cities');
-    const querySnapshot = getDocs(collectionRef);
-    console.log(querySnapshot);
-    // querySnapshot.forEach((doc) => { console.log(doc.id, '=>', doc.data()); });
-  }
-  async function getDocument(documentId) {
-    const documentRef = getDoc(db, 'cities', documentId);
-    const documentSnapshot = await getDoc(documentRef);
-    if (documentSnapshot.exists()) {
-      console.log('Document data:', documentSnapshot.data());
-    }
-    else { console.log('No such document'); }
-  }
+  // function getAllDocuments() {
+  //   const collectionRef = collection(db, 'cities');
+  //   const querySnapshot = getDocs(collectionRef);
+  //   console.log(querySnapshot);
+  //   // querySnapshot.forEach((doc) => { console.log(doc.id, '=>', doc.data()); });
+  // }
+  // async function getDocument(documentId) {
+  //   const documentRef = getDoc(db, 'cities', documentId);
+  //   const documentSnapshot = await getDoc(documentRef);
+  //   if (documentSnapshot.exists()) {
+  //     console.log('Document data:', documentSnapshot.data());
+  //   }
+  //   else { console.log('No such document'); }
+  // }
+  // function getCities(db) {
+  //   const citiesCol = collection(db, 'cities');
+  //   const citySnapshot = getDoc(citiesCol);
+  //   const cityList = citySnapshot.docs.map(doc => doc.data());
+  //   return cityList;
+  // }
+
+  // function getAllDocuments() {
+  //   const collectionRef = collection(db, 'collection_name');
+  //   const querySnapshot = getDocs(collectionRef);
+  //   querySnapshot.forEach((doc) => { console.log(doc.id, '=>', doc.data()); });
+  // }
+ 
   let { setAdminflag } = useContext(DataContext)
   let logoWidth = 50;
 
@@ -41,20 +54,9 @@ function AdminPanel() {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  function getCities(db) {
-    const citiesCol = collection(db, 'cities');
-    const citySnapshot = getDoc(citiesCol);
-    const cityList = citySnapshot.docs.map(doc => doc.data());
-    return cityList;
-  }
 
-  function getAllDocuments() {
-    const collectionRef = collection(db, 'collection_name');
-    const querySnapshot = getDocs(collectionRef);
-    querySnapshot.forEach((doc) => { console.log(doc.id, '=>', doc.data()); });
-  }
   useEffect(() => {
-    getDocument('BJ')
+    
   })
   function setAdminflagHandler() {//перемикає адмінпанель
     setAdminflag(false)

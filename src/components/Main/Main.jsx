@@ -8,7 +8,6 @@ import {
 } from "../../constants/pathNames";
 import MenuPanel from "../MenuPanel//MenuPanel";
 import Comments from "../Comments/Comments";
-import AdminPanel from "../AdminPanel";
 
 const Main = () => {
 
