@@ -16,6 +16,8 @@ import NavMenuPanel from "../NavNenuPanel/NavNenuPanel";
 import { WIDTH_MONITOR } from "../../constants/constants";
 import { func } from "prop-types";
 import { DataContext } from "../../App";
+import { collection } from "firebase/firestore/lite";
+import { getAllDocuments, getAllDocuments_Firebase, getDATA_Firebase } from "../AdminPanel/helpers";
 
 const Navigation = ({ isFooter }) => {
   let { setAdminflag } = useContext(DataContext)
@@ -79,16 +81,20 @@ const Navigation = ({ isFooter }) => {
   ];
   //адаптивне меню, ховаєм в кнопку нав
   let [isShowPAnel, setIisShowPAnel] = useState(false)
-  //адаптивна панель меню при загрузці
+  const [navigationData, setNavigationData] = useState()
+  
   useEffect(() => {
+    //адаптивна панель меню при загрузці
     if (document.documentElement.clientWidth < WIDTH_MONITOR) {
       setIisShowPAnel(true)
     }
     else {
       setIisShowPAnel(false)
     }
+ //адаптивна панель меню при загрузці
+   getAllDocuments_Firebase(`navigation`);
+
   }, [])
-  //адаптивна панель меню при загрузці
 
   //адаптивна панель меню при зміні розміру вікна
   window.addEventListener("resize", () => {
