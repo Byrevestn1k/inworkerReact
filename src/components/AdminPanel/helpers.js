@@ -39,12 +39,19 @@ last: "Lovelace",born: 1815}){// створити документ в колек
  export async  function getAllDocuments_Firebase(dataBaseCollection) {// отримати всю колекцію з бази даних
     const collectionRef = collection(db, dataBaseCollection || 'cities');
     const querySnapshot = await getDocs(collectionRef);
-   let data=[];
+    let data=[];
     querySnapshot.forEach((doc) => { 
-      console.log(doc.id, '=>', doc.data()); 
-      data.push(doc.data())
+      // console.log(doc.data());
+      let document = {...doc.data(),id:doc.id}
+      data.push(document)
     });
-    
+   
     return data;
   }
-
+ export async  function getAllNamesOfCollections(dataBaseCollection) {// отримати всю колекцію з бази даних
+  let valuesSumm = 0;
+  const collectionRef = collection(db, 'cities');
+  const querySnapshot = await getDocs(collectionRef);
+  
+ console.log(db);
+  }

@@ -2,12 +2,12 @@
 import "./menuPanel.css";
 import { v4 as uuidv4 } from 'uuid';
 import MenuPanelItem from "../MenuPanelItem";
-import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../../App";
+import { useEffect, useState } from "react";
+
 import { WIDTH_MONITOR } from "../../constants/constants";
 
-const MenuPanel = () => {
-    let {data}=useContext(DataContext)
+const MenuPanel = ({dataBD}) => {
+    
     let [isShowPAnel, setIisShowPAnel] = useState(false)
     //адаптивна панель меню при загрузці
     useEffect(()=>{
@@ -34,9 +34,9 @@ const MenuPanel = () => {
     <div className="menu-panel"> 
         
         {isShowPAnel?
-        data.map((el)=>{
+        dataBD.map((el)=>{
                 return(
-                    <MenuPanelItem key={uuidv4()} title={el.title} url={el.urlSlug}/>
+                    <MenuPanelItem key={uuidv4()} title={el.title || "item"} url={el.urlSlug ||"item"}/>
                 )
             }
         ):

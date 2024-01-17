@@ -8,13 +8,27 @@ import "./adminPanel.css";
 import { DataContext } from "../../App";
 import inworker_shapka_mini from '../../images/header/inworker_shapka_mini.png';
 import { getDatabase } from "firebase/database";
+import MenuPanel from "../MenuPanel/MenuPanel";
+import { getAllDocuments_Firebase, getAllNamesOfCollections } from "./helpers";
+import PageWrapper from "../PageWrapper/PageWrapper";
 // import { addDocumentToDB_Firebase, getDocumentFromDB_Firebase } from "./helpers";
 
 
 function AdminPanel() {
-  
+  let [categoriesList, setCategriesList] = useState([])
+  let collection = `admin-menu-panel`;
   let { setAdminflag } = useContext(DataContext)
   let logoWidth = 50;
+useEffect(()=>{
+    getAllDocuments_Firebase(collection).then((resp=>{
+        setCategriesList(resp)
+    }));
+    getAllNamesOfCollections().then((resp)=>{
+      console.log(resp);
+    })
+},[])
+
+
 
   useEffect(() => {
     //getDocumentFromDB_Firebase(dataBaseCollection, document){// отримати елемент з колекції БД
@@ -25,6 +39,7 @@ function AdminPanel() {
   }
 
   return (
+    <PageWrapper>
     <div className="admin-panel">
       <div className="admin-header">
 
@@ -36,9 +51,15 @@ function AdminPanel() {
         <button onClick={setAdminflagHandler}>Close</button>
 
       </div>
+      <div className="admin-panel_main">
+          <div className="admin-panel_menu">
+            <MenuPanel dataBD={categoriesList}/>
+          </div>
+          <div className="admin-panel_main_main"></div>
 
+      </div>
     </div>
-
+    </PageWrapper>  
   );
 }
 

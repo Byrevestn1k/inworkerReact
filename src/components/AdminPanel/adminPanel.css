@@ -1,5 +1,6 @@
 .admin-panel{
    padding: 20px;
+   width: 100%;
 }
 
 .admin-header span{
@@ -16,9 +17,18 @@
    padding: 10px;
 
 }
-
 .admin-header-name{
 display: flex;
 align-items: center;
 gap: 20px;
+}
+
+.admin-panel_menu .menu-panel_item {
+   max-width: 20%;
+   background: rgba(204, 204, 204, 1);
+   color: black;
+}
+
+.admin-panel_menu .menu-panel{
+   margin: 0;
 }

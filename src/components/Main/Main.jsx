@@ -8,13 +8,21 @@ import {
 } from "../../constants/pathNames";
 import MenuPanel from "../MenuPanel//MenuPanel";
 import Comments from "../Comments/Comments";
+import { useEffect, useState } from "react";
+import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
 
 const Main = () => {
-
+let [categoriesList, setCategriesList] = useState([])
+let collection = `categories`;
+useEffect(()=>{
+    getAllDocuments_Firebase(collection).then((resp=>{
+        setCategriesList(resp)
+    }))
+},[])
     return (
         <div className="main">
             <PageWrapper>
-                <MenuPanel />
+                <MenuPanel dataBD={categoriesList}/>
                 <div className="main-information">
                     <div>
                         <Routes>
