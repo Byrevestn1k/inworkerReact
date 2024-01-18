@@ -52,6 +52,5 @@ last: "Lovelace",born: 1815}){// створити документ в колек
   let valuesSumm = 0;
   const collectionRef = collection(db, 'cities');
   const querySnapshot = await getDocs(collectionRef);
-  
- console.log(db);
+ 
   }

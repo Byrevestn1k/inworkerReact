@@ -1,30 +1,27 @@
 import { useContext, useEffect, useState } from "react";
 import "./adminPanel.css";
-// import { initializeApp } from "firebase/app";
-// import { getFirestore } from "firebase/firestore";
-// import { collection, addDoc, getDocs } from "firebase/firestore";
-// import { initializeApp } from 'firebase/app';
-// import { getFirestore, collection, getDocs, getDoc, doc } from 'firebase/firestore/lite';
 import { DataContext } from "../../App";
-import inworker_shapka_mini from '../../images/header/inworker_shapka_mini.png';
-import { getDatabase } from "firebase/database";
-import MenuPanel from "../MenuPanel/MenuPanel";
+import inworker_shapka_mini from '../../images/header/inworker_shapka_mini.png';//логотип
+import MenuPanel from "./Components/MenuPanelAdmin";
 import { getAllDocuments_Firebase, getAllNamesOfCollections } from "./helpers";
 import PageWrapper from "../PageWrapper/PageWrapper";
-// import { addDocumentToDB_Firebase, getDocumentFromDB_Firebase } from "./helpers";
+import NavigationEditor from "./Components/NavigationEditor/NavigationEditor";
+import { Route, Routes } from "react-router";
+import { NAVIGATION_PATH } from "./Components/constants/pathNames";
+
 
 
 function AdminPanel() {
-  let [categoriesList, setCategriesList] = useState([])
+  let [categoriesList, setCategriesList] = useState([])//всі категорії
   let collection = `admin-menu-panel`;
-  let { setAdminflag } = useContext(DataContext)
+  let { setAdminflag } = useContext(DataContext)//перемикач адмінка/сайт
   let logoWidth = 50;
 useEffect(()=>{
     getAllDocuments_Firebase(collection).then((resp=>{
         setCategriesList(resp)
     }));
     getAllNamesOfCollections().then((resp)=>{
-      console.log(resp);
+     
     })
 },[])
 
@@ -40,6 +37,7 @@ useEffect(()=>{
 
   return (
     <PageWrapper>
+      
     <div className="admin-panel">
       <div className="admin-header">
 
@@ -55,8 +53,11 @@ useEffect(()=>{
           <div className="admin-panel_menu">
             <MenuPanel dataBD={categoriesList}/>
           </div>
-          <div className="admin-panel_main_main"></div>
-
+          <div className="admin-panel_main_main">
+          <Routes>
+              <Route path={`/`} element={<NavigationEditor/>} />
+          </Routes>
+          </div>
       </div>
     </div>
     </PageWrapper>  

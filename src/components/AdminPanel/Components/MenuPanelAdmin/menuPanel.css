@@ -1,0 +1,67 @@
+.menu-panel {
+    min-width: 20%;
+    margin: 20px 10px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+   
+.menu-panel > ul {
+  
+    transition: 1.5s;
+    list-style-type: none;
+}
+
+.menu-panel ul li {
+    padding: 10px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    display: flex;
+
+}
+
+
+.menu-panel ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #3594b3;
+    width: 100%;
+    text-align: left;
+}
+
+.menu-panel a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+}
+.menu-panel ul li:hover::after {
+    rotate: 0deg;
+    transition: 400ms;
+    margin-left: 40px;
+}
+
+.menu-panel ul li:hover {
+    border-bottom: 1px solid #88d746;
+    cursor: pointer;
+}
+
+.menu-panel ul.active {
+    display: block;
+    padding: 10px 0 10px;
+    transition: 1.5s;
+    height: auto;
+}
+
+.menu-panel_linck {
+    position: relative;
+}
+
+
+.menu-panel_linck {
+    position: relative;
+}

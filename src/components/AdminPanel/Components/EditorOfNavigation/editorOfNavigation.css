@@ -1,0 +1,80 @@
+h2{
+	padding: 0;
+	margin-bottom: 30px;
+}
+.add-new-category {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	justify-content: center;
+		align-items: center;
+}
+
+.category-list {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+
+input.error {
+border-color:red;
+color:red;
+}
+
+label{
+	margin: 0 10px 0 20px;
+	text-transform: capitalize;
+	font-weight: bold;
+	display: inline-block;
+	width: min-content;
+}
+.add-new-category-panel{
+		padding: 0  20px;
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		
+}
+.add-new-category-panel div{
+	margin: 10px;
+}
+
+.add-category-item{
+	margin: 20px auto;
+	width: 200px;
+	padding: 5px;
+	
+	
+}
+
+hr{
+	width: 100%;
+	height: 1px;
+	box-sizing: border-box;
+	margin-bottom: 30px;
+}
+
+.edit-category{
+color: green;
+}
+
+.categories button{
+    background: rgb(218, 215, 215);
+    color:black;
+    border: 1px solid grey;
+    text-transform: capitalize;
+    padding: 7px;
+    font-size: 16px;
+    line-height: 16px;
+    width: max-content;
+    margin: 5px;
+}
+
+.add-new-category-panel input{
+width: 220px;
+padding: 10px;
+}

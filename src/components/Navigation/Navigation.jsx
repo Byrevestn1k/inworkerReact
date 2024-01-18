@@ -12,7 +12,7 @@ const Navigation = ({ isFooter }) => {
  
   //адаптивне меню, ховаєм в кнопку нав
   let [isShowPAnel, setIisShowPAnel] = useState(false)
-  const [navigationData, setNavigationData] = useState([])
+  const [navigationData, setNavigationData] = useState([]);// БД з навігацією
   let collection ='navigation';
   useEffect(() => {
     //адаптивна панель меню при загрузці
@@ -25,7 +25,7 @@ const Navigation = ({ isFooter }) => {
  //адаптивна панель меню при загрузці
     
 getAllDocuments_Firebase(collection).then((resp)=>{
-  setNavigationData(resp);
+  setNavigationData(resp);//отримуєм БД з навігацією
 })}
   , []);
 
@@ -50,7 +50,8 @@ getAllDocuments_Firebase(collection).then((resp)=>{
           if (isFooter) {
             return (
               <Link key={element.id} to={element?.path}>
-                <NavigationItem
+                <NavigationItem data={navigationData
+                }
                   isFooterShow={isFooter}
                   text={element?.text}
                   isUppercasetext={element?.isUppercasetext}
