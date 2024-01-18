@@ -26,6 +26,7 @@ const Navigation = ({ isFooter }) => {
     
 getAllDocuments_Firebase(collection).then((resp)=>{
   setNavigationData(resp);//отримуєм БД з навігацією
+  console.log(resp);
 })}
   , []);
 

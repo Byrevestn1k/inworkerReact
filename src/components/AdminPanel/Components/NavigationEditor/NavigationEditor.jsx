@@ -9,31 +9,30 @@ import {addDocumentToDB_Firebase} from "../../helpers";
 
 
 const NavigationEditor = () => {
+	let collectionTitle = `navigation`;// в яку колекцію БД додаєм
 	const [text, setText] = useState();
-	const [isFooter, setIsFooter] = useState();
+	const [isFooter, setIsFooter] = useState(true);
 	const [priority, setPriority] = useState();
 	const [path, setPath] = useState();
-	const [isUppercasetext, setIsUppercasetext] = useState();
-	const [isCategiries, setIsCategiries] = useState();
+	const [isUppercasetext, setIsUppercasetext] = useState(true);
+	const [isCategiries, setIsCategiries] = useState(true);
 	const [redClassFlag, setredClassFlag] = useState(false);
-
-
-	function onAddDataList() {
-		const dataList = {
+	const dataList = {// об'єкт для додавання в БД
 			text,isFooter,path,priority,isUppercasetext,isCategiries,	
 		};
-		if (dataList.text && dataList.isFooter && dataList.priority) {
+	let keys = Object.keys(dataList);//масив з назвами ключів
+
+	function onAddDataList() {
+		
+		console.log(dataList);
 			setText(``);
 			setIsFooter('');
 			setPriority('');
 			setPath('');
 			setredClassFlag(false)
-			addDocumentToDB_Firebase(`navigation`, dataList)
+			 addDocumentToDB_Firebase(collectionTitle, dataList)
 		
-		}
-		else {
-			setredClassFlag(true)
-		}
+			
 	}
 
 	const onGetName = (value) => {
@@ -48,23 +47,89 @@ const NavigationEditor = () => {
 		setPriority(value)
 	}
 	const onGetpath = (value) => {
-		setPath(value)
+		setPath(`/`+value)
 	};
-
+	const onGetIsUppercasetext = (value) => {
+		setIsUppercasetext(value)
+	}
+	const onGetIsCategiries = (value) => {
+		setIsCategiries(value)
+	}
 	return (
 		<PageWrapper>
 			
 			<div className={styles['add-new-category']}>
-				{
-				 	<h2>Add new navigation button</h2>
-				}
+			
+				 	<h2>{`Add new ${collectionTitle}  button`}</h2>
+					 <p>Усі поля обов'язкові для заповнення</p>
+			
 				<div className={styles["add-new-category-panel"]}>
-					<Input classNameFlag={redClassFlag} label="name: " placeholder="Enter category's name" onChangeFunction={onGetName} value={text} />
-					<Input classNameFlag={redClassFlag} label="isFooter: " placeholder="Enter category's isFooter url" onChangeFunction={onGetisFooter} value={isFooter} />
-					<Input classNameFlag={redClassFlag} label="priority: " placeholder="Enter category's priority" onChangeFunction={onGetpriority} type='number' value={priority} />
-					<Input label="path: " placeholder="Enter category's path" onChangeFunction={onGetpath} value={path} />
+					
+				{
+								keys.map((el)=>{
+					
+									let swithOfFuncOnChange = (a)=>{
+									
+										switch (el) {
+										case 'isFooter':
+											return onGetisFooter
+											break;
+										case 'isUppercasetext':
+											return onGetIsUppercasetext
+										break;
+										case 'isCategiries':
+											return onGetIsCategiries
+										break;
+										case 'priority':
+											return	onGetpriority
+										break;
+										case 'text':
+											return	 onGetName;
+										break;
+										case 'path':
+											return	onGetpath
+										break;
+										default:
+											break;
+									}
+								}
+									let swithOfFuncValue = ()=>{
+										switch (el) {
+										case 'isFooter':
+											return `isFooter`
+										case 'isUppercasetext':
+											return `isUppercasetext`
+										case 'isCategiries':
+											return `isCategiries`
+										case 'priority':
+											return `priority`
+										case 'text':
+											return `text`
+										case 'path':
+											return `path`
+										default:
+											break;
+										}
+									}
+									let swithOfFuncOnChangReturn = swithOfFuncOnChange();
+									
+									if(el==`isFooter`|| el==`isUppercasetext`|| el==`isCategiries`){
+										
+										return <div>
+												<Input type={'radio'} checked={`checked`} label={`${el} true: `}  onChangeFunction={swithOfFuncOnChangReturn}  value={true} name={swithOfFuncValue()}/><br></br>
+												<Input type={'radio'} label={`false: `}  onChangeFunction={swithOfFuncOnChangReturn}  value={false} name={swithOfFuncValue()}/>
+											</div>
+									}
+								
+										return <div>
+										
+											<Input type={el==`priority`? 'number': `text`} label={`${el==`path`?el+`/`:el} : `} placeholder={`Enter name of new ${el} element`} onChangeFunction={swithOfFuncOnChangReturn}  />
+										</div>
+									})
+
+				}
 				</div>
-				<button className={styles["add-category-item"]} type="button" onClick={onAddDataList}>add new category</button>
+				<button className={styles["add-category-item"]} type="button" onClick={onAddDataList}>add new {collectionTitle}</button>
 				<hr />
 			</div >
 		</PageWrapper>

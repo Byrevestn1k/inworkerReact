@@ -43,6 +43,7 @@ useEffect(()=>{
 
         <div className="admin-header-name">
           <div >
+            
             <img src={inworker_shapka_mini} width={logoWidth} alt="" />
           </div>
           Adminpanel of <span>{document.domain}</span> site</div>
