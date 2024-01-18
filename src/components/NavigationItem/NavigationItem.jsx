@@ -8,58 +8,10 @@ import { BLOGS_LIST_ENDPOINT} from "../../constants/endpoints";
 
 // export let DataCategoriesContext = createContext()
 
-const NavigationItem = (props) => {
-   const { text, isUppercasetext, isCategiries, isFooter } = props
-   const [fetching, setFetching] = useState(false)
-   const [fetchError, setFetchError] = useState(null);
-
-   let categories = [
-      {
-         id: uuidv4(),
-         title: 'Item',
-         isUppercasetext: true,
-         // urlSlug: HOME_PATH,
-         isCategiries: false,
-      },
-      // {
-      //    "title": "string",
-      //    "priority": 0,
-      //    "urlSlug": "string",
-      //    "image": "string"
-      //  },
-      {
-         id: uuidv4(),
-         title: 'Item',
-         isUppercasetext: true,
-         // urlSlug: BLOG_PATH,
-         isCategiries: false,
-      },
-      {
-         id: uuidv4(),
-         title: 'Item',
-         isUppercasetext: true,
-         // urlSlug: ABOUT_PATH,
-         isCategiries: false,
-      },
-
-
-   ];
-   const [data, setData] = useState(categories)
+const NavigationItem = ({isFooterShow,   text,   isUppercasetext,   isCategiries,   isFooter}) => {
+   let [data, setData]=useState([])
    useEffect(function () {
-      setFetching(true)
-      fetch(createRequestPath(BLOGS_LIST_ENDPOINT))
-         .then(response => response.json())
-         .then(resp => {
-            setFetching(false)
-            setData(resp)
-
-
-         })
-         .catch(err => {
-
-            setFetching(false)
-            setFetchError(err)
-         });
+     
    }, [])
 
 
@@ -72,7 +24,7 @@ const NavigationItem = (props) => {
 
          <div>{!isUppercasetext ? text.toUpperCase() : text}</div>
 
-         {isCategiries &&
+         {/* {isCategiries &&
             (
                <>
                   <div className='nav-arrow_down'></div>
@@ -93,7 +45,7 @@ const NavigationItem = (props) => {
                   </div>
                </>
             )
-         }
+         } */}
       </div>
 
    )

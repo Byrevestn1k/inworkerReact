@@ -1,12 +1,10 @@
 
 import "./menuPanel.css";
-import { v4 as uuidv4 } from 'uuid';
-import MenuPanelItem from "../MenuPanelItem";
+import MenuPanelItem from "../MenuPanelItemAdmin/MenuPanelItemAdmin";
 import { useEffect, useState } from "react";
+import { WIDTH_MONITOR } from "../../../../constants/constants";
 
-import { WIDTH_MONITOR } from "../../constants/constants";
-
-const MenuPanel = ({dataBD}) => {
+const MenuPanelAdmin = ({dataBD}) => {
     
     let [isShowPAnel, setIisShowPAnel] = useState(false)
     //адаптивна панель меню при загрузці
@@ -32,18 +30,21 @@ const MenuPanel = ({dataBD}) => {
     
     return (
     <div className="menu-panel"> 
-        
-        {isShowPAnel?
-        dataBD.map((el)=>{
-                return(
-                    <MenuPanelItem key={uuidv4()} title={el.title || "item"} url={el.urlSlug ||"item"}/>
-                )
+       
+          
+      
+            {isShowPAnel?
+            dataBD.map((el)=>{
+                    return(
+                        <MenuPanelItem key={el.id} title={el.title} url={el.urlSlug}/>
+                    )
+                }
+            ):
+            null
             }
-        ):
-        null
-        }
+       
     </div>
     )
 };
 
-export default MenuPanel;
+export default MenuPanelAdmin;

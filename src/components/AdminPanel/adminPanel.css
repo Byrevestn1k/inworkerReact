@@ -1,5 +1,7 @@
 .admin-panel{
    padding: 20px;
+   width: 100%;
+   
 }
 
 .admin-header span{
@@ -16,9 +18,34 @@
    padding: 10px;
 
 }
-
 .admin-header-name{
 display: flex;
 align-items: center;
 gap: 20px;
+}
+
+.admin-panel_menu .menu-panel_item {
+   width: 20%;
+   background: rgba(204, 204, 204, 1);
+   color: black;
+}
+
+.admin-panel_menu .menu-panel{
+   margin: 0;
+   width: 100%;
+}
+
+.admin-panel_menu .menu-panel h5{
+   margin: 0;
+   width: 100%;
+}
+.admin-panel_menu .menu-panel_item:after{
+  content: "";
+}
+.admin-panel_main{
+     display: flex;
+}
+.admin-panel_main_main{
+   width: 100%;
+   height: 100vh;
 }
