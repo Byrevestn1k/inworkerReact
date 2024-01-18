@@ -44,7 +44,6 @@ function App() {
         </DataContext.Provider> :
         <DataContext.Provider value={{ data, setAdminflag }}>
           <Header />
-          {/* <DataBase/> */}
           <Main />
           <Footer />
         </DataContext.Provider>}
