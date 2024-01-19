@@ -8,15 +8,15 @@ import { addDocumentToDB_Firebase, getAllDocuments_Firebase } from "../../helper
 
 
 
-const NavigationEditor = () => {
+const NavigationEditor = ({data}) => {
 	let collectionTitle = `navigation`;// в яку колекцію БД додаєм
 
-	const [text, setText] = useState(undefined);
-	const [priority, setPriority] = useState(undefined);
-	const [path, setPath] = useState(undefined);
-	const [isUppercasetext, setIsUppercasetext] = useState(false);
-	const [isFooter, setIsFooter] = useState(false);
-	const [isHeader, setIsHeader] = useState(false);
+	const [text, setText] = useState(data.text || undefined);
+	const [priority, setPriority] = useState(data.priority ||undefined);
+	const [path, setPath] = useState(data.path ||undefined);
+	const [isUppercasetext, setIsUppercasetext] = useState(data.path ||false);
+	const [isFooter, setIsFooter] = useState(data.isFooter ||false);
+	const [isHeader, setIsHeader] = useState(data.isHeader ||false);
 
 
 	// useEffect(()=>{
@@ -27,13 +27,11 @@ const NavigationEditor = () => {
 		const dataList = {// об'єкт для додавання в БД
 			text, isFooter, isHeader, path, priority, isUppercasetext, 
 		};
-		
 		setText('');
 		setIsFooter('');
 		setPriority('');
 		setPath('');
 		addDocumentToDB_Firebase(collectionTitle, dataList)
-
 	}
 
 	const onGetName = (value) => {
@@ -83,7 +81,6 @@ const NavigationEditor = () => {
 				</div>
 
 				<button className={"add-category-item"} type="button" onClick={onAddDataList}>add new {collectionTitle}</button>
-				
 			</div >
 		</PageWrapper>
 	);

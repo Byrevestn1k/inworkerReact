@@ -1,0 +1,21 @@
+input:focus-visible {
+	outline: none;
+}
+.input{
+	display: flex;
+width: 100%;
+	justify-content: start;
+	align-items: center;
+	margin: 20px;
+}
+
+.input label{
+	width: 50%;
+	text-align: right;
+	margin-right: 20px;
+}
+.input input{
+	display: block;
+
+	text-align: left;
+}
