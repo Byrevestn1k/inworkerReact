@@ -5,4 +5,4 @@ export const MINI_GAMES_PATH = "/mini_games";
 export const PRODUCTS_PATH = "/products";
 export const CONTACT_PATH = "/contact";
 export const SITEMAP_PATH = "/sitemap";
-export const ADMIN_PATH = "/admin";
+export const ADMIN_PATH = "/admin/*";

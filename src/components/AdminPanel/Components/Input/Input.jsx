@@ -1,11 +1,10 @@
 import styles from "./input.module.css";
 
 const Input = (props) => {
-  const { label, type, validation, value, placeholder, onChangeFunction, name, checked } =
-    props;
-	console.log(onChangeFunction);
-  const inputClass = validation ? "" : styles.errorInput;
-  return (
+	const { label, type, validation, value, placeholder, onChangeFunction, name, checked } =
+		props;
+	const inputClass = validation ? "" : styles.errorInput;
+	return (
 		<label>
 			{label}
 			<input
@@ -14,10 +13,10 @@ const Input = (props) => {
 				value={value}
 				onChange={(event) => onChangeFunction(event.target.value)}
 				className={inputClass}
-				name={name} 
-				checked={checked||null}
-				/>
-				
+				name={name}
+				checked={checked || null}
+			/>
+
 		</label>
 	);
 };
