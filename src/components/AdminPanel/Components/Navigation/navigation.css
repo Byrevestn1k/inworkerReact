@@ -1,0 +1,19 @@
+.navigation{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.navigatin-categiries{
+    display: none;
+}
+
+.navigation a{
+    text-decoration: none;
+}
+
+
+
+

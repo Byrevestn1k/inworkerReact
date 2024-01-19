@@ -8,6 +8,7 @@ import PageWrapper from "../PageWrapper/PageWrapper";
 import NavigationEditor from "./Components/NavigationEditor/NavigationEditor";
 import { Route, Routes, useNavigate } from "react-router";
 import { NAVIGATION_PATH } from "./Components/constants/pathNames";
+import Navigation from "./Components/Navigation/Navigation";
 
 
 
@@ -62,7 +63,7 @@ function AdminPanel() {
           </div>
           <div className="admin-panel_main_main">
             <Routes>
-              <Route path={NAVIGATION_PATH} element={<NavigationEditor />} />
+              <Route path={NAVIGATION_PATH} element={<Navigation />} />
             </Routes>
           </div>
         </div>

@@ -24,12 +24,10 @@ if (docSnap.exists()) {
 return docSnap.data()
 }
 
-export async function addDocumentToDB_Firebase(dataBaseCollection, object={first: "AAAAAA",
-last: "Lovelace",born: 1815}){// створити документ в колекції елемент з колекції БД
+export async function addDocumentToDB_Firebase(dataBaseCollection, object){// створити документ в колекції елемент з колекції БД
     
     try {
-      
-          const docRef = await addDoc(collection(db, dataBaseCollection || "deafault"), object); 
+          const docRef = await addDoc(collection(db, dataBaseCollection), object); 
           console.log("Document written with ID: ", docRef.id);
         } catch (e) {
           console.error("Error adding document: ", e);
@@ -37,11 +35,10 @@ last: "Lovelace",born: 1815}){// створити документ в колек
 }
 
  export async  function getAllDocuments_Firebase(dataBaseCollection) {// отримати всю колекцію з бази даних
-    const collectionRef = collection(db, dataBaseCollection || 'cities');
+    const collectionRef = collection(db, dataBaseCollection);
     const querySnapshot = await getDocs(collectionRef);
     let data=[];
     querySnapshot.forEach((doc) => { 
-      // console.log(doc.data());
       let document = {...doc.data(),id:doc.id}
       data.push(document)
     });
