@@ -1,8 +1,6 @@
 import "./navigation.css";
 import NavigationItem from "../NavigationItem/NavigationItem";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState} from "react";
-
+import { useEffect, useState } from "react";
 import { WIDTH_MONITOR } from "../constants/constants";
 import { getAllDocuments_Firebase } from "../../helpers";
 import Modal from "../ModalR";
@@ -46,26 +44,28 @@ const Navigation = ({ isFooter }) => {
     }
   })
 
-function modalCall(){
-  setShowModal(true)
-}
+  function modalCall() {
+    setShowModal(true)
+    console.log(showModal);
+  }
 
   //адаптивне меню, ховаєм в кнопку нав
   return (
-   <> <div  id="addnew"><button  onClick={modalCall}>add new</button></div>
+    <> <div id="addnew"><button onClick={modalCall}>add new</button></div>
       <nav className="navigation">
-       
-          {navigationData.map((element) => {          
-              return (
-                  <NavigationItem data={element}/>
-              )
-          })
-          }
+
+        {navigationData.map((element) => {
+          return (
+            <NavigationItem data={element} collection={collection}
+            />
+          )
+        })
+        }
       </nav>
       <Modal showModal={showModal} openModalFunc={setShowModal} >
-          <NavigationEditor/>
+        <NavigationEditor />
       </Modal>
-</>
+    </>
   );
 };
 

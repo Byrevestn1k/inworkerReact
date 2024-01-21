@@ -1,5 +1,5 @@
-import styles from './modal.css';
-import {createPortal} from "react-dom";
+import './modal.css';
+import { createPortal } from "react-dom";
 
 const portalRoot = document.getElementById('portal');
 
@@ -8,10 +8,10 @@ const Modal = (props) => {
 
 
     const portalContent = (
-        <div className={'common'} onClick={() => {openModalFunc(false)}}>
+        <div className={'common'} onClick={() => { openModalFunc(false) }}>
             <div className={'content'} onClick={(e) => { e.stopPropagation() }}>
-                <button onClick={openModalFunc(false)}>exit</button>
-                { children }
+                {children}
+                <button onClick={() => { openModalFunc(false) }}>exit</button>
             </div>
         </div>
     );
