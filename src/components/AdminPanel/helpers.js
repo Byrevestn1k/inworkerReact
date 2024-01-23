@@ -51,7 +51,7 @@ export async function getAllNamesOfCollections(dataBaseCollection) {// отри�
   const querySnapshot = await getDocs(collectionRef);
 
 }
-export async function deleteDocForID(collection, docId) {// отримати всю колекцію з бази даних
+export async function deleteDocForID(collection, docId) {// видалити сутність за назвою колекції та id
 
   await deleteDoc(doc(db, collection, docId))
   console.log(`collection doc DELETED`);
