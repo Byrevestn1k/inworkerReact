@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./adminPanel.css";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDoc, doc, addDoc, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDoc, doc, addDoc, getDocs, deleteDoc } from 'firebase/firestore/lite';
 
 import { getDatabase, ref, onValue } from "firebase/database";
 // import { getDatabase } from "firebase/database";
@@ -46,22 +46,14 @@ export async function getAllDocuments_Firebase(dataBaseCollection) {// отри�
   return data;
 }
 export async function getAllNamesOfCollections(dataBaseCollection) {// отримати всю колекцію з бази даних
-  let valuesSumm = 0;
+
   const collectionRef = collection(db, 'cities');
   const querySnapshot = await getDocs(collectionRef);
 
 }
 export async function deleteDocForID(collection, docId) {// отримати всю колекцію з бази даних
 
-  let docRef = doc(db, collection, docId);
-
-  docRef.delete()
-    .then(() => {
-      console.log("Документ успешно удален.");
-    })
-    .catch((error) => {
-      console.error("Ошибка при удалении документа:", error);
-    });
-
-
+  await deleteDoc(doc(db, collection, docId))
+  console.log(`collection doc DELETED`);
 }
+

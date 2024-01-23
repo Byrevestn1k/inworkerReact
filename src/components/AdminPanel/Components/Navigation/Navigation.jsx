@@ -3,7 +3,7 @@ import NavigationItem from "../NavigationItem/NavigationItem";
 import { useEffect, useState } from "react";
 import { WIDTH_MONITOR } from "../constants/constants";
 import { getAllDocuments_Firebase } from "../../helpers";
-import Modal from "../ModalR";
+import Modal from "../Modal";
 import NavigationEditor from "../NavigationEditor/NavigationEditor";
 
 const Navigation = ({ isFooter }) => {
@@ -32,7 +32,7 @@ const Navigation = ({ isFooter }) => {
 
     })
   }
-    , []);
+    , [navigationData]);
 
   //адаптивна панель меню при зміні розміру вікна
   window.addEventListener("resize", () => {

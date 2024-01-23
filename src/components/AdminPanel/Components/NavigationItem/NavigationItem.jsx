@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '../ModalR';
+import Modal from '../Modal';
 import './navigationitem.css';
 import NavigationEditor from '../NavigationEditor/NavigationEditor';
 import { deleteDocForID } from '../../helpers';
@@ -10,13 +10,24 @@ import { deleteDocForID } from '../../helpers';
 const NavigationItem = ({ data, collection }) => {
    let { text, isUppercase, isFooter, path, priority, isHeader, id } = data;
    const [showModal, setShowModal] = useState(false)
+   const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
 
+   let deleteQuestion = <div>
+      <div> Ви впевнені, що бажаєте видалити {text}</div>
+      <button onClick={() => {
+         setShowModal(false)
+      }}>Ні</button>
+      <button onClick={() => {
+         deleteDocForID(collection, id)
+         setShowModal(false)
+      }}>Так</button>
+   </div>
    function onClickEdit() {
       setShowModal(true)
    }
    function onClickDeleteHendler() {
-      deleteDocForID(collection, id)
-      console.log(`DELETE`);
+      setShowModalDeleteQuestion(false)
+      setShowModal(true)
    }
 
    return (
@@ -32,7 +43,7 @@ const NavigationItem = ({ data, collection }) => {
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>
          <Modal showModal={showModal} openModalFunc={setShowModal} >
-            <NavigationEditor />
+            {showModalDeleteQuestion ? <NavigationEditor /> : deleteQuestion}
          </Modal>
       </div>
 
