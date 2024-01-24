@@ -7,3 +7,4 @@ export const CONTACT_PATH = "/contact";
 export const SITEMAP_PATH = "/sitemap";
 export const ADMIN_PATH = "/admin";
 export const NAVIGATION_PATH = "/navigation";
+export const POST_PATH = "/post";

@@ -19,7 +19,7 @@ function App() {
   const [data, setData] = useState([])
   const [fetching, setFetching] = useState(false)
   const [fetchError, setFetchError] = useState(null);
-  let [adminFlag, setAdminflag] = useState(false)
+  let [adminFlag, setAdminflag] = useState(true)
   useEffect(function () {
     setFetching(true)
     fetch(createRequestPath(CARTEGORIES_LIST_ENDPOINT))

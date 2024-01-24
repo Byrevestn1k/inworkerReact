@@ -7,14 +7,19 @@ import { getAllDocuments_Firebase, getAllNamesOfCollections } from "./helpers";
 import PageWrapper from "../PageWrapper/PageWrapper";
 import NavigationEditor from "./Components/NavigationEditor/NavigationEditor";
 import { Route, Routes, useNavigate } from "react-router";
-import { NAVIGATION_PATH } from "./Components/constants/pathNames";
+import { NAVIGATION_PATH, POST_PATH } from "./Components/constants/pathNames";
 import Navigation from "./Components/Navigation/Navigation";
+import { Editor } from "draft-js";
+import TextEditor from "./Components/TextEditor";
 
 
 
 function AdminPanel() {
 
-  let [categoriesList, setCategriesList] = useState([])//всі категорії
+  let [categoriesList, setCategriesList] = useState([
+    { title: `navigation`, urlSlug: 'navigation' },
+    { title: `post`, urlSlug: 'post' }
+  ])//всі категорії
   let collection = `admin-menu-panel`;
   let { setAdminflag } = useContext(DataContext)//перемикач адмінка/сайт
 
@@ -22,14 +27,12 @@ function AdminPanel() {
 
   let logoWidth = 50;
 
-  useEffect(() => {
-    getAllDocuments_Firebase(collection).then((resp => {
-      setCategriesList(resp)
-    }));
-    getAllNamesOfCollections().then((resp) => {
+  // useEffect(() => {
+  //   getAllDocuments_Firebase(collection).then((resp => {
+  //     setCategriesList(resp)
+  //   }));
 
-    })
-  }, [])
+  // }, [])
 
 
 
@@ -64,6 +67,7 @@ function AdminPanel() {
           <div className="admin-panel_main_main">
             <Routes>
               <Route path={NAVIGATION_PATH} element={<Navigation />} />
+              <Route path={POST_PATH} element={<TextEditor />} />
             </Routes>
           </div>
         </div>
