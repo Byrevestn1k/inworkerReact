@@ -2,25 +2,29 @@ import { useState } from 'react';
 import Modal from '../Modal';
 import './navigationitem.css';
 import NavigationEditor from '../NavigationEditor/NavigationEditor';
-import { deleteDocForID } from '../../helpers';
 import DeleteQuestion from '../DeleteQuestion';
+import { useDispatch, useSelector } from 'react-redux';
+import { HIDE_MODAL, SHOW_MODAL } from '../../../../constants/actions';
+
 
 
 // export let DataCategoriesContext = createContext()
 
 const NavigationItem = ({ data, collection }) => {
    let { text, isUppercase, isFooter, path, priority, isHeader, id } = data;
-   const [showModal, setShowModal] = useState(false)
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
-
+   const dispatch = useDispatch();
+   let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate.pushForUseEffectUpdate);
 
    function onClickEdit() {
       setShowModalDeleteQuestion(true)
-      setShowModal(true)
+      dispatch({ type: SHOW_MODAL });
    }
    function onClickDeleteHendler() {
       setShowModalDeleteQuestion(false)
-      setShowModal(true)
+      console.log(showModalDeleteQuestion);
+      dispatch({ type: SHOW_MODAL });
+
    }
 
    return (
@@ -35,8 +39,9 @@ const NavigationItem = ({ data, collection }) => {
          <div><span>ISHEADER</span>: {`${isHeader}`}</div>
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>
-         <Modal showModal={showModal} openModalFunc={setShowModal} >
-            {showModalDeleteQuestion ? <NavigationEditor data={data} /> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
+         <Modal  >
+            <DeleteQuestion data={data} collection={collection} setShowModal={pushForUseEffectUpdate} />
+            {/* {showModalDeleteQuestion ? <NavigationEditor data={data} /> : <DeleteQuestion data={data} collection={collection} setShowModal={pushForUseEffectUpdate} />} */}
          </Modal>
       </div>
 

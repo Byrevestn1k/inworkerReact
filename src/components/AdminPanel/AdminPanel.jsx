@@ -14,7 +14,7 @@ import Navigation from "./Components/Navigation/Navigation";
 
 function AdminPanel() {
 
-  let [categoriesList, setCategriesList] = useState([])//всі категорії
+  let [categoriesList, setCategriesList] = useState([{ title: `navigation`, urlSlug: 'navigation' }])//всі категорії
   let collection = `admin-menu-panel`;
   let { setAdminflag } = useContext(DataContext)//перемикач адмінка/сайт
 
@@ -22,14 +22,12 @@ function AdminPanel() {
 
   let logoWidth = 50;
 
-  useEffect(() => {
-    getAllDocuments_Firebase(collection).then((resp => {
-      setCategriesList(resp)
-    }));
-    getAllNamesOfCollections().then((resp) => {
+  // useEffect(() => {
+  //   getAllDocuments_Firebase(collection).then((resp => {
+  //     setCategriesList(resp)
+  //   }));
 
-    })
-  }, [])
+  // }, [])
 
 
 

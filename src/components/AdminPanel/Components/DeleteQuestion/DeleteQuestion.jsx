@@ -1,10 +1,13 @@
+import { useDispatch } from 'react-redux';
 import { deleteDocForID } from '../../helpers';
 import './deleteQuestion.css';
 import { createPortal } from "react-dom";
+import { PUSH_USEEFFECT_UPDATE } from '../../../../constants/actions';
 
 const portalRoot = document.getElementById('portal');
 
 const DeleteQuestion = ({ data, collection, setShowModal }) => {
+    let dispatch = useDispatch()
 
     return (
         <div className='delete-question'>
@@ -13,8 +16,9 @@ const DeleteQuestion = ({ data, collection, setShowModal }) => {
                 setShowModal(false)
             }}>Ні</button>
             <button onClick={() => {
-                deleteDocForID(collection, data.id)
-                setShowModal(false)
+                deleteDocForID(collection, data.id);
+                setShowModal(false);
+                dispatch({ type: PUSH_USEEFFECT_UPDATE })
             }}>Так</button>
         </div>
     )
