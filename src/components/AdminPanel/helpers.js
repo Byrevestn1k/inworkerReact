@@ -57,6 +57,6 @@ export async function deleteDocForID(collection, docId) {// видалити с�
   await deleteDoc(doc(db, collection, docId))
   console.log(`collection doc DELETED`);
 }
-export async function setDocForID(collection, docId) {// оновити сутність за назвою колекції та id
+export async function setDocForID(collection, docId, object) {// оновити сутність за назвою колекції та id
   await setDoc(doc(db, collection, docId), object)
 }
