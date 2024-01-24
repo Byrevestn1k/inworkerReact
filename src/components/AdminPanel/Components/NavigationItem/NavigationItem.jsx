@@ -13,18 +13,14 @@ import { HIDE_MODAL, SHOW_MODAL } from '../../../../constants/actions';
 const NavigationItem = ({ data, collection }) => {
    let { text, isUppercase, isFooter, path, priority, isHeader, id } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
-   const dispatch = useDispatch();
-   let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate.pushForUseEffectUpdate);
-
+   const [showModal, setShowModal] = useState(false)
    function onClickEdit() {
       setShowModalDeleteQuestion(true)
-      dispatch({ type: SHOW_MODAL });
+      setShowModal(true);
    }
    function onClickDeleteHendler() {
       setShowModalDeleteQuestion(false)
-      console.log(showModalDeleteQuestion);
-      dispatch({ type: SHOW_MODAL });
-
+      setShowModal(true);
    }
 
    return (
@@ -39,9 +35,8 @@ const NavigationItem = ({ data, collection }) => {
          <div><span>ISHEADER</span>: {`${isHeader}`}</div>
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>
-         <Modal  >
-            <DeleteQuestion data={data} collection={collection} setShowModal={pushForUseEffectUpdate} />
-            {/* {showModalDeleteQuestion ? <NavigationEditor data={data} /> : <DeleteQuestion data={data} collection={collection} setShowModal={pushForUseEffectUpdate} />} */}
+         <Modal showModal={showModal} openModalFunc={setShowModal}>
+            {showModalDeleteQuestion ? <NavigationEditor data={data} /> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
          </Modal>
       </div>
 

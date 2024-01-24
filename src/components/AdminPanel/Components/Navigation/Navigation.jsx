@@ -57,7 +57,7 @@ const Navigation = ({ isFooter }) => {
 
 
   function modalCall() {
-    dispatch({ type: SHOW_MODAL });
+    setShowModal(true);
   }
 
   //адаптивне меню, ховаєм в кнопку нав
@@ -72,7 +72,7 @@ const Navigation = ({ isFooter }) => {
         })
         }
       </nav>
-      <Modal  >
+      <Modal showModal={showModal} openModalFunc={setShowModal}>
         <NavigationEditor />
       </Modal>
     </>
