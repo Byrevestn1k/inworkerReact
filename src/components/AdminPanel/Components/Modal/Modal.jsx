@@ -10,8 +10,9 @@ const Modal = (props) => {
     const portalContent = (
         <div className={'common'} onClick={() => { openModalFunc(false) }}>
             <div className={'content'} onClick={(e) => { e.stopPropagation() }}>
+                <button className='close' onClick={() => { openModalFunc(false) }}>X</button>
                 {children}
-                <button onClick={() => { openModalFunc(false) }}>exit</button>
+
             </div>
         </div>
     );

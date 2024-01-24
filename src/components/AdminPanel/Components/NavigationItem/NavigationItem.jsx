@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Modal from '../ModalR';
+import Modal from '../Modal';
 import './navigationitem.css';
 import NavigationEditor from '../NavigationEditor/NavigationEditor';
 import { deleteDocForID } from '../../helpers';
+import DeleteQuestion from '../DeleteQuestion';
 
 
 // export let DataCategoriesContext = createContext()
@@ -10,13 +11,16 @@ import { deleteDocForID } from '../../helpers';
 const NavigationItem = ({ data, collection }) => {
    let { text, isUppercase, isFooter, path, priority, isHeader, id } = data;
    const [showModal, setShowModal] = useState(false)
+   const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
+
 
    function onClickEdit() {
+      setShowModalDeleteQuestion(true)
       setShowModal(true)
    }
    function onClickDeleteHendler() {
-      deleteDocForID(collection, id)
-      console.log(`DELETE`);
+      setShowModalDeleteQuestion(false)
+      setShowModal(true)
    }
 
    return (
@@ -32,7 +36,7 @@ const NavigationItem = ({ data, collection }) => {
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>
          <Modal showModal={showModal} openModalFunc={setShowModal} >
-            <NavigationEditor />
+            {showModalDeleteQuestion ? <NavigationEditor data={data} /> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
          </Modal>
       </div>
 

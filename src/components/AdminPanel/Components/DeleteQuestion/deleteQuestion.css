@@ -1,0 +1,10 @@
+.delete-question {
+    padding: 10px;
+    margin: 30px;
+    background: white;
+}
+
+.delete-question button{
+    margin: 5px 10px 0 ;
+    padding: 5px 10px;
+}
