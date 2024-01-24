@@ -3,6 +3,7 @@ import Modal from '../Modal';
 import './navigationitem.css';
 import NavigationEditor from '../NavigationEditor/NavigationEditor';
 import { deleteDocForID } from '../../helpers';
+import DeleteQuestion from '../DeleteQuestion';
 
 
 // export let DataCategoriesContext = createContext()
@@ -12,17 +13,9 @@ const NavigationItem = ({ data, collection }) => {
    const [showModal, setShowModal] = useState(false)
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
 
-   let deleteQuestion = <div>
-      <div> Ви впевнені, що бажаєте видалити {text}</div>
-      <button onClick={() => {
-         setShowModal(false)
-      }}>Ні</button>
-      <button onClick={() => {
-         deleteDocForID(collection, id)
-         setShowModal(false)
-      }}>Так</button>
-   </div>
+
    function onClickEdit() {
+      setShowModalDeleteQuestion(true)
       setShowModal(true)
    }
    function onClickDeleteHendler() {
@@ -43,7 +36,7 @@ const NavigationItem = ({ data, collection }) => {
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>
          <Modal showModal={showModal} openModalFunc={setShowModal} >
-            {showModalDeleteQuestion ? <NavigationEditor /> : deleteQuestion}
+            {showModalDeleteQuestion ? <NavigationEditor data={data} /> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
          </Modal>
       </div>
 

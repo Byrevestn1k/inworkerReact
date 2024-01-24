@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./adminPanel.css";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDoc, doc, addDoc, getDocs, deleteDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc } from 'firebase/firestore/lite';
 
 import { getDatabase, ref, onValue } from "firebase/database";
 // import { getDatabase } from "firebase/database";
@@ -27,14 +27,14 @@ export async function getDocumentFromDB_Firebase(dataBaseCollection, document) {
 export async function addDocumentToDB_Firebase(dataBaseCollection, object) {// створити документ в колекції елемент з колекції БД
 
   try {
-    const docRef = await addDoc(collection(db, dataBaseCollection), object);
+    const docRef = await addDoc(collection(db, dataBaseCollection), object);// addDoc/setDoc
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 }
 
-export async function getAllDocuments_Firebase(dataBaseCollection) {// отримати всю колекцію з бази даних
+export async function getAllDocuments_Firebase(dataBaseCollection) {// отримати всю колекцію з бази даних та формую свю БД з id
   const collectionRef = collection(db, dataBaseCollection);
   const querySnapshot = await getDocs(collectionRef);
   let data = [];
@@ -45,6 +45,7 @@ export async function getAllDocuments_Firebase(dataBaseCollection) {// отри�
 
   return data;
 }
+
 export async function getAllNamesOfCollections(dataBaseCollection) {// отримати всю колекцію з бази даних
 
   const collectionRef = collection(db, 'cities');
@@ -56,4 +57,6 @@ export async function deleteDocForID(collection, docId) {// видалити с�
   await deleteDoc(doc(db, collection, docId))
   console.log(`collection doc DELETED`);
 }
-
+export async function setDocForID(collection, docId) {// оновити сутність за назвою колекції та id
+  await setDoc(doc(db, collection, docId), object)
+}

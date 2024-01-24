@@ -7,8 +7,26 @@ import Modal from "../Modal";
 import NavigationEditor from "../NavigationEditor/NavigationEditor";
 
 const Navigation = ({ isFooter }) => {
-
-
+  let data = [
+    {
+      id: `Ky0gPPOCdvAZnW8mUz05`,
+      path: `sitemap`,
+      priority: 1,
+      isUppercase: undefined,
+      isFooter: true,
+      isHeader: undefined,
+      text: `saitemap`
+    },
+    {
+      id: `Ky0gPsPOCdvAZnW8mUz05`,
+      path: `main`,
+      priority: 1,
+      isUppercase: undefined,
+      isFooter: true,
+      isHeader: undefined,
+      text: `main`
+    },
+  ]
   //адаптивне меню, ховаєм в кнопку нав
   let [isShowPAnel, setIisShowPAnel] = useState(false)
   const [navigationData, setNavigationData] = useState([]);// БД з навігацією
@@ -27,10 +45,11 @@ const Navigation = ({ isFooter }) => {
     }
     //адаптивна панель меню при загрузці
 
-    getAllDocuments_Firebase(collection).then((resp) => {
-      setNavigationData(resp);//отримуєм БД з навігацією
+    // getAllDocuments_Firebase(collection).then((resp) => {
+    //   setNavigationData(resp);//отримуєм БД з навігацією
 
-    })
+    // })
+    setNavigationData(data)
   }
     , [navigationData]);
 
@@ -45,8 +64,7 @@ const Navigation = ({ isFooter }) => {
   })
 
   function modalCall() {
-    setShowModal(true)
-    console.log(showModal);
+    setShowModal(true);
   }
 
   //адаптивне меню, ховаєм в кнопку нав
@@ -63,7 +81,7 @@ const Navigation = ({ isFooter }) => {
         }
       </nav>
       <Modal showModal={showModal} openModalFunc={setShowModal} >
-        <NavigationEditor />
+        <NavigationEditor data={data} />
       </Modal>
     </>
   );
