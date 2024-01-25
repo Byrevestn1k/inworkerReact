@@ -7,12 +7,11 @@ import { addDocumentToDB_Firebase, getAllDocuments_Firebase, setDocForID } from 
 import { useDispatch, useSelector } from "react-redux";
 import { HIDE_MODAL, PUSH_USEEFFECT_UPDATE } from "../../../../constants/actions";
 
-const NavigationEditor = ({ data, showModalDeleteQuestion, collection }) => {
+const NavigationEditor = ({ data, showModalDeleteQuestion, collection, setShowModal, showModal }) => {
 
 	let collectionTitle = `navigation`;// в яку колекцію БД додаєм
-	let showModal = useSelector(state => state.showModal.showModal)
 
-	console.log(`showModal =>`, showModal);
+
 	const [text, setText] = useState(data?.text || undefined);
 	const [priority, setPriority] = useState(data?.priority || undefined);
 	const [path, setPath] = useState(data?.path || undefined);
@@ -20,7 +19,7 @@ const NavigationEditor = ({ data, showModalDeleteQuestion, collection }) => {
 	const [isFooter, setIsFooter] = useState(data?.isFooter || (false));
 	const [isHeader, setIsHeader] = useState(data?.isHeader || false);
 	let dispatch = useDispatch()
-
+	console.log(showModal);
 	// useEffect(()=>{
 	// getAllDocuments_Firebase(collectionTitle).then(resp=>	console.log(resp))
 	// })
@@ -34,20 +33,23 @@ const NavigationEditor = ({ data, showModalDeleteQuestion, collection }) => {
 		setIsFooter('');
 		setPriority('');
 		setPath('');
-		dispatch({ type: HIDE_MODAL });
-		dispatch({ type: PUSH_USEEFFECT_UPDATE })
+		dispatch({ type: PUSH_USEEFFECT_UPDATE });
+		setShowModal(false);
+
 	}
 	function onSetDataList() {
 		const dataList = {// об'єкт для оновлення в БД
 			text, isFooter, isHeader, path, priority, isUppercasetext,
 		};
+
 		setDocForID(collection, data.id, dataList)
 		setText('');
 		setIsFooter('');
 		setPriority('');
 		setPath('');
-		dispatch({ type: HIDE_MODAL });
-		dispatch({ type: PUSH_USEEFFECT_UPDATE })
+		dispatch({ type: PUSH_USEEFFECT_UPDATE });
+		setShowModal(false);
+
 	}
 	const onGetName = (value) => {
 		setText(value)

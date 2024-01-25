@@ -27,12 +27,12 @@ function AdminPanel() {
 
   let logoWidth = 50;
 
-  // useEffect(() => {
-  //   getAllDocuments_Firebase(collection).then((resp => {
-  //     setCategriesList(resp)
-  //   }));
+  useEffect(() => {
+    getAllDocuments_Firebase(collection).then((resp => {
+      setCategriesList(resp)
+    }));
 
-  // }, [])
+  }, [])
 
 
 
