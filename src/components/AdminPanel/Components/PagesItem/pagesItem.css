@@ -1,0 +1,25 @@
+.nav-item-admin{
+    border: 1px solid black;
+    text-align: left;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    width: max-content;
+    background: #cce4f1;
+}
+.nav-item-admin h5,h6{
+   margin: 0;
+    text-align: center;
+ 
+}
+.nav-item-admin div{
+    margin: 5px 0;
+}
+
+.nav-item-admin button{
+    margin: 5px 10px;
+}
+.nav-item-admin span{
+   font-weight: bold;
+   text-transform: lowercase ;
+}

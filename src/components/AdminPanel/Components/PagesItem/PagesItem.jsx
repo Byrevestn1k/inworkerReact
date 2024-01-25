@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from '../Modal';
-import './navigationitem.css';
+import './pagesItem.css';
 import NavigationEditor from '../NavigationEditor/NavigationEditor';
 import DeleteQuestion from '../DeleteQuestion';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { HIDE_MODAL, SHOW_MODAL } from '../../../../constants/actions';
 
 // export let DataCategoriesContext = createContext()
 
-const NavigationItem = ({ data, collection }) => {
+const PagesItem = ({ data, collection }) => {
    let { text, isUppercasetext, isFooter, path, priority, isHeader, id } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
@@ -45,4 +45,4 @@ const NavigationItem = ({ data, collection }) => {
    )
 }
 
-export default NavigationItem;
+export default PagesItem;

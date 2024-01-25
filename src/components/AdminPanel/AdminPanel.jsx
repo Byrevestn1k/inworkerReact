@@ -7,10 +7,11 @@ import { getAllDocuments_Firebase, getAllNamesOfCollections } from "./helpers";
 import PageWrapper from "../PageWrapper/PageWrapper";
 import NavigationEditor from "./Components/NavigationEditor/NavigationEditor";
 import { Route, Routes, useNavigate } from "react-router";
-import { NAVIGATION_PATH, POST_PATH } from "./Components/constants/pathNames";
+import { NAVIGATION_PATH, PAGES_PATH, POST_PATH } from "./Components/constants/pathNames";
 import Navigation from "./Components/Navigation/Navigation";
 import { Editor } from "draft-js";
 import TextEditor from "./Components/TextEditor";
+import Pages from "./Components/Pages";
 
 
 
@@ -27,12 +28,12 @@ function AdminPanel() {
 
   let logoWidth = 50;
 
-  // useEffect(() => {
-  //   getAllDocuments_Firebase(collection).then((resp => {
-  //     setCategriesList(resp)
-  //   }));
+  useEffect(() => {
+    getAllDocuments_Firebase(collection).then((resp => {
+      setCategriesList(resp)
+    }));
 
-  // }, [])
+  }, [])
 
 
 
@@ -68,6 +69,7 @@ function AdminPanel() {
             <Routes>
               <Route path={NAVIGATION_PATH} element={<Navigation />} />
               <Route path={POST_PATH} element={<TextEditor />} />
+              <Route path={PAGES_PATH} element={<Pages />} />
             </Routes>
           </div>
         </div>

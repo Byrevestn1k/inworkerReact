@@ -6,6 +6,8 @@ import NavMenuPanel from "../NavNenuPanel/NavNenuPanel";
 import { WIDTH_MONITOR } from "../../constants/constants";
 import { DataContext } from "../../App";
 import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
+// import { useSelector } from "react-redux";
+// let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
 
 const Navigation = ({ isFooter }) => {
   let { setAdminflag } = useContext(DataContext)
@@ -15,7 +17,6 @@ const Navigation = ({ isFooter }) => {
   const [navigationData, setNavigationData] = useState([]);// БД з навігацією
   let collection = 'navigation';
 
-  let navigator = useNavigate();
   useEffect(() => {
     //адаптивна панель меню при загрузці
     if (document.documentElement.clientWidth < WIDTH_MONITOR) {
@@ -47,9 +48,6 @@ const Navigation = ({ isFooter }) => {
     setAdminflag(true)
   }
 
-  function navigatorHendler(params) {
-    navigator(-1)
-  }
   //адаптивне меню, ховаєм в кнопку нав
   return (
     <div className="header">
@@ -113,7 +111,6 @@ const Navigation = ({ isFooter }) => {
           !isFooter && isShowPAnel ? <NavMenuPanel /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
         }
       </nav>
-      <button onClick={navigatorHendler}>CLICK</button>
     </div>
   );
 };

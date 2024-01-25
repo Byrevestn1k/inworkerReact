@@ -8,7 +8,6 @@ import Main from './components/Main';
 import { CARTEGORIES_LIST_ENDPOINT } from './constants/endpoints';
 import { useContext, useEffect, useState, createContext } from 'react';
 import { createRequestPath } from './helpers/helpers';
-import DataBase from './components/DataBase/DataBase';
 import AdminPanel from './components/AdminPanel';
 import { ADMIN_PATH } from './constants/pathNames';
 
@@ -19,7 +18,7 @@ function App() {
   const [data, setData] = useState([])
   const [fetching, setFetching] = useState(false)
   const [fetchError, setFetchError] = useState(null);
-  let [adminFlag, setAdminflag] = useState(true)
+  let [adminFlag, setAdminflag] = useState(false)
   useEffect(function () {
     setFetching(true)
     fetch(createRequestPath(CARTEGORIES_LIST_ENDPOINT))
