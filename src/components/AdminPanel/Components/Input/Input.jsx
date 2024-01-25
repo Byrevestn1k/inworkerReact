@@ -1,24 +1,25 @@
 import styles from "./input.css";
 
 const Input = (props) => {
-	const { label, type, className, value, placeholder, onChangeFunction, name, checked } =
+	const { label, type, className, value, placeholder, onChangeFunction, name, checked, disabled } =
 		props;
 	return (
-		<div className="input">	
+		<div className="input">
 			<label>{label}</label>
-				<input
-					type={type || "text"}
-					placeholder={placeholder}
-					value={value}
-					onChange={(event) => {
-						onChangeFunction(event.target.value)
-					}}
-					className={className}
-					name={name}
-					checked={checked || null}
-				/>
+			<input
+				type={type || "text"}
+				placeholder={placeholder}
+				value={value}
+				onChange={(event) => {
+					onChangeFunction(event.target.value)
+				}}
+				className={className}
+				name={name}
+				checked={checked || null}
+				disabled={disabled}
+			/>
 		</div>
-		
+
 	);
 };
 
