@@ -11,7 +11,7 @@ const DeleteQuestion = ({ data, collection, setShowModal }) => {
 
     return (
         <div className='delete-question'>
-            <div> Ви впевнені, що хочете видалити? {data.text}</div>
+            <div> Ви впевнені, що хочете видалити "{data.text}"? </div>
             <button onClick={() => {
                 setShowModal(false)
             }}>Ні</button>

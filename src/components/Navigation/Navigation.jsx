@@ -113,7 +113,6 @@ const Navigation = ({ isFooter }) => {
           !isFooter && isShowPAnel ? <NavMenuPanel /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
         }
       </nav>
-      <button onClick={navigatorHendler}>CLICK</button>
     </div>
   );
 };
