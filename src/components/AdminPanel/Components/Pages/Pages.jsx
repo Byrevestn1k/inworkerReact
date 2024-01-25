@@ -8,6 +8,8 @@ import NavigationEditor from "../NavigationEditor/NavigationEditor";
 import { useDispatch, useSelector } from "react-redux";
 import { UPLOAD_NAVIGATION } from "../../../../constants/actions";
 import PagesItem from "../PagesItem/PagesItem";
+import { useNavigate } from "react-router";
+import { PAGES_EDITOR_PATH } from "../constants/pathNames";
 
 const Pages = () => {
 	const [pagesData, setPagesData] = useState([]);// БД з навігацією
@@ -21,9 +23,9 @@ const Pages = () => {
 		})
 	}
 		, [pushForUseEffectUpdate]);
-
+	let navigator = useNavigate()
 	function onAddPAge() {
-		console.log(pagesData);
+		navigator(`/admin/pages/editor`)
 	}
 
 	//адаптивне меню, ховаєм в кнопку нав
