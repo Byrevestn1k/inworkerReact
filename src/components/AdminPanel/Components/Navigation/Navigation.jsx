@@ -16,32 +16,11 @@ const Navigation = ({ isFooter }) => {
   const dispatch = useDispatch();
   let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
   let collection = 'navigation';
-  // const data = useSelector(state => state.navigation.navigation)
-  // let data = [
-  //   {
-  //     text: `main`, isUppercase: true, isFooter: true, path: '/', priority: 1, isHeader: true, id: 1111111
-  //   },
-  //   {
-  //     text: `blog`, isUppercase: true, isFooter: true, path: '/blog', priority: 1, isHeader: true, id: 2
-  //   }
-  // ]
   useEffect(() => {
-    //адаптивна панель меню при загрузці
-    if (document.documentElement.clientWidth < WIDTH_MONITOR) {
-      setIisShowPAnel(true)
-    }
-    else {
-      setIisShowPAnel(false)
-    }
-    //адаптивна панель меню при загрузці
-
     getAllDocuments_Firebase(collection).then((resp) => {
       setNavigationData(resp);//отримуєм БД з навігацією
       dispatch({ type: UPLOAD_NAVIGATION, payload: resp });
-
     })
-
-
   }
     , [pushForUseEffectUpdate]);
 

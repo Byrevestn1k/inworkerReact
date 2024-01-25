@@ -8,7 +8,6 @@ import Main from './components/Main';
 import { CARTEGORIES_LIST_ENDPOINT } from './constants/endpoints';
 import { useContext, useEffect, useState, createContext } from 'react';
 import { createRequestPath } from './helpers/helpers';
-import DataBase from './components/DataBase/DataBase';
 import AdminPanel from './components/AdminPanel';
 import { ADMIN_PATH } from './constants/pathNames';
 

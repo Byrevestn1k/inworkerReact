@@ -54,7 +54,12 @@ const TextEditor = () => {
             <TextArea className={`text-editor-textarea`} value={draftToHtml(convertToRaw(editorStates.getCurrentContent()))} disabled={`disable`} onChange={(e) => {
 
             }} />
-            <button onClick={() => console.log(title)}>save</button>
+            <button onClick={() => {
+                console.log(`title => `, title);
+                console.log(`description => `, description);
+                console.log(`keywords => `, keywords);
+                console.log(`TEXT => `, Textvalue);
+            }}>save</button>
         </div >
     );
 }

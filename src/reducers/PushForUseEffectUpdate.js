@@ -1,4 +1,4 @@
-import { HIDE_MODAL, PUSH_USEEFFECT_UPDATE, SHOW_MODAL } from "../constants/actions";
+import { PUSH_USEEFFECT_UPDATE } from "../constants/actions";
 
 const initialState = { pushForUseEffectUpdate: 0 }
 
