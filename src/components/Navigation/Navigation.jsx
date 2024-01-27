@@ -9,7 +9,7 @@ import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
 // import { useSelector } from "react-redux";
 // let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
 
-const Navigation = ({ isFooterRender ,isHeaderRender }) => {
+const Navigation = ({ isFooterRender, isHeaderRender }) => {
   let { setAdminflag } = useContext(DataContext)
 
   //адаптивне меню, ховаєм в кнопку нав
@@ -53,66 +53,66 @@ const Navigation = ({ isFooterRender ,isHeaderRender }) => {
     <div className="header">
       <nav className="navigation">
         {navigationData.map((element) => {
-      
 
-           if (element.isHeader && !isFooterRender) {
+
+          if (element.isHeader && !isFooterRender) {
             if (element.text === 'admin') {
               return <Link key={element.id} to={element.path}>
                 <button onClick={setAdminflagHandler}>
                   <NavigationItem
-                  //  isFooterShow={isFooter}
+                    //  isFooterShow={isFooter}
                     text={element.text}
                     isUppercasetext={element.isUppercasetext}
-                    // isCategiries={element.isCategiries}
-                    // isFooter={element?.isFooter}
+                  // isCategiries={element.isCategiries}
+                  // isFooter={element?.isFooter}
                   />
                 </button>
               </Link>
 
             }
-            else{
+            else {
               return (
-              <Link key={element.id} to={element?.path}>
-                <NavigationItem 
-                  // data={navigationData}
-                  // isHeaderShow={isHeaderRender}
-                  text={element?.text}
-                  isUppercasetext={element?.isUppercasetext}
+                <Link key={element.id} to={element?.path}>
+                  <NavigationItem
+                    // data={navigationData}
+                    // isHeaderShow={isHeaderRender}
+                    text={element?.text}
+                    isUppercasetext={element?.isUppercasetext}
                   // isCategiries={element?.isCategiries}
                   // isFooter={element?.isFooter}
-                />
-              </Link>
+                  />
+                </Link>
 
-            )
+              )
             }
-            
+
           }
-          if ( element.isFooter && isFooterRender) {
+          if (element.isFooter && isFooterRender) {
             return (
               <Link key={element.id} to={element?.path}>
-                <NavigationItem 
+                <NavigationItem
                   // data={navigationData}
                   // isFooterShow={isFooterRender}
                   text={element?.text}
                   isUppercasetext={element?.isUppercasetext}
-                  // isCategiries={element?.isCategiries}
-                  // isFooter={element?.isFooter}
+                // isCategiries={element?.isCategiries}
+                // isFooter={element?.isFooter}
                 />
               </Link>
 
             )
           }
-            
-    
 
-          }
+
+
+        }
 
         )
 
         }
         {
 
-          !isFooterRender && isShowPAnel ? <NavMenuPanel /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
+          !isFooterRender && isShowPAnel ? <NavMenuPanel data={navigationData} /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
         }
       </nav>
     </div>

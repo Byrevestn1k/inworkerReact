@@ -1,8 +1,7 @@
-.add-new-category-panel{
+.page{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 600px;
-    background: #fff;
+    flex-wrap:wrap;
+    
 }

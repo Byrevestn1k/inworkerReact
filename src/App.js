@@ -15,33 +15,17 @@ export let DataContext = createContext()
 
 function App() {
 
-  const [data, setData] = useState([])
-  const [fetching, setFetching] = useState(false)
-  const [fetchError, setFetchError] = useState(null);
   let [adminFlag, setAdminflag] = useState(false)
-  useEffect(function () {
-    setFetching(true)
-    fetch(createRequestPath(CARTEGORIES_LIST_ENDPOINT))
-      .then(response => response.json())
-      .then(resp => {
-        setFetching(false)
-        setData(resp)
-      })
-      .catch(err => {
-        setFetching(false)
-        setFetchError(err)
-      });
-  }, [])
 
   return (
     <div className="App">
       {adminFlag ?
-        <DataContext.Provider value={{ data, setAdminflag }}>
+        <DataContext.Provider value={{ setAdminflag }}>
           <Routes>
             <Route path={ADMIN_PATH} element={<AdminPanel />} />
           </Routes>
         </DataContext.Provider> :
-        <DataContext.Provider value={{ data, setAdminflag }}>
+        <DataContext.Provider value={{ setAdminflag }}>
           <Header />
           <Main />
           <Footer />

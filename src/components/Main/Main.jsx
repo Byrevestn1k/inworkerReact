@@ -7,18 +7,23 @@ import Comments from "../Comments/Comments";
 import { useEffect, useState } from "react";
 import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
 import Page from "../Page/Page";
+import { UPLOAD_CATEGIRIES, UPLOAD_NAVIGATION } from "../../constants/actions";
+import { useDispatch } from "react-redux";
 
 const Main = () => {
     let [categoriesList, setCategriesList] = useState([]);
     let [navigationsList, setNavigationsList] = useState([]);
     let collectionCategories = `categories`;
     let collectionNavigations = `navigation`;
+    let dispatch = useDispatch()
     useEffect(() => {
         getAllDocuments_Firebase(collectionCategories).then((resp => {
-            setCategriesList(resp)
+            setCategriesList(resp);
+            dispatch({ type: UPLOAD_CATEGIRIES, payload: resp });
         }))
         getAllDocuments_Firebase(collectionNavigations).then((resp => {
             setNavigationsList(resp)
+            dispatch({ type: UPLOAD_NAVIGATION, payload: resp });
         }))
     }, [])
 

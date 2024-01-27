@@ -26,7 +26,6 @@ const NavigationItem = ({ data, collection }) => {
 
    return (
       <div className='nav-item-admin'>
-         <h6>Кнопка навігації</h6>
          <div><h5>{text}</h5></div>
          <div><span>ID</span>: {id}</div>
          <div><span>PATH</span>: {path}</div>

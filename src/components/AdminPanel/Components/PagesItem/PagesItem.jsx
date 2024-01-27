@@ -11,7 +11,7 @@ import TextEditor from '../TextEditor';
 
 // export let DataCategoriesContext = createContext()
 
-const PagesItem = ({ data, collection }) => {
+const PagesItem = ({ data, collection, setIsShowEditor }) => {
    let { text, title, description, path, priority, keywords, id, dateCreate, dateUpdate, picture } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
@@ -28,7 +28,7 @@ const PagesItem = ({ data, collection }) => {
    return (
       <div className='nav-item-admin'>
          <div><h5>{title}</h5></div>
-         <div><span>description</span>: {description}</div>
+         <div className='description'><span>description</span>: {description}</div>
          <div><span>keywords</span>: {keywords}</div>
          <div><span>PATH</span>: {path}</div>
          <div><span>ID</span>: {id}</div>

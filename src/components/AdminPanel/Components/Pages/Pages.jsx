@@ -25,27 +25,26 @@ const Pages = () => {
 		})
 	}
 		, [pushForUseEffectUpdate]);
-	
+
 	function onAddPAge() {
 		setIsShowEditor(true)
 	}
-let item=<>
-			<div id="addnew"><button onClick={onAddPAge}>add new</button></div>
-			<div className="page">
+	let item = <>
+		<div id="addnew"><button onClick={onAddPAge}>add new</button></div>
+		<div className="page">
 			{pagesData.map((element) => {
 				return (
-					<PagesItem data={element} collection={collection}
-					/>)
+					<PagesItem data={element} collection={collection} setIsShowEditor={setIsShowEditor} />)
 
 			})
 			}
-			</div>
-</>
+		</div>
+	</>
 	//адаптивне меню, ховаєм в кнопку нав
 	return (
-		<> 
-		{!isShowEditor?item:<TextEditor collection={collection}/>
-}
+		<>
+			{!isShowEditor ? item : <TextEditor collection={collection} setIsShowEditor={setIsShowEditor} />
+			}
 		</>
 	);
 };
