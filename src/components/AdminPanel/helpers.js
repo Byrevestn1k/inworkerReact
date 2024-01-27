@@ -1,18 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import "./adminPanel.css";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where } from 'firebase/firestore';
 
 import { getDatabase, ref, onValue } from "firebase/database";
 // import { getDatabase } from "firebase/database";
 import { INITIALISATION_FIREBASE_CONFIG } from "../../constants/constants";
 
 
+
 const app = initializeApp(INITIALISATION_FIREBASE_CONFIG);
 const db = getFirestore(app);
 
 export async function getDocumentFromDB_Firebase(dataBaseCollection, document) {// отримати елемент з колекції БД
-  const docRef = doc(db, dataBaseCollection || "categories", document || "dUK5vGjbqQeGWo2PdBKw");
+  const docRef = doc(db, dataBaseCollection, document);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -59,4 +60,19 @@ export async function deleteDocForID(collection, docId) {// видалити с�
 }
 export async function setDocForID(collection, docId, object) {// оновити сутність за назвою колекції та id
   await setDoc(doc(db, collection, docId), object)
+}
+
+export async function getDocumentFromDB_Firebase_for_path(collectionName, path) {// отримати елемент з колекції БД за ключем
+  const q = query(collection(db, collectionName), where("path", "==", path));
+
+  const querySnapshot = await getDocs(q);
+  let data;
+  querySnapshot.forEach((doc) => {
+    let document = { ...doc.data(), id: doc.id }
+    data = document;
+  });
+
+  return data;
+
+
 }
