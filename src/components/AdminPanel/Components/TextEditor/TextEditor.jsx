@@ -19,20 +19,19 @@ const TextEditor = ({ collection, data }) => {
     const editorState = EditorState.createWithContent(contentState);
     const [editorStates, setEditorStates] = useState(editorState);
 
-    let [title, setTitle] = useState(data?.title);
-    let [description, setDescription] = useState(data?.description);
-    let [keywords, setKeywords] = useState(data?.keywords);
+    let [title, setTitle] = useState(data?.title || undefined);
+    let [description, setDescription] = useState(data?.description || undefined);
+    let [keywords, setKeywords] = useState(data?.keywords || undefined);
 
-    let [textvalue, setTextvalue] = useState(data?.textvalue);
-    // let [id, setId] = useState(data?.);
-    let [picture, setPicture] = useState(data?.picture);
+    let [textvalue, setTextvalue] = useState(data?.textvalue || undefined);
+    // let [id, setId] = useState(data?. || undefined);
+    let [picture, setPicture] = useState(data?.picture || undefined);
     let date = new Date().toUTCString(data?.date)
-    let [path, setPath] = useState(data?.path);
-    let [dateOfCreate, setDateOfCreate] = useState(date.toString());
-    let [dateOfUpdate, setDateOfUpdate] = useState(date.toString());
-    let [priority, setPriority] = useState(data?.priority);
+    let [path, setPath] = useState(data?.path || undefined);
+    let [dateOfCreate, setDateOfCreate] = useState(date.toString() || undefined);
+    let [dateOfUpdate, setDateOfUpdate] = useState(date.toString() || undefined);
+    let [priority, setPriority] = useState(data?.priority || undefined);
     let [published, setPublished] = useState(false);
-    console.log(dateOfUpdate);
     let navigator = useNavigate()
     function onAddDataList() {
         const dataList = {// об'єкт для додавання в БД

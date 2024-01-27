@@ -3,9 +3,9 @@ import "./menuPanelItem.css";
 import { Link } from "react-router-dom";
 
 
-const MenuPanelItemAdmin = ({ title, url, key }) => {
+const MenuPanelItemAdmin = ({ title, url, keys }) => {
   return (
-    <Link key={key} to={`${url}`}>
+    <Link key={keys} to={`${url}`}>
       <h5 className="menu-panel_item">
         {title}
       </h5>

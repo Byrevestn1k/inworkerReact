@@ -9,7 +9,7 @@ import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
 // import { useSelector } from "react-redux";
 // let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
 
-const Navigation = ({ isFooter }) => {
+const Navigation = ({ isFooterRender ,isHeaderRender }) => {
   let { setAdminflag } = useContext(DataContext)
 
   //адаптивне меню, ховаєм в кнопку нав
@@ -53,62 +53,66 @@ const Navigation = ({ isFooter }) => {
     <div className="header">
       <nav className="navigation">
         {navigationData.map((element) => {
-          if (isFooter) {
-            return (
-              <Link key={element.id} to={element?.path}>
-                <NavigationItem data={navigationData
-                }
-                  isFooterShow={isFooter}
-                  text={element?.text}
-                  isUppercasetext={element?.isUppercasetext}
-                  isCategiries={element?.isCategiries}
-                  isFooter={element?.isFooter}
-                />
-              </Link>
+      
 
-            )
-          }
-          else {
-
-            if (element.isFooter === true) {
-              return
-            }
+           if (element.isHeader && !isFooterRender) {
             if (element.text === 'admin') {
               return <Link key={element.id} to={element.path}>
                 <button onClick={setAdminflagHandler}>
                   <NavigationItem
-                    isFooterShow={isFooter}
+                  //  isFooterShow={isFooter}
                     text={element.text}
                     isUppercasetext={element.isUppercasetext}
-                    isCategiries={element.isCategiries}
-                    isFooter={element?.isFooter}
+                    // isCategiries={element.isCategiries}
+                    // isFooter={element?.isFooter}
                   />
                 </button>
               </Link>
 
             }
-            else {
+            else{
               return (
-                <Link key={element.id} to={element.path}>
-                  <NavigationItem
-                    isFooterShow={isFooter}
-                    text={element.text}
-                    isUppercasetext={element.isUppercasetext}
-                    isCategiries={element.isCategiries}
-                    isFooter={element?.isFooter}
-                  />
-                </Link>
-              )
+              <Link key={element.id} to={element?.path}>
+                <NavigationItem 
+                  // data={navigationData}
+                  // isHeaderShow={isHeaderRender}
+                  text={element?.text}
+                  isUppercasetext={element?.isUppercasetext}
+                  // isCategiries={element?.isCategiries}
+                  // isFooter={element?.isFooter}
+                />
+              </Link>
+
+            )
             }
+            
+          }
+          if ( element.isFooter && isFooterRender) {
+            return (
+              <Link key={element.id} to={element?.path}>
+                <NavigationItem 
+                  // data={navigationData}
+                  // isFooterShow={isFooterRender}
+                  text={element?.text}
+                  isUppercasetext={element?.isUppercasetext}
+                  // isCategiries={element?.isCategiries}
+                  // isFooter={element?.isFooter}
+                />
+              </Link>
+
+            )
+          }
+            
+    
 
           }
 
-        })
+        )
 
         }
         {
 
-          !isFooter && isShowPAnel ? <NavMenuPanel /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
+          !isFooterRender && isShowPAnel ? <NavMenuPanel /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
         }
       </nav>
     </div>

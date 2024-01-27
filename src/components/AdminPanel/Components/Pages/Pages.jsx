@@ -10,10 +10,12 @@ import { UPLOAD_NAVIGATION } from "../../../../constants/actions";
 import PagesItem from "../PagesItem/PagesItem";
 import { useNavigate } from "react-router";
 import { PAGES_EDITOR_PATH } from "../constants/pathNames";
+import TextEditor from "../TextEditor";
 
 const Pages = () => {
-	const [pagesData, setPagesData] = useState([]);// БД з навігацією
-	const dispatch = useDispatch();
+	const [pagesData, setPagesData] = useState([]);
+	const [isShowEditor, setIsShowEditor] = useState(false);// БД з навігацією
+	const dispatch = useDispatch(false);
 	let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
 	let collection = 'pages';
 	useEffect(() => {
@@ -23,24 +25,27 @@ const Pages = () => {
 		})
 	}
 		, [pushForUseEffectUpdate]);
-	let navigator = useNavigate()
+	
 	function onAddPAge() {
-		navigator(`/admin/pages/editor`)
+		setIsShowEditor(true)
 	}
+let item=<>
+			<div id="addnew"><button onClick={onAddPAge}>add new</button></div>
+			<div className="page">
+			{pagesData.map((element) => {
+				return (
+					<PagesItem data={element} collection={collection}
+					/>)
 
+			})
+			}
+			</div>
+</>
 	//адаптивне меню, ховаєм в кнопку нав
 	return (
-		<> <div id="addnew"><button onClick={onAddPAge}>add new</button></div>
-			<div className="page">
-				{pagesData.map((element) => {
-					return (
-						<PagesItem data={element} collection={collection}
-						/>)
-
-				})
-				}
-			</div>
-
+		<> 
+		{!isShowEditor?item:<TextEditor collection={collection}/>
+}
 		</>
 	);
 };

@@ -1,8 +1,5 @@
 import Navigation from "../Navigation";
-import { useState } from 'react';
-import inworker_shapka from '../../images/header/inworker_shapka.jpg';
 import "./footer.css";
-import Logotype from '../Logotype/Logotype';
 import PageWrapper from "../PageWrapper/PageWrapper";
 
 
@@ -18,7 +15,7 @@ const Footer = () => {
                         <p>Копирование информации без указания прямой ссылки на сайт <span className="this-site"><b>{ document.domain}</b></span> является
                             нарушением авторских прав.</p>
                     </div>
-                    <Navigation isFooter={true}/>
+                    <Navigation isFooterRender={true}/>
                 </div>
             </PageWrapper>
         </footer>

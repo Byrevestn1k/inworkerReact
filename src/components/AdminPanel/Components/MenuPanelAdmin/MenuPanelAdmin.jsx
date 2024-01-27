@@ -4,8 +4,8 @@ import MenuPanelItem from "../MenuPanelItemAdmin/MenuPanelItemAdmin";
 import { useEffect, useState } from "react";
 import { WIDTH_MONITOR } from "../../../../constants/constants";
 import { Link } from "react-router-dom";
-
-const MenuPanelAdmin = ({ dataBD }) => {
+import { v4 as uuidv4 } from 'uuid';
+const MenuPanelAdmin = ({ dataBD, key}) => {
 
     let [isShowPAnel, setIisShowPAnel] = useState(false)
     //адаптивна панель меню при загрузці
@@ -30,11 +30,11 @@ const MenuPanelAdmin = ({ dataBD }) => {
     })
 
     return (
-        <div className="menu-panel">
+        <div key = {key} className="menu-panel">
             {isShowPAnel ?
                 dataBD.map((el) => {
                     return (
-                        <MenuPanelItem key={el.id} title={el.title} url={el.urlSlug} />
+                        <MenuPanelItem keys={uuidv4()} title={el.title} url={el.urlSlug} />
                     )
                 }
                 ) :

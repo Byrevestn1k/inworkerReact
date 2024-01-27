@@ -12,7 +12,7 @@ import Navigation from "./Components/Navigation/Navigation";
 import { Editor } from "draft-js";
 import TextEditor from "./Components/TextEditor";
 import Pages from "./Components/Pages";
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 function AdminPanel() {
@@ -63,7 +63,7 @@ function AdminPanel() {
         </div>
         <div className="admin-panel_main">
           <div className="admin-panel_menu">
-            <MenuPanel dataBD={categoriesList} />
+            <MenuPanel key={uuidv4()} dataBD={categoriesList} />
           </div>
           <div className="admin-panel_main_main">
             <Routes>

@@ -8,7 +8,7 @@ import { BLOGS_LIST_ENDPOINT} from "../../constants/endpoints";
 
 // export let DataCategoriesContext = createContext()
 
-const NavigationItem = ({isFooterShow,   text,   isUppercasetext,   isCategiries,   isFooter}) => {
+const NavigationItem = ({isFooterShow, isHeaderShow,  text,   isUppercasetext,   isCategiries,   isFooter}) => {
    let [data, setData]=useState([])
    useEffect(function () {
      
@@ -22,7 +22,7 @@ const NavigationItem = ({isFooterShow,   text,   isUppercasetext,   isCategiries
 
       <div className='nav-item'>
 
-         <div>{!isUppercasetext ? text.toUpperCase() : text}</div>
+         <div>{isUppercasetext ? text.toUpperCase() : text.toLowerCase()}</div>
 
          {/* {isCategiries &&
             (

@@ -44,7 +44,7 @@ const Header = () => {
                     {buttonNavigation?
                     <AdaptiveNavButton onClick={setButtonNavigation} onClickClose={setOnClickNavCloseFlag}/>:
                     <>
-                    <Navigation isFooter={false} />
+                    <Navigation isFooterRender={false} />
                     {onClickNavCloseFlag?
                     <AdaptiveNavButtonCloce onClick={setOnClickNavCloseFlag}  onClickClose={setButtonNavigation}/>:
                     null}
