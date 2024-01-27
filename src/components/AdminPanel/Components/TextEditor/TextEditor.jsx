@@ -8,10 +8,12 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import './textEditor.css'
 import TextArea from '../TextArea/TextArea';
 import Input from '../Input';
-import { addDocumentToDB_Firebase } from '../../helpers';
+import { addDocumentToDB_Firebase, setDocForID } from '../../helpers';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { PUSH_USEEFFECT_UPDATE } from '../../../../constants/actions';
 
-const TextEditor = ({ collection, data }) => {
+const TextEditor = ({ collection, data, setIsShowEditor }) => {
 
     const html = '';
     const contentBlock = htmlToDraft(html);
@@ -32,28 +34,23 @@ const TextEditor = ({ collection, data }) => {
     let [dateOfUpdate, setDateOfUpdate] = useState(date.toString() || undefined);
     let [priority, setPriority] = useState(data?.priority || undefined);
     let [published, setPublished] = useState(false);
-    let navigator = useNavigate()
+    let dispatch = useDispatch()
     function onAddDataList() {
         const dataList = {// об'єкт для додавання в БД
             title, description, keywords, path, priority, textvalue, picture, dateOfCreate, dateOfUpdate, published
         };
         addDocumentToDB_Firebase(collection, dataList)
-
-        navigator(`/admin/pages`)
+        dispatch({ type: PUSH_USEEFFECT_UPDATE })
+        setIsShowEditor(false)
 
     }
     // function onSetDataList() {
-    //     const dataList = {// об'єкт для оновлення в БД
-    //         text, isFooter, isHeader, path, priority, isUppercasetext,
+    //     const dataList = {// об'єкт для додавання в БД
+    //         title, description, keywords, path, priority, textvalue, picture, dateOfCreate, dateOfUpdate, published
     //     };
-
     //     setDocForID(collection, data.id, dataList)
-    //     setText('');
-    //     setIsFooter('');
-    //     setPriority('');
-    //     setPath('');
-    //     dispatch({ type: PUSH_USEEFFECT_UPDATE });
-    //     setShowModal(false);
+    //     dispatch({ type: PUSH_USEEFFECT_UPDATE })
+    //     setIsShowEditor(false)
 
     // }
     function onEditorStateChange(contentState) {
