@@ -6,7 +6,7 @@ import { getAllDocuments_Firebase } from "../../helpers";
 import Modal from "../Modal";
 import NavigationEditor from "../NavigationEditor/NavigationEditor";
 import { useDispatch, useSelector } from "react-redux";
-import { UPLOAD_NAVIGATION } from "../../../../constants/actions";
+import { TRANSMIT_EDIT_PAGE_DATA, UPLOAD_NAVIGATION } from "../../../../constants/actions";
 import PagesItem from "../PagesItem/PagesItem";
 import { useNavigate } from "react-router";
 import { PAGES_EDITOR_PATH } from "../constants/pathNames";
@@ -14,10 +14,12 @@ import TextEditor from "../TextEditor";
 
 const Pages = () => {
 	const [pagesData, setPagesData] = useState([]);
-	const [isShowEditor, setIsShowEditor] = useState(false);// БД з навігацією
-
-	let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
+	const [isShowEditor, setIsShowEditor] = useState(false);
+	let dispatch = useDispatch()
+	let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate.pushForUseEffectUpdate);
 	let collection = 'pages';
+
+	let transmitData = useSelector(state => state.transmitPageData.transmitPageData)
 	useEffect(() => {
 		getAllDocuments_Firebase(collection).then((resp) => {
 			setPagesData(resp);//отримуєм БД з pages
@@ -26,7 +28,13 @@ const Pages = () => {
 		, [pushForUseEffectUpdate]);
 
 	function onAddPAge() {
-		setIsShowEditor(true)
+		console.log(transmitData);
+		dispatch({ type: TRANSMIT_EDIT_PAGE_DATA, payload: undefined });
+		console.log(transmitData);
+		setTimeout(() => {
+			setIsShowEditor(true)
+		}, 100);
+
 	}
 	let item = <>
 		<div id="addnew"><button onClick={onAddPAge}>add new</button></div>
@@ -34,7 +42,6 @@ const Pages = () => {
 			{pagesData.map((element) => {
 				return (
 					<PagesItem data={element} collection={collection} setIsShowEditor={setIsShowEditor} />)
-
 			})
 			}
 		</div>
@@ -42,7 +49,7 @@ const Pages = () => {
 
 	return (
 		<>
-			{!isShowEditor ? item : <TextEditor collection={collection} setIsShowEditor={setIsShowEditor} />
+			{!isShowEditor ? item : <TextEditor collectionfromPage={collection} addORedit={true} setIsShowEditor={setIsShowEditor} />
 			}
 		</>
 	);

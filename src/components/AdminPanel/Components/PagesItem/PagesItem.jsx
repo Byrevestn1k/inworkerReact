@@ -4,7 +4,7 @@ import './pagesItem.css';
 import NavigationEditor from '../NavigationEditor/NavigationEditor';
 import DeleteQuestion from '../DeleteQuestion';
 import { useDispatch, useSelector } from 'react-redux';
-import { HIDE_MODAL, SHOW_MODAL, TRANSMIT_EDIT_PAGE_DATA, UPLOAD_NAVIGATION } from '../../../../constants/actions';
+import { HIDE_MODAL, PUSH_USEEFFECT_UPDATE, SHOW_MODAL, TRANSMIT_EDIT_PAGE_DATA, TRANSMIT_EDIT_PAGE_NAME, UPLOAD_NAVIGATION } from '../../../../constants/actions';
 import TextEditor from '../TextEditor';
 import { useNavigate } from 'react-router';
 
@@ -18,16 +18,17 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
    const dispatch = useDispatch(false);
+
    function onClickEdit() {
-      // setShowModalDeleteQuestion(true)
-      // setIsShowEditor(true)
       dispatch({ type: TRANSMIT_EDIT_PAGE_DATA, payload: data });
+      dispatch({ type: TRANSMIT_EDIT_PAGE_NAME, payload: collection });
       navigator(`/admin/pages/editor`)
 
    }
    function onClickDeleteHendler() {
       setShowModalDeleteQuestion(false)
       setShowModal(true);
+      dispatch({ type: PUSH_USEEFFECT_UPDATE });
    }
 
    return (

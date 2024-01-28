@@ -4,6 +4,7 @@ import { showModal } from "../reducers/showModal";
 import { pushForUseEffectUpdate } from "../reducers/PushForUseEffectUpdate";
 import { uploadCategories } from "../reducers/uploadCategories";
 import { transmitPageData } from "../reducers/transmitPagesData";
+import { transmitPageName } from "../reducers/transmitPageName";
 
 
 
@@ -12,7 +13,8 @@ const navigationReducer = combineReducers({
     showModal: showModal,
     pushForUseEffectUpdate: pushForUseEffectUpdate,
     uploadCategories: uploadCategories,
-    transmitPageData: transmitPageData
+    transmitPageData: transmitPageData,
+    collection: transmitPageName
 })
 
 const store = createStore(navigationReducer);
