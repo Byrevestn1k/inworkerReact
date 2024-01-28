@@ -20,7 +20,5 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
 
-export function dblog(){
-console.log(db);
-
+export function dblog() {
 }

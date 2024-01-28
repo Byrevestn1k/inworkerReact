@@ -28,9 +28,7 @@ const Pages = () => {
 		, [pushForUseEffectUpdate]);
 
 	function onAddPAge() {
-		console.log(transmitData);
 		dispatch({ type: TRANSMIT_EDIT_PAGE_DATA, payload: undefined });
-		console.log(transmitData);
 		setTimeout(() => {
 			setIsShowEditor(true)
 		}, 100);

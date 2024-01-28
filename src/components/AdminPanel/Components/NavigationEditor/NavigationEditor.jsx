@@ -19,7 +19,7 @@ const NavigationEditor = ({ data, showModalDeleteQuestion, collection, setShowMo
 	const [isFooter, setIsFooter] = useState(data?.isFooter || (false));
 	const [isHeader, setIsHeader] = useState(data?.isHeader || false);
 	let dispatch = useDispatch()
-	console.log(showModal);
+
 	// useEffect(()=>{
 	// getAllDocuments_Firebase(collectionTitle).then(resp=>	console.log(resp))
 	// })

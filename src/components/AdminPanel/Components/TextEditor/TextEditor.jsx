@@ -59,8 +59,6 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
         setTimeout(() => {
             navigator(`/admin/pages`);
         }, 200);
-        console.log(collection);
-
     }
     function onEditorStateChange(contentState) {
         if (contentBlock) {
