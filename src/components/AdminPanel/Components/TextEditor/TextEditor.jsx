@@ -14,10 +14,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PUSH_USEEFFECT_UPDATE } from '../../../../constants/actions';
 
 const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
+    console.log(addORedit);
 
-    let selector = useSelector(state => state);
-    let data = selector.transmitPageData.transmitPageData;
-    let collection = selector.collection.collection;
+    let data = useSelector(state => state.transmitPageData.transmitPageData);
+    let collection = useSelector(state => state.collection.collection)
 
     let [addPAge, setAddPAge] = useState(addORedit || false)
     let [title, setTitle] = useState(data?.title || undefined);
@@ -47,7 +47,6 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
         addDocumentToDB_Firebase(collectionfromPage, dataList)
         dispatch({ type: PUSH_USEEFFECT_UPDATE })
         setIsShowEditor(false)
-        console.log(collectionfromPage);
     }
 
     function onSetDataList() {
@@ -91,9 +90,12 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     function isChecked(data) {
         return data ? `checked` : null;
     }
-
+    function onClickCloseHandler() {
+        console.log(setIsShowEditor);
+        setIsShowEditor(false);
+    }
     return (
-        <div>
+        <div className='text-editor'>
             <Input label={`Назва сторінки  (title)`} value={title} onChangeFunction={onChangeTitle} />
             <Input label={`Опис поста (description)`} value={description} onChangeFunction={onChangeDescription} />
             <Input label={`Ключові слова (keywords)`} value={keywords} onChangeFunction={onChangeKeywords} />
@@ -116,10 +118,11 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
             }} />
             {
-                addPAge ? <button onClick={onAddDataList}>Add</button> :
+                addPAge ?
+                    <button onClick={onAddDataList}>Add</button> :
                     <button onClick={onSetDataList}>Save</button>
-
             }
+            <button onClick={onClickCloseHandler}>Close</button>
 
         </div >
     );

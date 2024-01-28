@@ -58,7 +58,7 @@ function AdminPanel() {
               <img src={inworker_shapka_mini} width={logoWidth} alt="" />
             </div>
             Adminpanel of <span>{document.domain}</span> site</div>
-          <button onClick={setAdminflagHandler}>Close</button>
+          <button onClick={setAdminflagHandler}>Close admin</button>
 
         </div>
         <div className="admin-panel_main">
