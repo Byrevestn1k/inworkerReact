@@ -15,13 +15,12 @@ import TextEditor from "../TextEditor";
 const Pages = () => {
 	const [pagesData, setPagesData] = useState([]);
 	const [isShowEditor, setIsShowEditor] = useState(false);// БД з навігацією
-	const dispatch = useDispatch(false);
+
 	let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
 	let collection = 'pages';
 	useEffect(() => {
 		getAllDocuments_Firebase(collection).then((resp) => {
 			setPagesData(resp);//отримуєм БД з pages
-			dispatch({ type: UPLOAD_NAVIGATION, payload: resp });
 		})
 	}
 		, [pushForUseEffectUpdate]);
@@ -40,7 +39,7 @@ const Pages = () => {
 			}
 		</div>
 	</>
-	//адаптивне меню, ховаєм в кнопку нав
+
 	return (
 		<>
 			{!isShowEditor ? item : <TextEditor collection={collection} setIsShowEditor={setIsShowEditor} />

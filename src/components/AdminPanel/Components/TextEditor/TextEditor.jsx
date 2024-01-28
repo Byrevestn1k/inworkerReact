@@ -10,11 +10,11 @@ import TextArea from '../TextArea/TextArea';
 import Input from '../Input';
 import { addDocumentToDB_Firebase, setDocForID } from '../../helpers';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PUSH_USEEFFECT_UPDATE } from '../../../../constants/actions';
 
-const TextEditor = ({ collection, data, setIsShowEditor }) => {
-
+const TextEditor = ({ collection, setIsShowEditor }) => {
+    let data = useSelector(state => state.transmitPageData).transmitPageData;
     const html = '';
     const contentBlock = htmlToDraft(html);
     const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);

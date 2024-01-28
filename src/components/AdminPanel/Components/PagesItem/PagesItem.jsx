@@ -4,20 +4,25 @@ import './pagesItem.css';
 import NavigationEditor from '../NavigationEditor/NavigationEditor';
 import DeleteQuestion from '../DeleteQuestion';
 import { useDispatch, useSelector } from 'react-redux';
-import { HIDE_MODAL, SHOW_MODAL } from '../../../../constants/actions';
+import { HIDE_MODAL, SHOW_MODAL, TRANSMIT_EDIT_PAGE_DATA, UPLOAD_NAVIGATION } from '../../../../constants/actions';
 import TextEditor from '../TextEditor';
+import { useNavigate } from 'react-router';
 
 
 
 // export let DataCategoriesContext = createContext()
 
 const PagesItem = ({ data, collection, setIsShowEditor }) => {
+   let navigator = useNavigate()
    let { text, title, description, path, priority, keywords, id, dateCreate, dateUpdate, picture } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
+   const dispatch = useDispatch(false);
    function onClickEdit() {
-      setShowModalDeleteQuestion(true)
-      setShowModal(true);
+      // setShowModalDeleteQuestion(true)
+      // setIsShowEditor(true)
+      dispatch({ type: TRANSMIT_EDIT_PAGE_DATA, payload: data });
+      navigator(`/admin/pages/editor`)
 
    }
    function onClickDeleteHendler() {
@@ -38,11 +43,11 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
 
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>
-         <Modal showModal={showModal} openModalFunc={setShowModal}>
-            {showModalDeleteQuestion ?
-               <TextEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} /> :
 
-               <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
+         {/* <TextEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} />  */}
+
+         <Modal showModal={showModal} openModalFunc={setShowModal}>
+            <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />
          </Modal>
       </div>
 
