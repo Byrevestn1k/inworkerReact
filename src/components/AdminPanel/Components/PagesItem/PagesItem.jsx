@@ -28,7 +28,6 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
    function onClickDeleteHendler() {
       setShowModalDeleteQuestion(false)
       setShowModal(true);
-      dispatch({ type: PUSH_USEEFFECT_UPDATE });
    }
 
    return (
@@ -44,8 +43,6 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
 
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>
-
-         {/* <TextEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} />  */}
 
          <Modal showModal={showModal} openModalFunc={setShowModal}>
             <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />

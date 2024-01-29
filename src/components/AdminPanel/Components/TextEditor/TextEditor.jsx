@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PUSH_USEEFFECT_UPDATE } from '../../../../constants/actions';
 
 const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
-    console.log(addORedit);
 
     let data = useSelector(state => state.transmitPageData.transmitPageData);
     let collection = useSelector(state => state.collection.collection)
@@ -91,8 +90,14 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
         return data ? `checked` : null;
     }
     function onClickCloseHandler() {
-        console.log(setIsShowEditor);
-        setIsShowEditor(false);
+        console.log(setIsShowEditor!=undefined);
+        if(setIsShowEditor){
+            setIsShowEditor(false)
+        } 
+        else{
+            navigator(`/admin/pages`);
+        }
+         
     }
     return (
         <div className='text-editor'>

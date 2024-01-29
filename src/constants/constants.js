@@ -8,6 +8,8 @@ export const INITIALISATION_FIREBASE_CONFIG = {
     storageBucket: "inworker-9e2b3.appspot.com",
     messagingSenderId: "964740146101",
     appId: "1:964740146101:web:2e4a1333bf7736920eeffc",
-    measurementId: "G-J5H0JLTDD9"
+    measurementId: "G-J5H0JLTDD9",
+    storageBucket: 'gs://inworker-9e2b3.appspot.com'
+
   };  //ініціалізаційні дані в firebase
   export const NAVIGATION_HEADER='navigation';
