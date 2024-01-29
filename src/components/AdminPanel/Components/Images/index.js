@@ -1,3 +1,3 @@
-import Images from "./Images";
+import ImagesAdd from "./ImagesAdd";
 
-export default Images
+export default ImagesAdd
