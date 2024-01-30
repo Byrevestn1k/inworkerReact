@@ -31,12 +31,12 @@ const MenuPanel = ({ dataBD }) => {
     })
 
     return (
-        <div className="menu-panel">
+        <div className="menu-panel" key={uuidv4()} >
 
             {isShowPAnel ?
                 dataBD.map((el) => {
                     return (
-                        <MenuPanelItem key={uuidv4()} title={el.title} url={el.urlSlug} />
+                        <MenuPanelItem title={el.title} url={el.urlSlug} />
                     )
                 }
                 ) :

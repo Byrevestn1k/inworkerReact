@@ -156,5 +156,4 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 }
 export default TextEditor;
 let imageSelector = document.querySelector(`.rdw-image-modal-url-section`);
-console.log(imageSelector);
 

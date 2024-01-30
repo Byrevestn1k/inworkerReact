@@ -9,6 +9,7 @@ import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
 import Page from "../Page/Page";
 import { UPLOAD_CATEGIRIES, UPLOAD_NAVIGATION } from "../../constants/actions";
 import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 
 const Main = () => {
     let [categoriesList, setCategriesList] = useState([]);
@@ -28,8 +29,8 @@ const Main = () => {
     }, [])
 
     return (
-        <div className="main">
-            <PageWrapper>
+        <div  className="main" key={uuidv4()}>
+            <PageWrapper key={uuidv4()}>
                 <MenuPanel dataBD={categoriesList} />
                 <div className="main-information">
                     <div className="content">
