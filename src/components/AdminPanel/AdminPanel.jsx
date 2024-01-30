@@ -7,12 +7,14 @@ import { getAllDocuments_Firebase, getAllNamesOfCollections } from "./helpers";
 import PageWrapper from "../PageWrapper/PageWrapper";
 import NavigationEditor from "./Components/NavigationEditor/NavigationEditor";
 import { Route, Routes, useNavigate } from "react-router";
-import { NAVIGATION_PATH, PAGES_EDITOR_PATH, PAGES_PATH, POST_PATH } from "./Components/constants/pathNames";
+import { IMAGES_PATH, NAVIGATION_PATH, PAGES_EDITOR_PATH, PAGES_PATH, POST_PATH } from "./Components/constants/pathNames";
 import Navigation from "./Components/Navigation/Navigation";
 import { Editor } from "draft-js";
 import TextEditor from "./Components/TextEditor";
 import Pages from "./Components/Pages";
 import { v4 as uuidv4 } from 'uuid';
+import Images from "./Components/Images/ImagesAdd";
+import ImagesAdd from "./Components/Images/ImagesAdd";
 
 
 function AdminPanel() {
@@ -71,6 +73,7 @@ function AdminPanel() {
               <Route path={POST_PATH} element={<TextEditor />} />
               <Route path={PAGES_PATH} element={<Pages />} />
               <Route path={PAGES_EDITOR_PATH} element={<TextEditor />} />
+              <Route path={IMAGES_PATH} element={<ImagesAdd/>} />
             </Routes>
           </div>
         </div>

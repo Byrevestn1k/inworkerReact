@@ -10,3 +10,4 @@ export const NAVIGATION_PATH = "/navigation";
 export const POST_PATH = "/post";
 export const PAGES_PATH = "/pages";
 export const PAGES_EDITOR_PATH = "/pages/editor";
+export const IMAGES_PATH = "/images";

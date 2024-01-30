@@ -16,9 +16,14 @@ const DeleteQuestion = ({ data, collection, setShowModal }) => {
                 setShowModal(false)
             }}>Ні</button>
             <button onClick={() => {
+
                 deleteDocForID(collection, data.id);
-                setShowModal(false);
                 dispatch({ type: PUSH_USEEFFECT_UPDATE })
+              setTimeout(() => {
+                setShowModal(false);
+              }, 1000);  
+             
+                
             }}>Так</button>
         </div>
     )

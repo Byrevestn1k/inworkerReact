@@ -3,6 +3,9 @@ import styles from "./input.css";
 const Input = (props) => {
 	const { label, type, className, value, placeholder, onChangeFunction, name, checked, disabled } =
 		props;
+		function handleFiles() {
+			const fileList = this.files; /* now you can work with the file list */
+		  }
 	return (
 		<div className="input">
 			<label>{label}</label>

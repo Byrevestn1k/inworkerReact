@@ -5,9 +5,11 @@ import inworker_shapka_mini from '../../images/header/inworker_shapka_mini.png';
 import "./logotype.css";
 import { Link } from 'react-router-dom';
 import { HOME_PATH } from '../../constants/pathNames';
+import { useSelector } from 'react-redux';
 
 const Logotype = () => {
     let  [width, setWidth]= useState()
+    let logo = useSelector(state=>state.logoChanger.logoChanger)
     let  [logotype, setLogotype]= useState(inworker_shapka);
 
     useEffect(()=>{
@@ -32,6 +34,7 @@ const Logotype = () => {
             setLogotype(inworker_shapka);
         }
         })
+        
      //адаптивний хеадер при зміні розміру вікна
     return (	
         <Link  to={HOME_PATH}>
