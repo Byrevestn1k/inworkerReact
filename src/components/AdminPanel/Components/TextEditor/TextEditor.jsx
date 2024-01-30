@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
@@ -12,6 +12,7 @@ import { addDocumentToDB_Firebase, setDocForID } from '../../helpers';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { PUSH_USEEFFECT_UPDATE } from '../../../../constants/actions';
+import { getDownloadURL, getStorage, listAll, ref } from 'firebase/storage';
 
 const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
@@ -30,6 +31,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     let [dateOfUpdate, setDateOfUpdate] = useState(date.toString() || undefined);
     let [priority, setPriority] = useState(data?.priority || undefined);
     let [published, setPublished] = useState(false);
+    let [imageList, setImageList] =useState([]);
 
     let dispatch = useDispatch();
     let navigator = useNavigate()
@@ -38,7 +40,19 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
     const editorState = EditorState.createWithContent(contentState);
     const [editorStates, setEditorStates] = useState(editorState);
-
+    const storage = getStorage();
+    const listRef = ref(storage, 'images/');
+    useEffect(()=>{
+		listAll(listRef).then((resp)=>{
+			setImageList([])
+			resp.items.forEach((item)=>{
+				getDownloadURL(item).then((url)=>{				
+					setImageList((prev) =>[...prev, url])
+				})
+				})
+			})
+           
+		},[])
     function onAddDataList() {
         const dataList = {// об'єкт для додавання в БД
             title, description, keywords, path, priority, textvalue, picture, dateOfCreate, dateOfUpdate, published
@@ -99,6 +113,14 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
         }
          
     }
+ 
+    let selector = <select name="images" id="">
+       { imageList.map((el)=>{
+			return <option value=""><img src={el} alt="" /> </option>
+			
+			})}
+	</select>
+		// imageSelector.insertAdjacentElement(`afterbegin`, selector)
     return (
         <div className='text-editor'>
             <Input label={`Назва сторінки  (title)`} value={title} onChangeFunction={onChangeTitle} />
@@ -119,9 +141,9 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
                 }}
             />
 
-            <TextArea className={`text-editor-textarea`} value={draftToHtml(convertToRaw(editorStates.getCurrentContent()))} disabled={`disable`} onChange={(e) => {
+            {/* <TextArea className={`text-editor-textarea`} value={draftToHtml(convertToRaw(editorStates.getCurrentContent()))} disabled={`disable`} onChange={(e) => {
 
-            }} />
+            }} /> */}
             {
                 addPAge ?
                     <button onClick={onAddDataList}>Add</button> :
@@ -133,6 +155,6 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     );
 }
 export default TextEditor;
-
-
+let imageSelector = document.querySelector(`.rdw-image-modal-url-section`);
+console.log(imageSelector);
 
