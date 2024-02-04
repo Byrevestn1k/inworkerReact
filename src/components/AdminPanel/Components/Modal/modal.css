@@ -21,3 +21,8 @@
     top: 10px;
     right: 10px;
 }
+
+.modal label{
+width: 25%;
+text-align: left;
+}
