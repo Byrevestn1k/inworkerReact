@@ -11,14 +11,15 @@ const ImagesAdd = () => {
 	let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate.pushForUseEffectUpdate);
 	let dispatcher = useDispatch()
 	let [inputFile, setInputFile] = useState()
-	let [checkLogo, setCheckLogo] = useState()
 	let [imageList, setImageList] = useState([]);
 	let [metaImg, setMetaImg] = useState(null);
 	let [isShowModal, setIsShowModal] = useState(false);
-	let [isShowMetaImage, setIsShowMetaImage] = useState(false);
+	let [switchParams, setSwitchParams] = useState(false);
 	let images = 'images/';
 
-	function getListOfImage() {
+
+
+	function getListOfImage() {//отримуєм список картинок з БД
 
 		const listRef = ref(storage, 'images/');
 		listAll(listRef).then((resp) => {
@@ -27,7 +28,6 @@ const ImagesAdd = () => {
 				let arr = {
 				}
 				arr.name = item._location.path_
-
 				getDownloadURL(item).then((url) => {
 					arr.path = url
 					setImageList((prev) => [...prev, arr])
@@ -36,29 +36,18 @@ const ImagesAdd = () => {
 		});
 	}
 
-	function getMetaDataOfImage(el) {
-		const listRef = ref(storage, `${el.name}`);
-		getMetadata(listRef)
-			.then((listRef) => {
-				setMetaImg(listRef);
-			})
-			.catch((error) => {
-				// Uh-oh, an error occurred!
-			});
-	}
 
-	function onAddImageHendler() {
+	function onAddImageHendler() {//додаєм картинку в БД
 		if (!inputFile) return
 		addFileToFirebaseStorage(images, inputFile)
 		setTimeout(() => {
+			modalDataChenge('added',)
 			setIsShowModal(true);
 			dispatcher({ type: PUSH_USEEFFECT_UPDATE });
 		}, 2000);
-		dispatcher({ type: LOGO_CHANGE, payload: checkLogo });
-
 	}
 
-	function onClickDeleteHendler(el) {
+	function onClickDeleteHendler(el) {//видаляє картинку з БД
 		const listRef = ref(storage, `${el.name}`);
 
 		deleteObject(listRef).then(() => {
@@ -72,7 +61,7 @@ const ImagesAdd = () => {
 		});
 	}
 
-	function onEditMetaDataImgHendler(el) {
+	function onEditMetaDataImgHendler(el) {//редагує метадані в БД / наразі не використовується
 		const forestRef = ref(storage, `${el.name}`);
 
 		// Create file metadata to update
@@ -90,9 +79,61 @@ const ImagesAdd = () => {
 			});
 	}
 
-	useEffect(() => {
-		getListOfImage()
+	function modalDataChenge(params, el) {
+		switch (params) {
+			case 'showMetaImage':
+				return metaImg ?
+					setSwitchParams(<><Input width={'300px'} label={`bucket`} value={metaImg.bucket} disabled={`disabled`} />
+						<Input width={'300px'} label={`generation`} value={metaImg.generation} disabled={`disabled`} />
+						<Input width={'300px'} label={`metageneration`} value={metaImg.metageneration} disabled={`disabled`} />
+						<Input width={'300px'} label={`fullPath`} value={metaImg.fullPath} disabled={`disabled`} />
+						<Input width={'300px'} label={`size`} value={metaImg.size} disabled={`disabled`} />
+						<Input width={'300px'} label={`timeCreated`} value={metaImg.timeCreated} disabled={`disabled`} />
+						<Input width={'300px'} label={`updated`} value={metaImg.updated} disabled={`disabled`} />
+						<Input width={'300px'} label={`md5Hash`} value={metaImg.md5Hash} disabled={`disabled`} />
+						<Input width={'300px'} label={`cacheControl`} value={metaImg.cacheControl} disabled={`enabled`} />
+						<Input width={'300px'} label={`contentDisposition`} value={metaImg.contentDisposition} />
+						<Input width={'300px'} label={`contentEncoding`} value={metaImg.contentEncoding} />
+						<Input width={'300px'} label={`contentLanguage`} value={metaImg.contentLanguage} />
+						<Input width={'300px'} label={`contentType`} value={metaImg.contentType} />
+						<Input width={'300px'} label={`customMetadata`} value={metaImg.customMetadata} />
+						<button onClick={() => {
+							setIsShowModal(false);
+							setMetaImg(null);
+						}
+						}>Cancel</button></>)
+					:
+					null;
+			case 'deleteQuestion':
+				return setSwitchParams(<div>
+					Видалити {el.name}?
+					<div>
+						<button onClick={() => { onClickDeleteHendler(el); modalDataChenge(`deleted`, el) }}>ok</button>
+						<button onClick={() => setIsShowModal(false)}>cansel</button>
+					</div>
+				</div>);
 
+			case 'deleted':
+				return setSwitchParams(<div>
+					{el.name} видалено
+					<div>
+						<button onClick={() => setIsShowModal(false)}>cansel</button>
+					</div>
+				</div>);
+			case 'added':
+				return setSwitchParams(<div>
+					Картинку завантежено
+					<div>
+						<button onClick={() => setIsShowModal(false)}>cansel</button>
+					</div>
+				</div>);
+			default:
+				break;
+		}
+	}
+
+	useEffect(() => {
+		getListOfImage();
 	}, [pushForUseEffectUpdate])
 
 
@@ -113,45 +154,29 @@ const ImagesAdd = () => {
 							<img src={el.path} alt="" />
 						</div>
 						<button onClick={() => {
-							setIsShowModal(true);
-							setIsShowMetaImage(true)
-							getMetaDataOfImage(el)
+							getMetaDataOfImage(el);
+							modalDataChenge(`showMetaImage`, el);
+							setIsShowModal(true)
+
+
 						}
 						}>show details</button>
-						<button onClick={() => onClickDeleteHendler(el)}>delete</button>
+						<button onClick={() => {
+							modalDataChenge(`deleteQuestion`, el);
+							setIsShowModal(true);
+						}}>delete</button>
 					</div>
 				}
 				)
 				}
 
 			</div>
-			<Modal showModal={isShowModal} openModalFunc={setIsShowModal} setIsShowMetaImage={setIsShowMetaImage}>
-				{isShowMetaImage && metaImg ? <>
-					<Input width={'300px'} label={`bucket`} value={metaImg.bucket} disabled={`disabled`} />
-					<Input width={'300px'} label={`generation`} value={metaImg.generation} disabled={`disabled`} />
-					<Input width={'300px'} label={`metageneration`} value={metaImg.metageneration} disabled={`disabled`} />
-					<Input width={'300px'} label={`fullPath`} value={metaImg.fullPath} disabled={`disabled`} />
-					<Input width={'300px'} label={`size`} value={metaImg.size} disabled={`disabled`} />
-					<Input width={'300px'} label={`timeCreated`} value={metaImg.timeCreated} disabled={`disabled`} />
-					<Input width={'300px'} label={`updated`} value={metaImg.updated} disabled={`disabled`} />
-					<Input width={'300px'} label={`md5Hash`} value={metaImg.md5Hash} disabled={`disabled`} />
-					<Input width={'300px'} label={`cacheControl`} value={metaImg.cacheControl} disabled={`enabled`} />
-					<Input width={'300px'} label={`contentDisposition`} value={metaImg.contentDisposition} />
-					<Input width={'300px'} label={`contentEncoding`} value={metaImg.contentEncoding} />
-					<Input width={'300px'} label={`contentLanguage`} value={metaImg.contentLanguage} />
-					<Input width={'300px'} label={`contentType`} value={metaImg.contentType} />
-					<Input width={'300px'} label={`customMetadata`} value={metaImg.customMetadata} />
-					<button onClick={() => {
-						setIsShowModal(false);
-						setIsShowMetaImage(false);
-						setMetaImg(null);
-					}
-					}>Cancel</button>
-				</>
-					:
-					<div>
-						<p>Файл завантажено/видалено</p>
-					</div>}
+
+			<Modal showModal={isShowModal} openModalFunc={setIsShowModal} >
+				{
+					switchParams
+
+				}
 			</Modal>
 
 		</div>
