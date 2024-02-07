@@ -1,0 +1,20 @@
+.admin-images{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    gap: 20px;    
+}
+.admin-images .image{
+    width: 200px;
+    height: 200px;
+    border: 1px solid grey ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin-images img{
+    width: 100%;
+    display: block;
+}

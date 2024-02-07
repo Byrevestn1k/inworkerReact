@@ -6,13 +6,16 @@ import Modal from "../Modal/Modal";
 import Input from "../Input/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGO_CHANGE, PUSH_USEEFFECT_UPDATE, SHOW_MODAL } from "../../../../constants/actions";
+import ImagesMetaData from "../ImagesMetaData/ImagesMetaData";
+import { v4 as uuidv4 } from 'uuid';
 const storage = getStorage();
+
+
 const ImagesAdd = () => {
 	let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate.pushForUseEffectUpdate);
 	let dispatcher = useDispatch()
 	let [inputFile, setInputFile] = useState()
 	let [imageList, setImageList] = useState([]);
-	let [metaImg, setMetaImg] = useState(null);
 	let [isShowModal, setIsShowModal] = useState(false);
 	let [switchParams, setSwitchParams] = useState(false);
 	let images = 'images/';
@@ -82,34 +85,14 @@ const ImagesAdd = () => {
 	function modalDataChenge(params, el) {
 		switch (params) {
 			case 'showMetaImage':
-				return metaImg ?
-					setSwitchParams(<><Input width={'300px'} label={`bucket`} value={metaImg.bucket} disabled={`disabled`} />
-						<Input width={'300px'} label={`generation`} value={metaImg.generation} disabled={`disabled`} />
-						<Input width={'300px'} label={`metageneration`} value={metaImg.metageneration} disabled={`disabled`} />
-						<Input width={'300px'} label={`fullPath`} value={metaImg.fullPath} disabled={`disabled`} />
-						<Input width={'300px'} label={`size`} value={metaImg.size} disabled={`disabled`} />
-						<Input width={'300px'} label={`timeCreated`} value={metaImg.timeCreated} disabled={`disabled`} />
-						<Input width={'300px'} label={`updated`} value={metaImg.updated} disabled={`disabled`} />
-						<Input width={'300px'} label={`md5Hash`} value={metaImg.md5Hash} disabled={`disabled`} />
-						<Input width={'300px'} label={`cacheControl`} value={metaImg.cacheControl} disabled={`enabled`} />
-						<Input width={'300px'} label={`contentDisposition`} value={metaImg.contentDisposition} />
-						<Input width={'300px'} label={`contentEncoding`} value={metaImg.contentEncoding} />
-						<Input width={'300px'} label={`contentLanguage`} value={metaImg.contentLanguage} />
-						<Input width={'300px'} label={`contentType`} value={metaImg.contentType} />
-						<Input width={'300px'} label={`customMetadata`} value={metaImg.customMetadata} />
-						<button onClick={() => {
-							setIsShowModal(false);
-							setMetaImg(null);
-						}
-						}>Cancel</button></>)
-					:
-					null;
-			case 'deleteQuestion':
+				return setSwitchParams(<ImagesMetaData data={el} setIsShowModal={setIsShowModal}/>);
+			
+				case 'deleteQuestion':
 				return setSwitchParams(<div>
 					Видалити {el.name}?
 					<div>
 						<button onClick={() => { onClickDeleteHendler(el); modalDataChenge(`deleted`, el) }}>ok</button>
-						<button onClick={() => setIsShowModal(false)}>cansel</button>
+						<button onClick={() => setIsShowModal(false)}>cancel</button>
 					</div>
 				</div>);
 
@@ -117,20 +100,21 @@ const ImagesAdd = () => {
 				return setSwitchParams(<div>
 					{el.name} видалено
 					<div>
-						<button onClick={() => setIsShowModal(false)}>cansel</button>
+						<button onClick={() => setIsShowModal(false)}>cancel</button>
 					</div>
 				</div>);
 			case 'added':
 				return setSwitchParams(<div>
 					Картинку завантежено
 					<div>
-						<button onClick={() => setIsShowModal(false)}>cansel</button>
+						<button onClick={() => setIsShowModal(false)}>cancel</button>
 					</div>
 				</div>);
 			default:
 				break;
 		}
 	}
+
 
 	useEffect(() => {
 		getListOfImage();
@@ -139,7 +123,7 @@ const ImagesAdd = () => {
 
 
 	return (
-		<div>
+		<div key={uuidv4()}>
 			<input type="file" onChange={(e) => {
 				setInputFile(e.target.files[0])
 			}}></input>
@@ -154,11 +138,9 @@ const ImagesAdd = () => {
 							<img src={el.path} alt="" />
 						</div>
 						<button onClick={() => {
-							getMetaDataOfImage(el);
+							// getMetaDataOfImage(el);
 							modalDataChenge(`showMetaImage`, el);
-							setIsShowModal(true)
-
-
+							setIsShowModal(true);						
 						}
 						}>show details</button>
 						<button onClick={() => {
