@@ -20,6 +20,7 @@ const Main = () => {
     useEffect(() => {
         getAllDocuments_Firebase(collectionCategories).then((resp => {
             setCategriesList(resp);
+            
             dispatch({ type: UPLOAD_CATEGIRIES, payload: resp });
         }))
         getAllDocuments_Firebase(collectionNavigations).then((resp => {
