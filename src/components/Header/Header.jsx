@@ -44,6 +44,7 @@ const Header = () => {
                     {buttonNavigation?
                     <AdaptiveNavButton onClick={setButtonNavigation} onClickClose={setOnClickNavCloseFlag}/>:
                     <>
+                    <div id="firebaseui-auth-container"></div>
                     <Navigation isFooterRender={false} />
                     {onClickNavCloseFlag?
                     <AdaptiveNavButtonCloce onClick={setOnClickNavCloseFlag}  onClickClose={setButtonNavigation}/>:
