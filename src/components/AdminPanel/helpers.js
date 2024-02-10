@@ -1,12 +1,8 @@
-import { useContext, useEffect, useState } from "react";
 import "./adminPanel.css";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where } from 'firebase/firestore';
-import { getMetadata, getStorage } from "firebase/storage";
-import { getDatabase, ref, onValue } from "firebase/database";
-
-// import { getDatabase } from "firebase/database";
-import { INITIALISATION_FIREBASE_CONFIG } from "../../constants/constants";
+import { getMetadata, getStorage, ref } from "firebase/storage";
+import { INITIALISATION_FIREBASE_CONFIG } from "../../firebase";
 
 const app = initializeApp(INITIALISATION_FIREBASE_CONFIG);
 const db = getFirestore(app);
@@ -72,7 +68,5 @@ export async function getMetaDataOfFile(data) {// отримати мета да
 const storage = getStorage();
 const forestRef = ref(storage, data);
 // Get metadata properties
-return await getMetadata(forestRef)
-
- ;
+return await getMetadata(forestRef);
 }
