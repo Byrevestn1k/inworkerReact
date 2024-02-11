@@ -10,6 +10,7 @@ import { useContext, useEffect, useState, createContext } from 'react';
 import { createRequestPath } from './helpers/helpers';
 import AdminPanel from './components/AdminPanel';
 import { ADMIN_PATH } from './constants/pathNames';
+import { AuthProvider } from './components/Auth/Auth';
 
 export let DataContext = createContext()
 
