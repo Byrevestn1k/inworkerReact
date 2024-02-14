@@ -3,9 +3,8 @@ import "./adminPanel.css";
 import { DataContext } from "../../App";
 import inworker_shapka_mini from '../../images/header/inworker_shapka_mini.png';//логотип
 import MenuPanel from "./Components/MenuPanelAdmin";
-import { getAllDocuments_Firebase, getAllNamesOfCollections } from "./helpers";
+import { getAllDocuments_Firebase,  } from "./helpers";
 import PageWrapper from "../PageWrapper/PageWrapper";
-import NavigationEditor from "./Components/NavigationEditor/NavigationEditor";
 import { Route, Routes, useNavigate } from "react-router";
 import { IMAGES_PATH, NAVIGATION_PATH, PAGES_EDITOR_PATH, PAGES_PATH, POST_PATH } from "./Components/constants/pathNames";
 import Navigation from "./Components/Navigation/Navigation";
