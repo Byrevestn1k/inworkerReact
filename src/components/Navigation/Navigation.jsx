@@ -74,7 +74,6 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
                   isUppercasetext={element?.isUppercasetext}
                 />
               </Link>
-
             )
           }
         })
@@ -84,7 +83,7 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
         }
         {isFooterRender?null:
         <div className="nav-item">
-        <Link onClick={setAdminflagHandler} key={uuidv4()} to={`/admin`}>
+        <Link onClick={setAdminflagHandler} key={uuidv4()} to={`/auth`}>
             <LockOpenIcon sx={{ color: '#00b7cc', fontSize: 25 }}/>
         </Link>
         </div>

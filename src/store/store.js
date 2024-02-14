@@ -6,6 +6,7 @@ import { uploadCategories } from "../reducers/uploadCategories";
 import { transmitPageData } from "../reducers/transmitPagesData";
 import { transmitPageName } from "../reducers/transmitPageName";
 import { logoChange } from "../reducers/logoChange";
+import { authReducer } from '../reducer/auth.reducer';
 
 
 
@@ -16,7 +17,8 @@ const navigationReducer = combineReducers({
     uploadCategories: uploadCategories,
     transmitPageData: transmitPageData,
     collection: transmitPageName,
-    logoChanger: logoChange
+    logoChanger: logoChange,
+    authReducer:authReducer,
 })
 
 const store = createStore(navigationReducer);

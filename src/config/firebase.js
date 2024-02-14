@@ -1,6 +1,7 @@
 
 import { getFirestore } from '@firebase/firestore';
 import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export const INITIALISATION_FIREBASE_CONFIG = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -18,3 +19,4 @@ export const INITIALISATION_FIREBASE_CONFIG = {
   export const NAVIGATION_HEADER='navigation';
   export const app = initializeApp(INITIALISATION_FIREBASE_CONFIG);
   export const db = getFirestore(app);
+  export const auth = getAuth();

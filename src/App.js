@@ -10,6 +10,7 @@ import { useContext, useEffect, useState, createContext } from 'react';
 import { createRequestPath } from './helpers/helpers';
 import AdminPanel from './components/AdminPanel';
 import { ADMIN_PATH } from './constants/pathNames';
+import Authentication from './components/AuthentificationUser/Authentication';
 
 export let DataContext = createContext()
 
@@ -23,6 +24,7 @@ function App() {
         <DataContext.Provider value={{ setAdminflag }}>
           <Routes>
             <Route path={ADMIN_PATH} element={<AdminPanel />} />
+            <Route path={`auth`} element={<Authentication />} />
           </Routes>
         </DataContext.Provider> :
         <DataContext.Provider value={{ setAdminflag }}>
