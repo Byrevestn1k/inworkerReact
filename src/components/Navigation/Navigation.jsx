@@ -6,6 +6,8 @@ import NavMenuPanel from "../NavNenuPanel/NavNenuPanel";
 import { WIDTH_MONITOR } from "../../constants/constants";
 import { DataContext } from "../../App";
 import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
+import LockOpenIcon from '@mui/icons-material/Login';
+import { uuidv4 } from "@firebase/util";
 // import { useSelector } from "react-redux";
 // let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
 
@@ -54,65 +56,38 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
       <nav className="navigation">
         {navigationData.map((element) => {
 
-
           if (element.isHeader && !isFooterRender) {
-            if (element.text === 'admin') {
-              return <Link key={element.id} to={element.path}>
-                <button onClick={setAdminflagHandler}>
-                  <NavigationItem
-                    //  isFooterShow={isFooter}
-                    text={element.text}
-                    isUppercasetext={element.isUppercasetext}
-                  // isCategiries={element.isCategiries}
-                  // isFooter={element?.isFooter}
-                  />
-                </button>
-              </Link>
-
-            }
-            else {
               return (
                 <Link key={element.id} to={element?.path}>
                   <NavigationItem
-                    // data={navigationData}
-                    // isHeaderShow={isHeaderRender}
                     text={element?.text}
                     isUppercasetext={element?.isUppercasetext}
-                  // isCategiries={element?.isCategiries}
-                  // isFooter={element?.isFooter}
                   />
                 </Link>
-
               )
-            }
-
           }
           if (element.isFooter && isFooterRender) {
             return (
               <Link key={element.id} to={element?.path}>
                 <NavigationItem
-                  // data={navigationData}
-                  // isFooterShow={isFooterRender}
                   text={element?.text}
                   isUppercasetext={element?.isUppercasetext}
-                // isCategiries={element?.isCategiries}
-                // isFooter={element?.isFooter}
                 />
               </Link>
 
             )
           }
-
-
-
-        }
-
-        )
-
+        })
         }
         {
-
           !isFooterRender && isShowPAnel ? <NavMenuPanel data={navigationData} /> : null//isFooter використовуємо для того щоб показувати деякі елементи лише в футері, а  isShowPAnel - елемент адаптивності, який показує елемент лише коли ширина екрану меншя 535
+        }
+        {isFooterRender?null:
+        <div className="nav-item">
+        <Link onClick={setAdminflagHandler} key={uuidv4()} to={`/admin`}>
+            <LockOpenIcon sx={{ color: '#00b7cc', fontSize: 25 }}/>
+        </Link>
+        </div>
         }
       </nav>
     </div>

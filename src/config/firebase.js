@@ -1,24 +1,20 @@
 
-import { initializeApp } from "firebase";
-import { getFirestore } from "firebase";
-import { getStorage } from "firebase";
+import { getFirestore } from '@firebase/firestore';
+import { initializeApp } from 'firebase/app';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCwTaUs78OePapYbHiStDkrcndp9F7N8rg",
-  authDomain: "inworker-9e2b3.firebaseapp.com",
-  databaseURL: "https://inworker-9e2b3-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "inworker-9e2b3",
-  storageBucket: "inworker-9e2b3.appspot.com",
-  messagingSenderId: "964740146101",
-  appId: "1:964740146101:web:2e4a1333bf7736920eeffc",
-  measurementId: "G-J5H0JLTDD9"
-};
-
-const app = initializeApp(firebaseConfig);
-
-
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-
-export function dblog() {
-}
+export const INITIALISATION_FIREBASE_CONFIG = {
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain:  process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL:  process.env.REACT_APP_FIREBASE_DATA_BASE_URL,
+    projectId:  process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket:  process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId:  process.env.REACT_APP_FIREBASE_MESSEGING_SENDER_ID,
+    appId:  process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId:  process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+    storageBucket:  process.env.REACT_APP_FIREBASE_STORAGE_BUCKET2
+    
+  };  //ініціалізаційні дані в firebase
+  
+  export const NAVIGATION_HEADER='navigation';
+  export const app = initializeApp(INITIALISATION_FIREBASE_CONFIG);
+  export const db = getFirestore(app);

@@ -1,11 +1,8 @@
 import "./adminPanel.css";
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where } from 'firebase/firestore';
+import {  collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where } from 'firebase/firestore';
 import { getMetadata, getStorage, ref } from "firebase/storage";
-import { INITIALISATION_FIREBASE_CONFIG } from "../../firebase";
+import { db } from "../../config/firebase";
 
-const app = initializeApp(INITIALISATION_FIREBASE_CONFIG);
-const db = getFirestore(app);
 
 export async function getDocumentFromDB_Firebase(dataBaseCollection, document) {// отримати елемент з колекції БД
   const docRef = doc(db, dataBaseCollection, document);
