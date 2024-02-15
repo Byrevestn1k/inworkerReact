@@ -50,8 +50,8 @@ export async function setDocForID(collection, docId, object) {// оновити 
   await setDoc(doc(db, collection, docId), object)
 }
 
-export async function getDocumentFromDB_Firebase_for_path(collectionName, path) {// отримати елемент з колекції БД за ключем
-  const q = query(collection(db, collectionName), where("path", "==", path));
+export async function getDocumentFromDB_Firebase_for_path(collectionName, path, key="path") {// отримати елемент з колекції БД за ключем
+  const q = query(collection(db, collectionName), where(key, "==", path));
   const querySnapshot = await getDocs(q);
   let data;
   querySnapshot.forEach((doc) => {

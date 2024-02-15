@@ -14,16 +14,19 @@ import Pages from "./Components/Pages";
 import { v4 as uuidv4 } from 'uuid';
 import Images from "./Components/Images/ImagesAdd";
 import ImagesAdd from "./Components/Images/ImagesAdd";
+import { SignOut } from "../../action/auth.action";
+import { useDispatch } from "react-redux";
+import { getAuth } from "firebase/auth";
 
 
 function AdminPanel() {
-
+  const dispatch = useDispatch();
   let [categoriesList, setCategriesList] = useState([
     { title: `navigation`, urlSlug: 'navigation' },
     { title: `post`, urlSlug: 'post' }
   ])//всі категорії
   let collection = `admin-menu-panel`;
-  let { setAdminflag } = useContext(DataContext)//перемикач адмінка/сайт
+
 
   const navigator = useNavigate();
 
@@ -43,13 +46,14 @@ function AdminPanel() {
     //addDocumentToDB_Firebase(dataBaseCollection, object)// створити документ в колекції елемент з колекції БД
   })
   function setAdminflagHandler() {//перемикає адмінпанель
-    setAdminflag(false);
-    navigator(`/`)
+    SignOut(dispatch);
+    navigator(`/`);
+   
   }
 
   return (
     <PageWrapper>
-
+     
       <div className="admin-panel">
         <div className="admin-header">
 
@@ -77,6 +81,7 @@ function AdminPanel() {
           </div>
         </div>
       </div>
+      
     </PageWrapper>
   );
 }

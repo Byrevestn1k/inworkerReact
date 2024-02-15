@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 // actions
 import { SignIn } from "../../action/auth.action";
 import { useNavigate } from "react-router";
+import { getAuth } from "firebase/auth";
 // copyright component
 function Copyright() {
   return (
@@ -52,6 +53,7 @@ function Copyright() {
 
 const Authentication = (props) => {
   // declarations
+  const [curentUser, setCurentUser] = useState(null)
   let navigatot = useNavigate()
   const dispatch = useDispatch();
   const [email, set_email] = useState("");
@@ -59,21 +61,24 @@ const Authentication = (props) => {
   // check  data
   const { isLoggedIn } = useSelector((state) => state.authReducer);
   const dddd = useSelector((state) => state.authReducer);
- console.log(dddd);
+  console.log(dddd);
   const { loading } = useSelector((state) => state.authReducer);
   // sign in method
   const handleSignIn = () => {
-    dispatch(SignIn(email, password));
-
+    SignIn(email, password, dispatch)
   };
   // check user loggedin or not to change route
   useEffect(() => {
-    if (isLoggedIn) {
-      navigatot("/admin");
-    } else navigatot("/auth");
-  }, [isLoggedIn]);
-  return (
-    <Container component="main" maxWidth="xs">
+    // setCurentUser(getAuth().currentUser);
+    // console.log(curentUser);
+    // if (curentUser) {
+    //   navigatot("/admin");
+    // } else navigatot("/auth");
+  }, [curentUser]);
+  return ( <Container component="main" maxWidth="xs">
+    {
+    
+     <>
       <CssBaseline />
       {/* loading */}
       <Backdrop style={{ zIndex: "1000", color: "#fff" }} open={loading}>
@@ -125,8 +130,11 @@ const Authentication = (props) => {
       <Box mt={8}>
         <Copyright />
       </Box>
+      </>
+
+    }  
     </Container>
-  );
+  )
 };
 
 export default Authentication;
