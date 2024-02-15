@@ -1,22 +1,21 @@
-import {
-	CssBaseline,
-	Avatar,
-	Button,
-	TextField,
-	Container,
-	Box,
-	Typography,
-	CircularProgress,
-	Backdrop
-  } from "@mui/material";
+
   
+  import { getAuth } from "firebase/auth";
+	
 
 
 
 const AuthPage = () => {
 	// let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate.pushForUseEffectUpdate);
 	// let dispatcher = useDispatch()
+	const user = getAuth().currentUser;
+
+	if (user) {
+
+	} else {
 	
+	}
+
 	return (
 
 		<div>SIGN IN</div>
