@@ -12,7 +12,7 @@ import { uuidv4 } from "@firebase/util";
 // let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
 
 const Navigation = ({ isFooterRender, isHeaderRender }) => {
-  let { setAdminflag } = useContext(DataContext)
+
 
   //адаптивне меню, ховаєм в кнопку нав
   let [isShowPAnel, setIisShowPAnel] = useState(false)
@@ -46,9 +46,7 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
     }
   })
 
-  function setAdminflagHandler() {
-    setAdminflag(true)
-  }
+
 
   //адаптивне меню, ховаєм в кнопку нав
   return (
@@ -74,7 +72,6 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
                   isUppercasetext={element?.isUppercasetext}
                 />
               </Link>
-
             )
           }
         })
@@ -84,7 +81,7 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
         }
         {isFooterRender?null:
         <div className="nav-item">
-        <Link onClick={setAdminflagHandler} key={uuidv4()} to={`/admin`}>
+        <Link  key={uuidv4()} to={`/auth`}>
             <LockOpenIcon sx={{ color: '#00b7cc', fontSize: 25 }}/>
         </Link>
         </div>

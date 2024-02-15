@@ -38,7 +38,7 @@ const Main = () => {
                         <Routes>
                             {
                                 navigationsList.map((el) => {
-                                    return <Route path={el.path} element={<Page data={el} />} />
+                                    return <Route path={`/${el.path}`} element={<Page data={el} />} />
                                 })
                             }
                         </Routes>

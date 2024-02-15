@@ -2,37 +2,46 @@
 import { Route, Routes } from 'react-router';
 import './App.css';
 import './adaptive.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Main from './components/Main';
-import { CARTEGORIES_LIST_ENDPOINT } from './constants/endpoints';
-import { useContext, useEffect, useState, createContext } from 'react';
-import { createRequestPath } from './helpers/helpers';
+import {  useState, createContext, useEffect } from 'react';
 import AdminPanel from './components/AdminPanel';
 import { ADMIN_PATH } from './constants/pathNames';
+import MainPage from './components/MainPage';
+import AuthPage from './components/AdminPanel/Components/AuthPage';
+import Authentication from './auth/views/Authentication';
+import { Alert, Snackbar } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeAlert } from './auth/action/alert.action';
+import { ALERT_END } from './auth/constant/alert.constant';
 
-export let DataContext = createContext()
 
 function App() {
+  const dispatch = useDispatch();
+  const { flag, type, msg } = useSelector((state) => state.alertReducer);
+  let data =useSelector((state) => state.alertReducer)
+  console.log(`data=>`, data);
+  useEffect(() => {
+    // Pre-requisites data to be load
 
-  let [adminFlag, setAdminflag] = useState(false)
-
+  }, []);
+  // alert close using redux
+  const handleAlertClose = () => {
+    dispatch({
+      type: ALERT_END,
+      payload: null
+  })
+  };
   return (
     <div className="App">
-      {adminFlag ?
-        <DataContext.Provider value={{ setAdminflag }}>
+        <Snackbar open={flag} autoHideDuration={5000} onClose={handleAlertClose}>
+            <Alert onClose={handleAlertClose} severity={type}>
+              {msg}
+            </Alert>
+        </Snackbar>
           <Routes>
-            <Route path={ADMIN_PATH} element={<AdminPanel />} />
+            <Route path={ADMIN_PATH} element={<AdminPanel />}/>
+            <Route path={`/auth`} element={<Authentication/>}/>
+            <Route path={`*`} element={<MainPage/>}/>
           </Routes>
-        </DataContext.Provider> :
-        <DataContext.Provider value={{ setAdminflag }}>
-          <Header />
-          <Main />
-          <Footer />
-        </DataContext.Provider>}
-
-
-
     </div>
   );
 }
