@@ -6,7 +6,7 @@ import NavMenuPanel from "../NavNenuPanel/NavNenuPanel";
 import { WIDTH_MONITOR } from "../../constants/constants";
 import { DataContext } from "../../App";
 import { getAllDocuments_Firebase } from "../AdminPanel/helpers";
-import LockOpenIcon from '@mui/icons-material/Login';
+// import LockOpenIcon from '@mui/icons-material/Login';
 import { uuidv4 } from "@firebase/util";
 // import { useSelector } from "react-redux";
 // let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate).pushForUseEffectUpdate;
@@ -82,7 +82,7 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
         {isFooterRender?null:
         <div className="nav-item">
         <Link  key={uuidv4()} to={`/auth`}>
-            <LockOpenIcon sx={{ color: '#00b7cc', fontSize: 25 }}/>
+            {/* <LockOpenIcon sx={{ color: '#00b7cc', fontSize: 25 }}/> */}
         </Link>
         </div>
         }

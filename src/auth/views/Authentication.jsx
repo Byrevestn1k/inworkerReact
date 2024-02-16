@@ -1,3 +1,5 @@
+import "./auth.css";
+
 import React, { useState, useEffect } from "react";
 import {
   CssBaseline,
@@ -15,6 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 // actions
 import { SignIn } from "../action/auth.action";
 import { useNavigate } from "react-router";
+import { deepOrange } from '@mui/material/colors';
 // copyright component
 function Copyright() {
   return (
@@ -57,9 +60,10 @@ const Authentication = (props) => {
         <CircularProgress color="inherit" />
       </Backdrop>
       <div >
-        <Avatar >
-        
-        </Avatar>
+        <div className="auth-avatar">
+          <Avatar sx={{ bgcolor: deepOrange[500], width: 70, height: 70 }}>
+          </Avatar>
+        </div>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
