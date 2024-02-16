@@ -18,7 +18,6 @@ function App() {
   const dispatch = useDispatch();
   const { flag, type, msg } = useSelector((state) => state.alertReducer);
   let data =useSelector((state) => state.alertReducer)
-  console.log(`data=>`, data);
   useEffect(() => {
     // Pre-requisites data to be load
 
