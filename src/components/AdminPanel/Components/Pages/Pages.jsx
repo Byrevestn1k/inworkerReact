@@ -38,6 +38,7 @@ const Pages = () => {
 		<div id="addnew"><button onClick={onAddPAge}>add new</button></div>
 		<div className="page">
 			{pagesData.map((element) => {
+				console.log(element);
 				return (
 					<PagesItem data={element} collection={collection} setIsShowEditor={setIsShowEditor} />)
 			})

@@ -18,7 +18,12 @@
     display: flex;
 
 }
-
+.menu-panel ul #menu-panel-a{
+   
+    text-decoration: none !important;
+    text-transform: uppercase;
+    color: #3594b3;
+}
 
 .menu-panel ul li a {
     text-decoration: none;
