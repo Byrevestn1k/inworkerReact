@@ -12,19 +12,19 @@ import { doc, getDoc } from "@firebase/firestore";
 import { func } from "prop-types";
 
 
-export function SignIn  (email, password, dispatch) {
-  
+export function SignIn(email, password, dispatch) {
+
   dispatch({
     type: USER_START,
     payload: null,
   });
-  
+
   signInWithEmailAndPassword(getAuth(), email, password)
     .then((data) => {
       getDoc(doc(db, "admin", data?.user.uid))
         .then((doc) => {
           let role = doc.data()?.role;
-          if (role === "admin" || role !== undefined) {
+          if (role === "admin") {
             dispatch({
               type: USER_SIGNIN,
               payload: {
@@ -38,16 +38,18 @@ export function SignIn  (email, password, dispatch) {
               payload: {
                 type: "success",
                 msg: "😄 Logged in Successfull.",
-              }})
+              }
+            })
 
-            
+
           } else {
             dispatch({
               type: ALERT_START,
               payload: {
                 type: "error",
                 msg: "😢 sorry ! you are not a admin.",
-              }})
+              }
+            })
           }
           dispatch({
             type: USER_END,
@@ -57,13 +59,14 @@ export function SignIn  (email, password, dispatch) {
     })
     .catch((err) => {
       console.log(`err => `, err);
-     
+
       dispatch({
         type: ALERT_START,
         payload: {
-        type: "error",
-        msg: err.message,
-        }})
+          type: "error",
+          msg: err.message,
+        }
+      })
 
       dispatch({
         type: USER_END,
@@ -77,8 +80,8 @@ export function SignOut(dispatch) {
     type: USER_START,
     payload: null,
   });
-  
-    signOut(getAuth())
+
+  signOut(getAuth())
     .then(() => {
       dispatch({
         type: USER_SIGNOUT,
@@ -89,7 +92,8 @@ export function SignOut(dispatch) {
         payload: {
           type: "success",
           msg: "😄 Logged out successfull.",
-        }}
+        }
+      }
       );
     })
     .catch((err) => {
@@ -98,7 +102,8 @@ export function SignOut(dispatch) {
         payload: {
           type: "error",
           msg: err.message,
-        }});
+        }
+      });
 
 
     });

@@ -25,13 +25,13 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     let [keywords, setKeywords] = useState(data?.keywords || undefined);
     let [textvalue, setTextvalue] = useState(data?.textvalue || undefined);
     let [picture, setPicture] = useState(data?.picture || undefined);
-    let date = new Date().toUTCString(data?.date)
+    let date = new Date().toUTCString()
     let [path, setPath] = useState(data?.path || undefined);
-    let [dateOfCreate, setDateOfCreate] = useState(date.toString() || undefined);
-    let [dateOfUpdate, setDateOfUpdate] = useState(date.toString() || undefined);
+    let [dateOfCreate, setDateOfCreate] = useState(data?.date || date);
+    let [dateOfUpdate, setDateOfUpdate] = useState(date);
     let [priority, setPriority] = useState(data?.priority || undefined);
     let [published, setPublished] = useState(false);
-    let [imageList, setImageList] =useState([]);
+    let [imageList, setImageList] = useState([]);
 
     let dispatch = useDispatch();
     let navigator = useNavigate()
@@ -42,20 +42,22 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     const [editorStates, setEditorStates] = useState(editorState);
     const storage = getStorage();
     const listRef = ref(storage, 'images/');
-    useEffect(()=>{
-		listAll(listRef).then((resp)=>{
-			setImageList([])
-			resp.items.forEach((item)=>{
-				getDownloadURL(item).then((url)=>{				
-					setImageList((prev) =>[...prev, url])
-				})
-				})
-			})
-           
-		},[])
+    useEffect(() => {
+        listAll(listRef).then((resp) => {
+            setImageList([])
+            resp.items.forEach((item) => {
+                getDownloadURL(item).then((url) => {
+                    setImageList((prev) => [...prev, url])
+                })
+            })
+        })
+
+    }, [])
     function onAddDataList() {
+        setDateOfCreate(new Date().toUTCString());
+        console.log(dateOfCreate);
         const dataList = {// об'єкт для додавання в БД
-            title, description, keywords, path, priority, textvalue, picture, dateOfCreate, dateOfUpdate, published
+            title, description, keywords, path, priority, textvalue, picture, dateOfCreate, dateOfUpdate: dateOfCreate, published
         };
         addDocumentToDB_Firebase(collectionfromPage, dataList)
         dispatch({ type: PUSH_USEEFFECT_UPDATE })
@@ -63,8 +65,11 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     }
 
     function onSetDataList() {
+
+        setDateOfUpdate(new Date().toUTCString());
+        console.log(dateOfUpdate);
         const dataList = {// об'єкт для додавання в БД
-            title, description, keywords, path, priority, textvalue, picture, dateOfCreate, dateOfUpdate, published
+            title, description, keywords, path, priority, textvalue, picture, dateOfUpdate, published
         };
         dispatch({ type: PUSH_USEEFFECT_UPDATE });
         setDocForID(collection, data.id, dataList);
@@ -104,23 +109,23 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
         return data ? `checked` : null;
     }
     function onClickCloseHandler() {
-        console.log(setIsShowEditor!=undefined);
-        if(setIsShowEditor){
+        console.log(setIsShowEditor != undefined);
+        if (setIsShowEditor) {
             setIsShowEditor(false)
-        } 
-        else{
+        }
+        else {
             navigator(`/admin/pages`);
         }
-         
+
     }
- 
+
     let selector = <select name="images" id="">
-       { imageList.map((el)=>{
-			return <option value=""><img src={el} alt="" /> </option>
-			
-			})}
-	</select>
-		// imageSelector.insertAdjacentElement(`afterbegin`, selector)
+        {imageList.map((el) => {
+            return <option value=""><img src={el} alt="" /> </option>
+
+        })}
+    </select>
+    // imageSelector.insertAdjacentElement(`afterbegin`, selector)
     return (
         <div className='text-editor'>
             <Input label={`Назва сторінки  (title)`} value={title} onChangeFunction={onChangeTitle} />
@@ -129,7 +134,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
             <Input label={`Шлях до картинки`} value={picture} onChangeFunction={onChangePicture} />
             <Input label={`Закінчення посилання (path)`} value={path} onChangeFunction={onChangePath} />
-            {/* <Input disabled={`disabled`} label={`Дата створення`} value={dateOfCreate} /> */}
+            <Input disabled={`disabled`} label={`Дата створення`} value={dateOfCreate} />
 
             <Input type={`number`} label={`Пріоритет відображення`} value={priority} onChangeFunction={onChangePriority} />
             <Input type={'checkbox'} className={'is-publish'} label={`Опублікувати `} onChangeFunction={onGetPublish} name={`publish`} checked={isChecked(published)} />

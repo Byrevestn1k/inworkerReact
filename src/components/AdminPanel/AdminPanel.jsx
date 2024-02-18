@@ -15,11 +15,12 @@ import { v4 as uuidv4 } from 'uuid';
 import Images from "./Components/Images/ImagesAdd";
 import ImagesAdd from "./Components/Images/ImagesAdd";
 import { SignOut } from "../../auth/action/auth.action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from "react-router-dom";
 
 function AdminPanel() {
-
+  const { isLoggedIn, loading } = useSelector((state) => state.authReducer);
   let [categoriesList, setCategriesList] = useState([
     { title: `navigation`, urlSlug: 'navigation' },
     { title: `post`, urlSlug: 'post' }
@@ -27,15 +28,17 @@ function AdminPanel() {
   let collection = `admin-menu-panel`;
   let dispath = useDispatch()
   const navigator = useNavigate();
-
   let logoWidth = 50;
 
   useEffect(() => {
+    if (isLoggedIn) {
+      navigator("/admin");
+    } else navigator("/auth");
     getAllDocuments_Firebase(collection).then((resp => {
       setCategriesList(resp)
     }));
 
-  }, [])
+  }, [isLoggedIn])
 
 
 
@@ -60,10 +63,10 @@ function AdminPanel() {
             </div>
             <div >
 
-              <img src={inworker_shapka_mini} width={logoWidth} alt="" />
+              <Link to={`/`}><img src={inworker_shapka_mini} width={logoWidth} alt="" /></Link>
             </div>
             Adminpanel of <span>{document.domain}</span> site</div>
-          <LogoutIcon onClick={setAdminflagHandler} fontSize="large" sx={{ color: `black` }} />
+          <LogoutIcon onClick={setAdminflagHandler} fontSize="large" sx={{ color: `black`, cursor: 'pointer' }} />
 
 
         </div>

@@ -1,12 +1,11 @@
 .admin-panel{
-   padding: 20px;
+   padding: 20px  ;
    width: 100%;
    
 }
 
 .admin-header span{
    font-weight: bold; 
-
 }
 
 .admin-header {
@@ -15,7 +14,7 @@
    align-items: center;
    background: rgb(204, 204, 204);
     background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(204, 204, 204, 1) 100%);
-   padding: 10px;
+   padding:10px 30px;
 
 }
 .admin-header-name{

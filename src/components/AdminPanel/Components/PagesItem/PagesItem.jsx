@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router';
 
 const PagesItem = ({ data, collection, setIsShowEditor }) => {
    let navigator = useNavigate()
-   let { text, title, description, path, priority, keywords, id, dateCreate, dateUpdate, picture } = data;
+   let { text, title, description, path, priority, keywords, id, dateOfCreate, dateOfUpdate, picture } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
    const dispatch = useDispatch(false);
@@ -38,8 +38,8 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
          <div><span>PATH</span>: {path}</div>
          <div><span>ID</span>: {id}</div>
          <div><span>PRIORITY</span>: {priority}</div>
-         <div><span>dateCreate</span>: {dateCreate}</div>
-         <div><span>dateUpdate</span>: {dateUpdate}</div>
+         <div><span>dateCreate</span>: {`${dateOfCreate}`}</div>
+         <div><span>dateUpdate</span>: {dateOfUpdate}</div>
 
          <button onClick={onClickEdit}>Edit</button>
          <button onClick={onClickDeleteHendler}>Delete</button>

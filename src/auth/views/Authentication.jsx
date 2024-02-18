@@ -48,6 +48,7 @@ const Authentication = (props) => {
   };
   // check user loggedin or not to change route
   useEffect(() => {
+    console.log("/admin =>", isLoggedIn);
     if (isLoggedIn) {
       navigator("/admin");
     } else navigator("/auth");
@@ -67,7 +68,7 @@ const Authentication = (props) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form  noValidate>
+        <form noValidate>
           <TextField
             variant="outlined"
             margin="normal"
