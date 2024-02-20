@@ -11,13 +11,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { CardMedia } from '@mui/material';
 
 
 // export let DataCategoriesContext = createContext()
 
 const PagesItem = ({ data, collection, setIsShowEditor }) => {
    let navigator = useNavigate()
-   let { text, title, description, path, priority, keywords, id, dateOfCreate, dateOfUpdate, picture } = data;
+   let { text, title, description, path, priority, keywords, id, dateOfCreate, dateOfUpdate, picture, pictureTitle } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
    const dispatch = useDispatch(false);
@@ -35,12 +36,17 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
 
    return (
       
-<Card sx={{ minWidth: 275, margin: `10px` }}>
+      <Card sx={{ minWidth: 275, margin: `10px` }}>
+         <CardMedia
+        sx={{ height: 140 }}
+        image={picture}
+        title="pictureTitle"
+      />
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>Оновлено: {dateOfUpdate}</Typography>
         <Typography variant="h5" component="div">{title}</Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary"><span>keywords</span>: {keywords}</Typography>
-        <Typography variant="body2"><span>PATH</span>: {path}</Typography>
+        <Typography sx={{ textAlign: "left" }} ><span className='card-span'>keywords</span>: {keywords}</Typography>
+        <Typography sx={{ textAlign: "left" }} ><span className='card-span'>path</span>: {path}</Typography>
       </CardContent>
       <CardActions>
         <Button onClick={onClickEdit} size="small">Edit</Button>
@@ -49,7 +55,7 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
       <Modal showModal={showModal} openModalFunc={setShowModal}>
             <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />
          </Modal>
-    </Card>
+      </Card>
 
       // <div className='nav-item-admin'>
       //    <div><h5>{title}</h5></div>

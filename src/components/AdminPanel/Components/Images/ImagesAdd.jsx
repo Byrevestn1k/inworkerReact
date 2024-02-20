@@ -8,6 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOGO_CHANGE, PUSH_USEEFFECT_UPDATE, SHOW_MODAL } from "../../../../constants/actions";
 import ImagesMetaData from "../ImagesMetaData/ImagesMetaData";
 import { v4 as uuidv4 } from 'uuid';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { CardMedia } from '@mui/material';
 const storage = getStorage();
 
 
@@ -114,54 +120,87 @@ const ImagesAdd = () => {
 				break;
 		}
 	}
-
-
 	useEffect(() => {
 		getListOfImage();
 	}, [pushForUseEffectUpdate])
 
 
-
 	return (
-		<div key={uuidv4()}>
+		<>
 			<input type="file" onChange={(e) => {
 				setInputFile(e.target.files[0])
 			}}></input>
 			<button onClick={onAddImageHendler}>Upload</button>
-
 			<div className="admin-images">
-				{imageList.map((el) => {
-
-					return <div>
-						{/* <Input type={`radio`} name={`logoCheck`} onChangeFunction={setCheckLogo} value={el}/> */}
-						<div className="image">
-							<img src={el.path} alt="" />
-						</div>
-						<button onClick={() => {
-							// getMetaDataOfImage(el);
-							modalDataChenge(`showMetaImage`, el);
-							setIsShowModal(true);						
-						}
-						}>show details</button>
-						<button onClick={() => {
-							modalDataChenge(`deleteQuestion`, el);
-							setIsShowModal(true);
-						}}>delete</button>
-					</div>
-				}
-				)
-				}
-
-			</div>
-
+		{imageList.map((el) => {
+			return  (
+				<Card sx={{ maxWidth: 345 }}>
+					<CardMedia
+						sx={{ height: 140 }}
+						image={el.path}
+						title={el?.title}
+						alt={el?.alt}
+					/>
+					<CardActions>
+						<Button size="small" onClick={() => {
+								// getMetaDataOfImage(el);
+								modalDataChenge(`showMetaImage`, el);
+								setIsShowModal(true);						
+							}}>Змінити</Button>
+						<Button size="small" onClick={() => {
+								modalDataChenge(`deleteQuestion`, el);
+								setIsShowModal(true);
+							}}>Видалити</Button>
+					</CardActions>
+				</Card>)
+			
+		})}
+		</div>
 			<Modal showModal={isShowModal} openModalFunc={setIsShowModal} >
 				{
 					switchParams
-
 				}
 			</Modal>
+	  </>
+		// <div key={uuidv4()}>
+		// 	<input type="file" onChange={(e) => {
+		// 		setInputFile(e.target.files[0])
+		// 	}}></input>
+		// 	<button onClick={onAddImageHendler}>Upload</button>
 
-		</div>
+		// 	<div className="admin-images">
+		// 		{imageList.map((el) => {
+
+		// 			return <div>
+		// 				{/* <Input type={`radio`} name={`logoCheck`} onChangeFunction={setCheckLogo} value={el}/> */}
+		// 				<div className="image">
+		// 					<img src={el.path} alt="" />
+		// 				</div>
+		// 				<button onClick={() => {
+		// 					// getMetaDataOfImage(el);
+		// 					modalDataChenge(`showMetaImage`, el);
+		// 					setIsShowModal(true);						
+		// 				}
+		// 				}>show details</button>
+		// 				<button onClick={() => {
+		// 					modalDataChenge(`deleteQuestion`, el);
+		// 					setIsShowModal(true);
+		// 				}}>delete</button>
+		// 			</div>
+		// 		}
+		// 		)
+		// 		}
+
+		// 	</div>
+
+		// 	<Modal showModal={isShowModal} openModalFunc={setIsShowModal} >
+		// 		{
+		// 			switchParams
+
+		// 		}
+		// 	</Modal>
+
+		// </div>
 
 	);
 };
