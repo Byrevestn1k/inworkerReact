@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import Modal from '../Modal';
 import './pagesItem.css';
-import NavigationEditor from '../NavigationEditor/NavigationEditor';
 import DeleteQuestion from '../DeleteQuestion';
-import { useDispatch, useSelector } from 'react-redux';
-import { HIDE_MODAL, PUSH_USEEFFECT_UPDATE, SHOW_MODAL, TRANSMIT_EDIT_PAGE_DATA, TRANSMIT_EDIT_PAGE_NAME, UPLOAD_NAVIGATION } from '../../../../constants/actions';
-import TextEditor from '../TextEditor';
+import { useDispatch,  } from 'react-redux';
+import { TRANSMIT_EDIT_PAGE_DATA, TRANSMIT_EDIT_PAGE_NAME} from '../../../../constants/actions';
 import { useNavigate } from 'react-router';
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 // export let DataCategoriesContext = createContext()
@@ -31,23 +34,38 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
    }
 
    return (
-      <div className='nav-item-admin'>
-         <div><h5>{title}</h5></div>
-         <div className='description'><span>description</span>: {description}</div>
-         <div><span>keywords</span>: {keywords}</div>
-         <div><span>PATH</span>: {path}</div>
-         <div><span>ID</span>: {id}</div>
-         <div><span>PRIORITY</span>: {priority}</div>
-         <div><span>dateCreate</span>: {`${dateOfCreate}`}</div>
-         <div><span>dateUpdate</span>: {dateOfUpdate}</div>
-
-         <button onClick={onClickEdit}>Edit</button>
-         <button onClick={onClickDeleteHendler}>Delete</button>
-
-         <Modal showModal={showModal} openModalFunc={setShowModal}>
+      
+<Card sx={{ minWidth: 275, margin: `10px` }}>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>Оновлено: {dateOfUpdate}</Typography>
+        <Typography variant="h5" component="div">{title}</Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary"><span>keywords</span>: {keywords}</Typography>
+        <Typography variant="body2"><span>PATH</span>: {path}</Typography>
+      </CardContent>
+      <CardActions>
+        <Button onClick={onClickEdit} size="small">Edit</Button>
+        <Button onClick={onClickDeleteHendler} size="small">Delete</Button>
+      </CardActions>
+      <Modal showModal={showModal} openModalFunc={setShowModal}>
             <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />
          </Modal>
-      </div>
+    </Card>
+
+      // <div className='nav-item-admin'>
+      //    <div><h5>{title}</h5></div>
+      //    <div className='description'><span>description</span>: {description}</div>
+      //    <div><span>keywords</span>: {keywords}</div>
+      //    <div><span>PATH</span>: {path}</div>
+      //    <div><span>ID</span>: {id}</div>
+      //    <div><span>PRIORITY</span>: {priority}</div>
+      //    <div><span>dateCreate</span>: {`${dateOfCreate}`}</div>
+      //    <div><span>dateUpdate</span>: {dateOfUpdate}</div>
+
+      //    <button onClick={onClickEdit}>Edit</button>
+      //    <button onClick={onClickDeleteHendler}>Delete</button>
+
+         
+      // </div>
 
 
    )

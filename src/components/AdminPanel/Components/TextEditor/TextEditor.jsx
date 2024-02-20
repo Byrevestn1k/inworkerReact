@@ -18,17 +18,17 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
     let data = useSelector(state => state.transmitPageData.transmitPageData);
     let collection = useSelector(state => state.collection.collection)
-
+    console.log(data);
     let [addPAge, setAddPAge] = useState(addORedit || false)
     let [title, setTitle] = useState(data?.title || undefined);
     let [description, setDescription] = useState(data?.description || undefined);
     let [keywords, setKeywords] = useState(data?.keywords || undefined);
     let [textvalue, setTextvalue] = useState(data?.textvalue || undefined);
     let [picture, setPicture] = useState(data?.picture || undefined);
-    let date = new Date().toUTCString(data?.date)
+    let date = new Date().toUTCString()
     let [path, setPath] = useState(data?.path || undefined);
-    let [dateOfCreate, setDateOfCreate] = useState(date.toString() || date);
-    let [dateOfUpdate, setDateOfUpdate] = useState(date);
+    let [dateOfCreate, setDateOfCreate] = useState(data?.dateOfCreate || undefined);
+    let [dateOfUpdate, setDateOfUpdate] = useState(data?.dateOfUpdate || undefined);
     let [priority, setPriority] = useState(data?.priority || undefined);
     let [published, setPublished] = useState(false);
     let [imageList, setImageList] = useState([]);
@@ -54,10 +54,9 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
     }, [])
     function onAddDataList() {
-        setDateOfCreate(new Date().toUTCString());
-        console.log(dateOfCreate);
+
         const dataList = {// об'єкт для додавання в БД
-            title, description, keywords, path, priority, textvalue, picture, dateOfCreate, dateOfUpdate: dateOfCreate, published
+            title, description, keywords, path, priority, textvalue, picture, dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), dateOfUpdate: dateOfCreate, published
         };
         addDocumentToDB_Firebase(collectionfromPage, dataList)
         dispatch({ type: PUSH_USEEFFECT_UPDATE })
@@ -66,10 +65,10 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
     function onSetDataList() {
 
-        setDateOfUpdate(new Date().toUTCString());
-        console.log(dateOfUpdate);
+
+
         const dataList = {// об'єкт для додавання в БД
-            title, description, keywords, path, priority, textvalue, picture, dateOfUpdate, published
+            title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
         };
         dispatch({ type: PUSH_USEEFFECT_UPDATE });
         setDocForID(collection, data.id, dataList);
