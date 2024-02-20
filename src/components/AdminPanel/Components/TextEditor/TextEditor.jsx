@@ -25,9 +25,9 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     let [keywords, setKeywords] = useState(data?.keywords || undefined);
     let [textvalue, setTextvalue] = useState(data?.textvalue || undefined);
     let [picture, setPicture] = useState(data?.picture || undefined);
-    let date = new Date().toUTCString()
+    let date = new Date().toUTCString(data?.date)
     let [path, setPath] = useState(data?.path || undefined);
-    let [dateOfCreate, setDateOfCreate] = useState(data?.date || date);
+    let [dateOfCreate, setDateOfCreate] = useState(date.toString() || date);
     let [dateOfUpdate, setDateOfUpdate] = useState(date);
     let [priority, setPriority] = useState(data?.priority || undefined);
     let [published, setPublished] = useState(false);

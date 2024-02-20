@@ -18,6 +18,7 @@ import { SignOut } from "../../auth/action/auth.action";
 import { useDispatch, useSelector } from "react-redux";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
+import Test from "./Test";
 
 function AdminPanel() {
   const { isLoggedIn, loading } = useSelector((state) => state.authReducer);
@@ -78,6 +79,7 @@ function AdminPanel() {
               <Route path={PAGES_PATH} element={<Pages />} />
               <Route path={PAGES_EDITOR_PATH} element={<TextEditor />} />
               <Route path={IMAGES_PATH} element={<ImagesAdd />} />
+              <Route path={'posts'} element={<Test />} />
             </Routes>
           </div>
         </div>
