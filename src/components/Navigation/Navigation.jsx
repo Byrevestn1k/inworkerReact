@@ -30,7 +30,7 @@ const Navigation = ({ isFooterRender, isHeaderRender }) => {
     //адаптивна панель меню при загрузці
 
     getAllDocuments_Firebase(collection).then((resp) => {
-      setNavigationData(resp);//отримуєм БД з навігацією
+      setNavigationData(resp.sort((a, b) => a.priority - b.priority));//отримуєм БД з навігацією посортовану від меншого до більшлго
 
     })
   }
