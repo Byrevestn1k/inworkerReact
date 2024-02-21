@@ -43,10 +43,12 @@ gap: 20px;
 }
 .admin-panel_main{
      display: flex;
+     justify-content: center;
 }
 .admin-panel_main_main{ 
    padding: 20px;
 }
+
 
 .admin-panel_main_main #addnew{
    text-align: right;
