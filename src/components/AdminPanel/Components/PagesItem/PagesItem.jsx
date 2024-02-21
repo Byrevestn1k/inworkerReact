@@ -38,7 +38,7 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
       
       <Card sx={{ minWidth: 275, margin: `10px` }}>
          <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 100 }}
         image={picture}
         title="pictureTitle"
       />
