@@ -5,7 +5,6 @@ import DeleteQuestion from '../DeleteQuestion';
 import { useDispatch,  } from 'react-redux';
 import { TRANSMIT_EDIT_PAGE_DATA, TRANSMIT_EDIT_PAGE_NAME} from '../../../../constants/actions';
 import { useNavigate } from 'react-router';
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -18,7 +17,7 @@ import { CardMedia } from '@mui/material';
 
 const PagesItem = ({ data, collection, setIsShowEditor }) => {
    let navigator = useNavigate()
-   let { text, title, description, path, priority, keywords, id, dateOfCreate, dateOfUpdate, picture, pictureTitle } = data;
+   let { title,  path, keywords, dateOfUpdate, picture} = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
    const dispatch = useDispatch(false);
@@ -34,13 +33,12 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
       setShowModal(true);
    }
 
-   return (
-      
+   return (   
       <Card sx={{ minWidth: 275, margin: `10px` }}>
-         <CardMedia
+      <CardMedia
         sx={{ height: 100 }}
         image={picture}
-        title="pictureTitle"
+        title={title}
       />
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>Оновлено: {dateOfUpdate}</Typography>
@@ -56,24 +54,6 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
             <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />
          </Modal>
       </Card>
-
-      // <div className='nav-item-admin'>
-      //    <div><h5>{title}</h5></div>
-      //    <div className='description'><span>description</span>: {description}</div>
-      //    <div><span>keywords</span>: {keywords}</div>
-      //    <div><span>PATH</span>: {path}</div>
-      //    <div><span>ID</span>: {id}</div>
-      //    <div><span>PRIORITY</span>: {priority}</div>
-      //    <div><span>dateCreate</span>: {`${dateOfCreate}`}</div>
-      //    <div><span>dateUpdate</span>: {dateOfUpdate}</div>
-
-      //    <button onClick={onClickEdit}>Edit</button>
-      //    <button onClick={onClickDeleteHendler}>Delete</button>
-
-         
-      // </div>
-
-
    )
 }
 

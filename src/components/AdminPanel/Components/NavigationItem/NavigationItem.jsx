@@ -8,19 +8,15 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { CardMedia } from '@mui/material';
-
-
-// export let DataCategoriesContext = createContext()
 
 const NavigationItem = ({ data, collection }) => {
    let { text, isUppercasetext, isFooter, path, priority, isHeader, id } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
+  
    function onClickEdit() {
       setShowModalDeleteQuestion(true)
       setShowModal(true);
-
    }
    function onClickDeleteHendler() {
       setShowModalDeleteQuestion(false)
@@ -28,43 +24,28 @@ const NavigationItem = ({ data, collection }) => {
    }
 
    return (
-
-            
+      
       <Card sx={{ minWidth: 275, margin: `10px` }}>
-      <CardContent>
-        <Typography variant="h5" component="div">{text}</Typography> 
-        <Typography sx={{ textAlign: "left" }}  gutterBottom><span className='card-span'>ID</span>: {id}</Typography>
-        <Typography sx={{ textAlign: "left" }}  gutterBottom><span className='card-span'>PATH</span>: {path}</Typography>
-        <Typography sx={{ textAlign: "left" }} ><span className='card-span'>PRIORITY</span>: {priority}</Typography>
-        <Typography sx={{ textAlign: "left" }} ><span className='card-span'>ISUPPERCASE</span>: {`${isUppercasetext}`}</Typography>
-        <Typography sx={{ textAlign: "left" }} ><span className='card-span'>ISFOOTER</span>: {`${isFooter}`}</Typography>
-        <Typography sx={{ textAlign: "left" }} ><span className='card-span'>ISHEADER</span>: {`${isHeader}`}</Typography>
 
-      </CardContent>
-      <CardActions>
-        <Button onClick={onClickEdit} size="small">Edit</Button>
-        <Button onClick={onClickDeleteHendler} size="small">Delete</Button>
-      </CardActions>
+         <CardContent>
+            <Typography variant="h5" component="div">{text}</Typography> 
+            <Typography sx={{ textAlign: "left" }}  gutterBottom><span className='card-span'>ID</span>: {id}</Typography>
+            <Typography sx={{ textAlign: "left" }}  gutterBottom><span className='card-span'>PATH</span>: {path}</Typography>
+            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>PRIORITY</span>: {priority}</Typography>
+            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>ISUPPERCASE</span>: {`${isUppercasetext}`}</Typography>
+            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>ISFOOTER</span>: {`${isFooter}`}</Typography>
+            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>ISHEADER</span>: {`${isHeader}`}</Typography>
+         </CardContent>
+
+         <CardActions>
+            <Button onClick={onClickEdit} size="small">Edit</Button>
+            <Button onClick={onClickDeleteHendler} size="small">Delete</Button>
+         </CardActions>
+
          <Modal showModal={showModal} openModalFunc={setShowModal}>
             {showModalDeleteQuestion ? <NavigationEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} /> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
          </Modal>
       </Card>
-      // <div className='nav-item-admin'>
-      //    <div><h5>{text}</h5></div>
-      //    <div><span>ID</span>: {id}</div>
-      //    <div><span>PATH</span>: {path}</div>
-      //    <div><span>PRIORITY</span>: {priority}</div>
-      //    <div><span>ISUPPERCASE</span>: {`${isUppercasetext}`}</div>
-      //    <div><span>ISFOOTER</span>: {`${isFooter}`}</div>
-      //    <div><span>ISHEADER</span>: {`${isHeader}`}</div>
-      //    <button onClick={onClickEdit}>Edit</button>
-      //    <button onClick={onClickDeleteHendler}>Delete</button>
-      //    <Modal showModal={showModal} openModalFunc={setShowModal}>
-      //       {showModalDeleteQuestion ? <NavigationEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} /> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
-      //    </Modal>
-      // </div>
-
-
    )
 }
 
