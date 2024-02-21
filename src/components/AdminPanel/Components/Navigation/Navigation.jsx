@@ -7,6 +7,7 @@ import Modal from "../Modal";
 import NavigationEditor from "../NavigationEditor/NavigationEditor";
 import { useDispatch, useSelector } from "react-redux";
 import { UPLOAD_NAVIGATION } from "../../../../constants/actions";
+import { Button } from "@mui/material";
 
 const Navigation = ({ isFooter }) => {
   //адаптивне меню, ховаєм в кнопку нав
@@ -41,7 +42,10 @@ const Navigation = ({ isFooter }) => {
 
   //адаптивне меню, ховаєм в кнопку нав
   return (
-    <> <div id="addnew"><button onClick={modalCall}>add new</button></div>
+    <> 
+    <div id="addnew">
+      <Button onClick={modalCall} variant="outlined" size="small">Створити</Button>  
+    </div>
       <nav className="navigation">
         {navigationData.map((element) => {
           return (
