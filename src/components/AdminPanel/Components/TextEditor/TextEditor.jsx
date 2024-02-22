@@ -18,7 +18,6 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
     let data = useSelector(state => state.transmitPageData.transmitPageData);
     let collection = useSelector(state => state.collection.collection)
-    console.log(data);
     let [addPAge, setAddPAge] = useState(addORedit || false)
     let [title, setTitle] = useState(data?.title || undefined);
     let [description, setDescription] = useState(data?.description || undefined);
