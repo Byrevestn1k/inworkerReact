@@ -32,7 +32,6 @@ const AddAdmin = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         const id = res?.user?.uid;
-        console.log(res?.user);
         db.collection("admin").doc(id).set({
           _id: id,
           level: level,

@@ -48,7 +48,6 @@ const Authentication = (props) => {
   };
   // check user loggedin or not to change route
   useEffect(() => {
-    console.log("/admin =>", isLoggedIn);
     if (isLoggedIn) {
       navigator("/admin");
     } else navigator("/auth");

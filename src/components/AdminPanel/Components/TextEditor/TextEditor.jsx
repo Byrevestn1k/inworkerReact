@@ -107,7 +107,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
         return data ? `checked` : null;
     }
     function onClickCloseHandler() {
-        console.log(setIsShowEditor != undefined);
+
         if (setIsShowEditor) {
             setIsShowEditor(false)
         }

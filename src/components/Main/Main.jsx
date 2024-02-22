@@ -28,7 +28,7 @@ const Main = () => {
             dispatch({ type: UPLOAD_NAVIGATION, payload: resp });
         }))
     }, [])
-
+console.log(navigationsList);
     return (
         <div  className="main" key={uuidv4()}>
             <PageWrapper key={uuidv4()}>
