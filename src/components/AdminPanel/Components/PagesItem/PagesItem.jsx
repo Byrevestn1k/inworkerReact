@@ -34,7 +34,7 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
    }
 
    return (   
-      <Card sx={{ minWidth: 275, margin: `10px` }}>
+      <Card sx={{ minWidth: 275, margin: `10px`, background:'#f2f2f2' }}>
       <CardMedia
         sx={{ height: 100 }}
         image={picture}
@@ -47,8 +47,8 @@ const PagesItem = ({ data, collection, setIsShowEditor }) => {
         <Typography sx={{ textAlign: "left" }} ><span className='card-span'>path</span>: {path}</Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={onClickEdit} size="small">Edit</Button>
-        <Button onClick={onClickDeleteHendler} size="small">Delete</Button>
+        <Button onClick={onClickEdit} size="small">Змінити</Button>
+        <Button onClick={onClickDeleteHendler} size="small">Видалити</Button>
       </CardActions>
       <Modal showModal={showModal} openModalFunc={setShowModal}>
             <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />

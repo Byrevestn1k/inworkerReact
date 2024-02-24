@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 import { addFileToFirebaseStorage } from "../../helperStorage";
 import "./imagesAdd.css";
-import { deleteObject, getDownloadURL, getMetadata, getStorage, listAll, ref, updateMetadata } from "firebase/storage";
+import { deleteObject, getDownloadURL,  getStorage, listAll, ref, updateMetadata } from "firebase/storage";
 import Modal from "../Modal/Modal";
-import Input from "../Input/Input";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGO_CHANGE, PUSH_USEEFFECT_UPDATE, SHOW_MODAL } from "../../../../constants/actions";
+import {  PUSH_USEEFFECT_UPDATE } from "../../../../constants/actions";
 import ImagesMetaData from "../ImagesMetaData/ImagesMetaData";
-import { v4 as uuidv4 } from 'uuid';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Button } from "@mui/material";
 import { CardMedia } from '@mui/material';
 const storage = getStorage();
-
 
 const ImagesAdd = () => {
 	let pushForUseEffectUpdate = useSelector(state => state.pushForUseEffectUpdate.pushForUseEffectUpdate);
@@ -129,12 +124,15 @@ const ImagesAdd = () => {
 		<>
 			<input type="file" onChange={(e) => {
 				setInputFile(e.target.files[0])
-			}}></input>
-			<button onClick={onAddImageHendler}>Upload</button>
+				}}>
+			</input>
+			
+			<Button onClick={onAddImageHendler} variant="outlined" size="small">Завантажити</Button> 
+
 			<div className="admin-images">
-		{imageList.map((el) => {
-			return  (
-				<Card sx={{ maxWidth: 345 }}>
+				{imageList.map((el) => {
+					return  (
+						<Card sx={{ maxWidth: 345, background:'#f2f2f2' }}>
 					<CardMedia
 						sx={{ height: 140 }}
 						image={el.path}
@@ -152,55 +150,15 @@ const ImagesAdd = () => {
 								setIsShowModal(true);
 							}}>Видалити</Button>
 					</CardActions>
-				</Card>)
-			
-		})}
-		</div>
+						</Card>)
+				})}
+			</div>
 			<Modal showModal={isShowModal} openModalFunc={setIsShowModal} >
 				{
 					switchParams
 				}
 			</Modal>
 	  </>
-		// <div key={uuidv4()}>
-		// 	<input type="file" onChange={(e) => {
-		// 		setInputFile(e.target.files[0])
-		// 	}}></input>
-		// 	<button onClick={onAddImageHendler}>Upload</button>
-
-		// 	<div className="admin-images">
-		// 		{imageList.map((el) => {
-
-		// 			return <div>
-		// 				{/* <Input type={`radio`} name={`logoCheck`} onChangeFunction={setCheckLogo} value={el}/> */}
-		// 				<div className="image">
-		// 					<img src={el.path} alt="" />
-		// 				</div>
-		// 				<button onClick={() => {
-		// 					// getMetaDataOfImage(el);
-		// 					modalDataChenge(`showMetaImage`, el);
-		// 					setIsShowModal(true);						
-		// 				}
-		// 				}>show details</button>
-		// 				<button onClick={() => {
-		// 					modalDataChenge(`deleteQuestion`, el);
-		// 					setIsShowModal(true);
-		// 				}}>delete</button>
-		// 			</div>
-		// 		}
-		// 		)
-		// 		}
-
-		// 	</div>
-
-		// 	<Modal showModal={isShowModal} openModalFunc={setIsShowModal} >
-		// 		{
-		// 			switchParams
-
-		// 		}
-		// 	</Modal>
-
-		// </div>
 
 	);
 };

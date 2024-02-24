@@ -1,0 +1,9 @@
+.add-new-category-panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    background: #fff;
+    padding: 15px;
+}

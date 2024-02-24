@@ -25,7 +25,7 @@ const NavigationItem = ({ data, collection }) => {
 
    return (
       
-      <Card sx={{ minWidth: 275, margin: `10px` }}>
+      <Card sx={{ minWidth: 275, margin: `10px`, background:'#f2f2f2' }}>
 
          <CardContent>
             <Typography variant="h5" component="div">{text}</Typography> 
@@ -38,8 +38,8 @@ const NavigationItem = ({ data, collection }) => {
          </CardContent>
 
          <CardActions>
-            <Button onClick={onClickEdit} size="small">Edit</Button>
-            <Button onClick={onClickDeleteHendler} size="small">Delete</Button>
+            <Button onClick={onClickEdit} size="small">Змінити</Button>
+            <Button onClick={onClickDeleteHendler} size="small">Видалити</Button>
          </CardActions>
 
          <Modal showModal={showModal} openModalFunc={setShowModal}>

@@ -17,9 +17,12 @@ export async function getDocumentFromDB_Firebase(dataBaseCollection, document) {
 }
 
 export async function addDocumentToDB_Firebase(dataBaseCollection, object) {// створити документ в колекції елемент з колекції БД
+  console.log("dataBaseCollection: ", dataBaseCollection);
+  console.log("object: ", object);
   try {
     const docRef = await addDoc(collection(db, dataBaseCollection), object);// addDoc/setDoc
     console.log("Document written with ID: ", docRef.id);
+
   } catch (e) {
     console.error("Error adding document: ", e);
   }
