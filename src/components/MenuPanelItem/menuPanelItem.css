@@ -1,6 +1,8 @@
 h5 {
     font-size: 18px;
     text-transform: uppercase;
+    margin: 0;
+    padding: 5px;
 }
 .menu-panel_item {
     margin: 0;
@@ -9,28 +11,6 @@ h5 {
     color: #fff;
     padding: 10px;
     cursor: pointer;
-}
-
-.menu-panel_item:after {
-    content: "+";
-    display: inline-block;
-    margin-left: 10px;
-    color: #f9fa57;
-    /* transform: rotate(90deg); */
-    transition: 400ms;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.menu-panel_item.minus:after {
-    content: "-";
-    display: inline-block;
-    margin-left: 0 0 0 10px;
-    color: #f9fa57;
-    rotate: 270deg;
-    transition: 400ms;
-    font-weight: bold;
-    font-size: 20px;
 }
 
 .arrowRight:after {
