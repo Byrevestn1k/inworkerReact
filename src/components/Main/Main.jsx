@@ -20,7 +20,7 @@ const Main = () => {
     useEffect(() => {
         getAllDocuments_Firebase(collectionCategories).then((resp => {
             setCategriesList(resp);
-            
+
             dispatch({ type: UPLOAD_CATEGIRIES, payload: resp });
         }))
         getAllDocuments_Firebase(collectionNavigations).then((resp => {
@@ -28,9 +28,8 @@ const Main = () => {
             dispatch({ type: UPLOAD_NAVIGATION, payload: resp });
         }))
     }, [])
-console.log(navigationsList);
     return (
-        <div  className="main" key={uuidv4()}>
+        <div className="main" key={uuidv4()}>
             <PageWrapper key={uuidv4()}>
                 <MenuPanel dataBD={categoriesList} />
                 <div className="main-information">
