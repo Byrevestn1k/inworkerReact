@@ -3,7 +3,7 @@ const http = require('http');
 let PORT = 3500
 http.createServer(function (req, res) {
     let url = req.url
-    console.log(url);
+
     switch (url) {
         case '/':
             res.write(`<div>MAIN</div>`)

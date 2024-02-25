@@ -1,5 +1,5 @@
 import "./adminPanel.css";
-import {  collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where } from 'firebase/firestore';
+import { collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where } from 'firebase/firestore';
 import { getMetadata, getStorage, ref } from "firebase/storage";
 import { db } from "../../config/firebase";
 
@@ -17,9 +17,12 @@ export async function getDocumentFromDB_Firebase(dataBaseCollection, document) {
 }
 
 export async function addDocumentToDB_Firebase(dataBaseCollection, object) {// створити документ в колекції елемент з колекції БД
+  console.log("dataBaseCollection: ", dataBaseCollection);
+  console.log("object: ", object);
   try {
     const docRef = await addDoc(collection(db, dataBaseCollection), object);// addDoc/setDoc
     console.log("Document written with ID: ", docRef.id);
+
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -37,8 +40,9 @@ export async function getAllDocuments_Firebase(dataBaseCollection) {// отри�
 }
 
 export async function getAllNamesOfCollections(dataBaseCollection) {// отримати всю колекцію з бази даних
-  const collectionRef = collection(db, 'cities');
+  const collectionRef = collection(db, dataBaseCollection);
   const querySnapshot = await getDocs(collectionRef);
+  return querySnapshot;
 }
 
 export async function deleteDocForID(collection, docId) {// видалити сутність за назвою колекції та id
@@ -62,8 +66,15 @@ export async function getDocumentFromDB_Firebase_for_path(collectionName, path) 
 }
 
 export async function getMetaDataOfFile(data) {// отримати мета дані файлу
-const storage = getStorage();
-const forestRef = ref(storage, data);
-// Get metadata properties
-return await getMetadata(forestRef);
+  const storage = getStorage();
+  const forestRef = ref(storage, data);
+  // Get metadata properties
+  return await getMetadata(forestRef);
 }
+
+// export async function getMetaDataOfFile(data) {// отримати мета дані файлу
+//   const storage = getStorage();
+//   const forestRef = ref(storage, data);
+//   // Get metadata properties
+//   return await getMetadata(forestRef);
+// }
