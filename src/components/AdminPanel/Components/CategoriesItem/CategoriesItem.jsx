@@ -44,7 +44,7 @@ const CategoriesItem = ({ data, collection }) => {
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>imgUrl</span>: {`${imgUrl}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>childCategories</span>: {childCategories.map((el) => {
                for (let index = 0; index < childCategories.length; index++) {
-                  if (categoriesList[index].id = el) return `${categoriesList[index].id}, `
+                  if (categoriesList[index].id == el) return `${categoriesList[index].title}, `
 
                }
             })}</Typography>
