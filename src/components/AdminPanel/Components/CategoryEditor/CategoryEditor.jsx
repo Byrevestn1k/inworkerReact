@@ -28,6 +28,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
     let [dateOfCreate, setDateOfCreate] = useState(data?.dateOfCreate || undefined);
     let [dateOfUpdate, setDateOfUpdate] = useState(data?.dateOfUpdate || undefined);
 	const [personName, setPersonName] = useState([]);
+	const [checkedCategories, setCheckedCategories] = useState([]);
 	
 	const theme = useTheme();
 	
@@ -40,6 +41,8 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 		// On autofill we get a stringified value.
 		typeof value === 'string' ? value.split(',') : value,
 	  );
+	  setCheckedCategories(...checkedCategories, value);
+	  console.log(`checkedCategories => `, value);
 	};
   
 	const ITEM_HEIGHT = 28;
@@ -53,11 +56,12 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 	},
 	};
 	
-	const names = [];
+	const shortCategoryList = [];
 	categoriesList.map((el)=>{
-		names.push({
+		shortCategoryList.push({
 			title:el.title,
-			id:el.id
+			id:el.id,
+			path:el.path
 		})
 	})
 	console.log(`categoriesList => `, categoriesList);
@@ -181,8 +185,9 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 							</Box>
 						)}
 						MenuProps={MenuProps}
+						selected
 						>
-						{names.map((name) => (
+						{shortCategoryList.map((name) => (
 							<MenuItem
 							key={name.id}
 							value={name.title}
