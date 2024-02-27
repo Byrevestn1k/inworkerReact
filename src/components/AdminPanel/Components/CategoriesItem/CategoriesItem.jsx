@@ -9,15 +9,15 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CategoryEditor from '../CategoryEditor/CategoryEditor';
+import { useSelector } from 'react-redux';
 
 
-const CategoriesItem = ({ data, collection, categoriesList }) => {
+const CategoriesItem = ({ data, collection }) => {
    let { title, description, keywords, parentCategory, childCategories, path, priority, id, dateOfCreate, dateOfUpdate, imgUrl } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
-
-
-//   console.log(data);
+   const categoriesList = useSelector(state => state.uploadCategories.uploadCategories)
+   //   console.log(data);
    function onClickEdit() {
       setShowModalDeleteQuestion(true)
       setShowModal(true);
@@ -30,20 +30,24 @@ const CategoriesItem = ({ data, collection, categoriesList }) => {
 
 
    return (
-      
-      <Card sx={{width: 400, margin: `10px`, background:'#f2f2f2' }}>
+
+      <Card sx={{ width: 400, margin: `10px`, background: '#f2f2f2' }}>
 
          <CardContent>
-            <Typography variant="h5" component="div">{title}</Typography> 
-            <Typography sx={{ textAlign: "left" }}  gutterBottom><span className='card-span'>id</span>: {id}</Typography>
-            <Typography sx={{ textAlign: "left" }}  gutterBottom><span className='card-span'>path</span>: {path}</Typography>
+            <Typography variant="h5" component="div">{title}</Typography>
+            <Typography sx={{ textAlign: "left" }} gutterBottom><span className='card-span'>id</span>: {id}</Typography>
+            <Typography sx={{ textAlign: "left" }} gutterBottom><span className='card-span'>path</span>: {path}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>priority</span>: {priority}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>description</span>: {`${description}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>keywords</span>: {`${keywords}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>parentCategory</span>: {`${parentCategory}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>imgUrl</span>: {`${imgUrl}`}</Typography>
+            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>childCategories</span>: {childCategories.map((el) => {
+               for (let index = 0; index < childCategories.length; index++) {
+                  if (categoriesList[index].id = el) return `${categoriesList[index].id}, `
 
-            {/* <Typography sx={{ textAlign: "left" }} ><span className='card-span'>childCategories</span>: {childCategories}</Typography> */}
+               }
+            })}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>dateOfCreate</span>: {`${dateOfCreate}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>dateOfUpdate</span>: {`${dateOfUpdate}`}</Typography>
          </CardContent>
@@ -54,7 +58,9 @@ const CategoriesItem = ({ data, collection, categoriesList }) => {
          </CardActions>
 
          <Modal showModal={showModal} openModalFunc={setShowModal}>
-            {showModalDeleteQuestion ? <CategoryEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} categoriesList={categoriesList}/> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
+            {showModalDeleteQuestion ?
+               <CategoryEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} /> :
+               <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
          </Modal>
       </Card>
    )
