@@ -40,7 +40,14 @@ const CategoriesItem = ({ data, collection }) => {
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>priority</span>: {priority}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>description</span>: {`${description}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>keywords</span>: {`${keywords}`}</Typography>
-            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>parentCategory</span>: {`${parentCategory}`}</Typography>
+            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>parentCategory</span>: {parentCategory.map((el) => {
+               for (let index = 0; index < parentCategory.length; index++) {
+                  if (categoriesList[index].id == el) return `${categoriesList[index].title}, `
+                  else {
+                     return '-'
+                  }
+               }
+            })} </Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>imgUrl</span>: {`${imgUrl}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>childCategories</span>: {childCategories.map((el) => {
                for (let index = 0; index < childCategories.length; index++) {
