@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import "./menuPanelItem.css";
 import { v4 as uuidv4 } from 'uuid';
 
-const MenuPanelItem = ({title, url, childCategories}) =>  {
+const MenuPanelItem = ({title, path, childCategories}) =>  {
   return (
     <div>
       {childCategories.length>0?
@@ -24,14 +24,15 @@ const MenuPanelItem = ({title, url, childCategories}) =>  {
         </AccordionSummary>
         <AccordionDetails>
         {childCategories.map((el)=>{
-            return <Link to={url || `null`} key={uuidv4()}>
-            <h5 >{el}</h5>
+            return <Link to={el.url || `null`} key={uuidv4()}>
+            <h5 >{el.title || `null`}</h5>
             </Link>
+            // console.log(el);
         })
-      }
+        }
         </AccordionDetails>
       </Accordion>:
-      <Link to={url || `null`} key={uuidv4()}>
+      <Link to={path || `null`} key={uuidv4()}>
        <h5 className="menu-panel_item">
            {title}
          </h5>

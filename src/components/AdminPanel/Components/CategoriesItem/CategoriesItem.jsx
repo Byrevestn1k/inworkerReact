@@ -10,11 +10,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CategoryEditor from '../CategoryEditor/CategoryEditor';
 
-const CategoriesItem = ({ data, collection }) => {
+
+const CategoriesItem = ({ data, collection, categoriesList }) => {
    let { title, description, keywords, parentCategory, childCategories, path, priority, id, dateOfCreate, dateOfUpdate, imgUrl } = data;
    const [showModalDeleteQuestion, setShowModalDeleteQuestion] = useState(true)
    const [showModal, setShowModal] = useState(false)
-  
+
+
+//   console.log(data);
    function onClickEdit() {
       setShowModalDeleteQuestion(true)
       setShowModal(true);
@@ -23,6 +26,8 @@ const CategoriesItem = ({ data, collection }) => {
       setShowModalDeleteQuestion(false)
       setShowModal(true);
    }
+
+
 
    return (
       
@@ -37,7 +42,8 @@ const CategoriesItem = ({ data, collection }) => {
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>keywords</span>: {`${keywords}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>parentCategory</span>: {`${parentCategory}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>imgUrl</span>: {`${imgUrl}`}</Typography>
-            <Typography sx={{ textAlign: "left" }} ><span className='card-span'>childCategories</span>: {childCategories}</Typography>
+
+            {/* <Typography sx={{ textAlign: "left" }} ><span className='card-span'>childCategories</span>: {childCategories}</Typography> */}
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>dateOfCreate</span>: {`${dateOfCreate}`}</Typography>
             <Typography sx={{ textAlign: "left" }} ><span className='card-span'>dateOfUpdate</span>: {`${dateOfUpdate}`}</Typography>
          </CardContent>
@@ -48,7 +54,7 @@ const CategoriesItem = ({ data, collection }) => {
          </CardActions>
 
          <Modal showModal={showModal} openModalFunc={setShowModal}>
-            {showModalDeleteQuestion ? <CategoryEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} /> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
+            {showModalDeleteQuestion ? <CategoryEditor showModalDeleteQuestion={showModalDeleteQuestion} setShowModalDeleteQuestion={setShowModalDeleteQuestion} setShowModal={setShowModal} data={data} collection={collection} categoriesList={categoriesList}/> : <DeleteQuestion data={data} collection={collection} setShowModal={setShowModal} />}
          </Modal>
       </Card>
    )
