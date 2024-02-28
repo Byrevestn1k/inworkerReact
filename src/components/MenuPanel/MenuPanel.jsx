@@ -36,7 +36,7 @@ const MenuPanel = ({ dataBD }) => {
             {isShowPAnel ?
                 dataBD.map((el) => {
                     return (
-                        <MenuPanelItem title={el.title} url={el.path} childCategories={el.childCategories} />
+                        <MenuPanelItem navItemData={el} />
                     )
                 }
                 ) :
