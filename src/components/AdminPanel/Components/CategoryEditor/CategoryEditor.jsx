@@ -14,8 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-import { updateDoc } from "firebase/firestore";
-
 
 const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModal }) => {
 	const categoriesList = useSelector(state => state.uploadCategories.uploadCategories);
@@ -58,9 +56,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 			typeof value === 'string' ? value.split(',') : value,
 		);
 		setCheckedCategories(...checkedCategories, value);
-
 	};
-
 
 	const ITEM_HEIGHT = 28;
 	const ITEM_PADDING_TOP = 8;
@@ -87,16 +83,6 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 			title, description, keywords, parentCategory, childCategories:titleChildCategories, path, priority, dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), dateOfUpdate: new Date().toUTCString(), imgUrl
 		};
 		addDocumentToDB_Firebase(collection, dataList)
-		// setTitle('');
-		// setKeywords('');
-		// setPriority('');
-		// setPath('');
-		// setDescription('');
-		// setParentCategory('');
-		// setChildCategories('');
-		// setDateOfCreate('');
-		// setDateOfUpdate('');
-		// setImgUrl('');
 		dispatch({ type: PUSH_USEEFFECT_UPDATE });
 		setShowModal(false);
 
@@ -114,21 +100,8 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 		 })
 		const dataList = {// об'єкт для оновлення в БД
 			title, description, keywords, parentCategory, childCategories:arrTitleCategories, path, priority, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), imgUrl
-		};
-		console.log(`dataList => `,dataList);
-			 
+		};	 
 		setDocForID(collection, data.id, dataList)
-		// updateArray(collection, data.id, childCategories, childCategories)
-		// setTitle('');
-		// setPriority('');
-		// setPath('');
-		// setKeywords('');
-		// setDescription('');
-		// setParentCategory('');
-		// setChildCategories('');
-		// setDateOfCreate('');
-		// setDateOfUpdate('');
-		// setImgUrl('');
 		dispatch({ type: PUSH_USEEFFECT_UPDATE });
 		setShowModal(false);
 
@@ -165,7 +138,6 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 		setImgUrl(value);
 	}
 
-	
 	return (
 		<PageWrapper>
 			<div className={'add-new-category'}>
@@ -178,13 +150,10 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 					<div className="input">
 						<label >Опис категорії (description): </label>
 						<textarea onChange={(event) => {
-					onGetDescription(event.target.value)
-				}} value={description} ></textarea>
+											onGetDescription(event.target.value)
+										}} value={description} >
+						</textarea>
 					</div>
-					
-
-
-					{/* <Input type={'textarea'} label={`Опис категорії (description): `} onChangeFunction={onGetDescription} value={description} /> */}
 					<Input type={'text'} label={`Посилання на картинку: `} onChangeFunction={onGetImgUrl} value={imgUrl} />
 					<Input type={'text'} label={`Створено: `} onChangeFunction={onGetDateOfCreate} value={dateOfCreate} disabled={`disabled`} />
 					<Input type={'text'} label={`Внесено зміни: `} onChangeFunction={onGetDateOfUpdate} value={dateOfCreate} disabled={`disabled`} />
