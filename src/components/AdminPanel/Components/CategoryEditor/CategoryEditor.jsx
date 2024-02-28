@@ -26,11 +26,11 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 	const [description, setDescription] = useState(data?.description || undefined);
 	const [keywords, setKeywords] = useState(data?.keywords || undefined);
 	const [parentCategory, setParentCategory] = useState(data?.parentCategory || []);
-	const [childCategories, setChildCategories] = useState(data?.childCategories || []);
+	// const [childCategories, setChildCategories] = useState(data?.childCategories);
 	
 	let [dateOfCreate, setDateOfCreate] = useState(data?.dateOfCreate || undefined);
 	let [dateOfUpdate, setDateOfUpdate] = useState(data?.dateOfUpdate || undefined);
-	const [titleChildCategories, setTitleChildCategories] = useState(childCategories);
+	const [titleChildCategories, setTitleChildCategories] = useState(data?.childCategories || []);
 	const [checkedCategories, setCheckedCategories] = useState([]);
 	const theme = useTheme();
 	const [imgUrl, setImgUrl] = useState(data?.imgUrl || undefined);
@@ -38,8 +38,8 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 
 	useEffect(()=>{// добуваємо тайтли дочірніх категорій і записуємо в titleChildCategories
 	let arrTitleCategories=[];
-		childCategories.map((el) => {
-			for (let index = 0; index <= childCategories.length; index++) {
+	titleChildCategories.map((el) => {
+			for (let index = 0; index < categoriesList.length; index++) {
 			   if (categoriesList[index].id == el) {
 				arrTitleCategories.push(categoriesList[index].title)
 			   }
@@ -60,8 +60,8 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 		setCheckedCategories(...checkedCategories, value);
 
 	};
-	// console.log(`childCategories => `, childCategories);
-	// console.log(`titleChildCategories = > `, titleChildCategories);
+
+
 	const ITEM_HEIGHT = 28;
 	const ITEM_PADDING_TOP = 8;
 	const MenuProps = {
@@ -72,15 +72,6 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 			},
 		},
 	};
-
-	// const shortCategoryList = [];
-	// categoriesList.map((el)=>{
-	// 	shortCategoryList.push({
-	// 		title:el.title,
-	// 		id:el.id,
-	// 		path:el.path
-	// 	})
-	// })
 
 	function getStyles(name, titleChildCategories, theme) {
 		return {
@@ -93,56 +84,51 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 
 	function onAddDataList() {
 		const dataList = {// об'єкт для додавання в БД
-			title, description, keywords, parentCategory, childCategories, path, priority, dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), dateOfUpdate: new Date().toUTCString(), imgUrl
+			title, description, keywords, parentCategory, childCategories:titleChildCategories, path, priority, dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), dateOfUpdate: new Date().toUTCString(), imgUrl
 		};
 		addDocumentToDB_Firebase(collection, dataList)
-		setTitle('');
-		setKeywords('');
-		setPriority('');
-		setPath('');
-		setDescription('');
-		setParentCategory('');
-		setChildCategories('');
-		setDateOfCreate('');
-		setDateOfUpdate('');
-		setImgUrl('');
+		// setTitle('');
+		// setKeywords('');
+		// setPriority('');
+		// setPath('');
+		// setDescription('');
+		// setParentCategory('');
+		// setChildCategories('');
+		// setDateOfCreate('');
+		// setDateOfUpdate('');
+		// setImgUrl('');
 		dispatch({ type: PUSH_USEEFFECT_UPDATE });
 		setShowModal(false);
 
 	}
+	
 	function onSetDataList() {
-		// let arrTitleCategories=[];
-		// titleChildCategories.map((el) => {
-			
-		// 	for (let index = 0; index < categoriesList.length; index++) {
-
-		// 	   if (categoriesList[index].title == el) {
-		// 		arrTitleCategories.push(categoriesList[index].id)
-		// 		setChildCategories(arrTitleCategories);
-		// 	   }
-		// 	}
-		//  })
-		//  console.log(arrTitleCategories);
-		//  console.log(childCategories);
-		// setChildCategories(arrTitleCategories);
-		// console.log(childCategories);
+		let arrTitleCategories=[];
+		titleChildCategories.map((el) => {
+			for (let index = 0; index < categoriesList.length; index++) {
+				
+			   if (categoriesList[index].title == el) {
+				arrTitleCategories.push(categoriesList[index].id)
+			   }
+			}
+		 })
 		const dataList = {// об'єкт для оновлення в БД
-			title, description, keywords, parentCategory, childCategories, path, priority, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), imgUrl
+			title, description, keywords, parentCategory, childCategories:arrTitleCategories, path, priority, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), imgUrl
 		};
-			 console.log(dataList);
-		
+		console.log(`dataList => `,dataList);
+			 
 		setDocForID(collection, data.id, dataList)
 		// updateArray(collection, data.id, childCategories, childCategories)
-		setTitle('');
-		setPriority('');
-		setPath('');
-		setKeywords('');
-		setDescription('');
-		setParentCategory('');
-		setChildCategories('');
-		setDateOfCreate('');
-		setDateOfUpdate('');
-		setImgUrl('');
+		// setTitle('');
+		// setPriority('');
+		// setPath('');
+		// setKeywords('');
+		// setDescription('');
+		// setParentCategory('');
+		// setChildCategories('');
+		// setDateOfCreate('');
+		// setDateOfUpdate('');
+		// setImgUrl('');
 		dispatch({ type: PUSH_USEEFFECT_UPDATE });
 		setShowModal(false);
 
@@ -168,9 +154,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 	const onGetCategory = (value) => {
 		setParentCategory(value);
 	}
-	const onGetchildCategories = (value) => {
-		setChildCategories(value);
-	}
+
 	const onGetDateOfCreate = (value) => {
 		setDateOfCreate(value);
 	}
@@ -195,7 +179,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 					<Input type={'text'} label={`Посилання на картинку: `} onChangeFunction={onGetImgUrl} value={imgUrl} />
 					<Input type={'text'} label={`Створено: `} onChangeFunction={onGetDateOfCreate} value={dateOfCreate} disabled={`disabled`} />
 					<Input type={'text'} label={`Внесено зміни: `} onChangeFunction={onGetDateOfUpdate} value={dateOfCreate} disabled={`disabled`} />
-					<FormControl sx={{ m: 2, width: 500 }}>
+					<FormControl sx={{ m: 2, width: 450 }}>
 						<InputLabel>Батьківська категорія</InputLabel>
 						<Select
 							// labelId="demo-multiple-chip-label"
