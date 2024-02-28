@@ -29,8 +29,6 @@ const Categories = ({ isFooter }) => {
   function modalCall() {
     setShowModal(true);
   }
-
-console.log(categories);
   return (
     <> 
     <div id="addnew">

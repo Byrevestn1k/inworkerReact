@@ -3,7 +3,7 @@ import Input from "../Input";
 import styles from './categoryEditor.css'
 import { useState, useContext, useEffect } from 'react';
 import PageWrapper from "../../../PageWrapper/PageWrapper";
-import { addDocumentToDB_Firebase, getAllDocuments_Firebase, setDocForID } from "../../helpers";
+import { addDocumentToDB_Firebase, getAllDocuments_Firebase, setDocForID, updateArray } from "../../helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { HIDE_MODAL, PUSH_USEEFFECT_UPDATE } from "../../../../constants/actions";
 import { useTheme } from '@mui/material/styles';
@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import { updateDoc } from "firebase/firestore";
 
 
 const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModal }) => {
@@ -26,27 +27,41 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 	const [keywords, setKeywords] = useState(data?.keywords || undefined);
 	const [parentCategory, setParentCategory] = useState(data?.parentCategory || []);
 	const [childCategories, setChildCategories] = useState(data?.childCategories || []);
+	
 	let [dateOfCreate, setDateOfCreate] = useState(data?.dateOfCreate || undefined);
 	let [dateOfUpdate, setDateOfUpdate] = useState(data?.dateOfUpdate || undefined);
-	const [personName, setPersonName] = useState([]);
+	const [titleChildCategories, setTitleChildCategories] = useState(childCategories);
 	const [checkedCategories, setCheckedCategories] = useState([]);
 	const theme = useTheme();
 	const [imgUrl, setImgUrl] = useState(data?.imgUrl || undefined);
 	let dispatch = useDispatch()
 
+	useEffect(()=>{// добуваємо тайтли дочірніх категорій і записуємо в titleChildCategories
+	let arrTitleCategories=[];
+		childCategories.map((el) => {
+			for (let index = 0; index <= childCategories.length; index++) {
+			   if (categoriesList[index].id == el) {
+				arrTitleCategories.push(categoriesList[index].title)
+			   }
+			}
+		 })
+		 setTitleChildCategories(arrTitleCategories)
+	},[])
+	
 	const handleChange = (event) => {
 		const {
 			target: { value },
 		} = event;
 		console.log(event);
-		setPersonName(
+		setTitleChildCategories(
 			// On autofill we get a stringified value.
 			typeof value === 'string' ? value.split(',') : value,
 		);
 		setCheckedCategories(...checkedCategories, value);
 
 	};
-	console.log(`childCategories => `, childCategories);
+	// console.log(`childCategories => `, childCategories);
+	// console.log(`titleChildCategories = > `, titleChildCategories);
 	const ITEM_HEIGHT = 28;
 	const ITEM_PADDING_TOP = 8;
 	const MenuProps = {
@@ -67,18 +82,14 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 	// 	})
 	// })
 
-	function getStyles(name, personName, theme) {
-
+	function getStyles(name, titleChildCategories, theme) {
 		return {
 			fontWeight:
-				personName.indexOf(name) === -1
+				titleChildCategories.indexOf(name) === -1
 					? theme.typography.fontWeightRegular
 					: theme.typography.fontWeightMedium,
 		};
 	}
-
-
-
 
 	function onAddDataList() {
 		const dataList = {// об'єкт для додавання в БД
@@ -100,11 +111,28 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 
 	}
 	function onSetDataList() {
+		// let arrTitleCategories=[];
+		// titleChildCategories.map((el) => {
+			
+		// 	for (let index = 0; index < categoriesList.length; index++) {
+
+		// 	   if (categoriesList[index].title == el) {
+		// 		arrTitleCategories.push(categoriesList[index].id)
+		// 		setChildCategories(arrTitleCategories);
+		// 	   }
+		// 	}
+		//  })
+		//  console.log(arrTitleCategories);
+		//  console.log(childCategories);
+		// setChildCategories(arrTitleCategories);
+		// console.log(childCategories);
 		const dataList = {// об'єкт для оновлення в БД
 			title, description, keywords, parentCategory, childCategories, path, priority, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), imgUrl
 		};
-
+			 console.log(dataList);
+		
 		setDocForID(collection, data.id, dataList)
+		// updateArray(collection, data.id, childCategories, childCategories)
 		setTitle('');
 		setPriority('');
 		setPath('');
@@ -153,7 +181,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 		setImgUrl(value);
 	}
 
-	console.log(`personName = > `, personName);
+	
 	return (
 		<PageWrapper>
 			<div className={'add-new-category'}>
@@ -173,7 +201,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 							// labelId="demo-multiple-chip-label"
 							id={"demo-multiple-chip"}
 							multiple
-							value={personName}
+							value={titleChildCategories}
 							onChange={handleChange}
 							input={<OutlinedInput id="select-multiple-chip" label="Батьківська категорія" />}
 							renderValue={(selected) => (
@@ -190,7 +218,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 								<MenuItem
 									key={name.id}
 									value={name.title}
-									style={getStyles(name.title, personName, theme)}
+									style={getStyles(name.title, titleChildCategories, theme)}
 									onClick={(e) => {
 
 									}}

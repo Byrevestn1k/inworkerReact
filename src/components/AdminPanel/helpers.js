@@ -1,5 +1,5 @@
 import "./adminPanel.css";
-import { collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where } from 'firebase/firestore';
+import { collection, getDoc, doc, addDoc, getDocs, deleteDoc, setDoc, query, where, updateDoc, arrayUnion } from 'firebase/firestore';
 import { getMetadata, getStorage, ref } from "firebase/storage";
 import { db } from "../../config/firebase";
 
@@ -72,9 +72,8 @@ export async function getMetaDataOfFile(data) {// отримати мета да
   return await getMetadata(forestRef);
 }
 
-// export async function getMetaDataOfFile(data) {// отримати мета дані файлу
-//   const storage = getStorage();
-//   const forestRef = ref(storage, data);
-//   // Get metadata properties
-//   return await getMetadata(forestRef);
-// }
+export async function updateArray(collectionName, id, arr, key) {// отримати мета дані файлу
+  await updateDoc(doc(db, collectionName, id), {
+    key: arrayUnion(arr)
+  });
+}
