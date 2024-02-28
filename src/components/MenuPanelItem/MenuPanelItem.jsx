@@ -8,11 +8,26 @@ import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 import "./menuPanelItem.css";
 import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
 
-const MenuPanelItem = ({title, path, childCategories}) =>  {
+const MenuPanelItem = ({ navItemData}) =>  {
+  const categoriesList = useSelector(state => state.uploadCategories.uploadCategories)
+	let arrTitleCategories=[];
+	let childCategories=navItemData.childCategories;	
+  childCategories.map((el) => {
+			for (let index = 0; index < categoriesList.length; index++) {				 
+        if (categoriesList[index].id == el) {
+				arrTitleCategories.push({title:categoriesList[index].title, path:categoriesList[index].path})	  
+      }
+			}
+		 })
+
+  
+ 
+  // console.log(`arrTitleCategories => `, arrTitleCategories);
   return (
     <div>
-      {childCategories.length>0?
+      {arrTitleCategories.length>0?
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -20,21 +35,27 @@ const MenuPanelItem = ({title, path, childCategories}) =>  {
           id="panel1-header"
           sx={{background: '#3594b3', background: 'linear-gradient(310deg, rgba(53, 148, 179, 1) 0%, rgba(0, 212, 255, 1) 100%)', color: '#fff', fontWeight:'bold'}}
         >
-         {title}
+         {navItemData.title}
         </AccordionSummary>
         <AccordionDetails>
-        {childCategories.map((el)=>{
-            return <Link to={el.url || `null`} key={uuidv4()}>
-            <h5 >{el.title || `null`}</h5>
+        <Link to={navItemData.path} key={uuidv4()}>
+       <h5 >
+           {navItemData.title}
+         </h5>
+       </Link>
+        {arrTitleCategories.map((el)=>{
+ 
+            return <Link to={el.path} key={uuidv4()}>
+            <h5 >{el.title }</h5>
             </Link>
-            // console.log(el);
+   
         })
         }
         </AccordionDetails>
       </Accordion>:
-      <Link to={path || `null`} key={uuidv4()}>
+      <Link to={navItemData.path} key={uuidv4()}>
        <h5 className="menu-panel_item">
-           {title}
+           {navItemData.title}
          </h5>
        </Link>
     }
@@ -46,7 +67,7 @@ export default MenuPanelItem;
 // import { Link } from "react-router-dom";
 // import { v4 as uuidv4 } from 'uuid';
 
-// const MenuPanelItem = ({title, url, childCategories}) => {
+// const MenuPanelItem = ({title, url, navItemData}) => {
 
 //     return (
 //     <Link to={url || `null`} key={uuidv4()}>

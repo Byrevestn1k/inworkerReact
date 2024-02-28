@@ -40,6 +40,11 @@ const Main = () => {
                                     return <Route path={`/${el.path}`} element={<Page data={el} />} />
                                 })
                             }
+                            {
+                                categoriesList.map((el) => {
+                                    return <Route path={`/${el.path}`} element={<Page data={el} />} />
+                                })
+                            }
                         </Routes>
                     </div>
                     <div>
