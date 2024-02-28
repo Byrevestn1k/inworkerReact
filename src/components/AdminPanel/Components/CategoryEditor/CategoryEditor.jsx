@@ -175,7 +175,16 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 					<Input type={'text'} label={`Закінчення посилання path (унікальне поле латинськими літерами): `} onChangeFunction={onGetpath} value={path} />
 					<Input type={'number'} label={`Порядковий номер виведення: `} onChangeFunction={onGetpriority} value={priority} />
 					<Input type={'text'} label={`Ключові слова (через кому): `} onChangeFunction={onGetKeywords} value={keywords} />
-					<Input type={'text'} label={`Опис категорії (description): `} onChangeFunction={onGetDescription} value={description} />
+					<div className="input">
+						<label >Опис категорії (description): </label>
+						<textarea onChange={(event) => {
+					onGetDescription(event.target.value)
+				}} value={description} ></textarea>
+					</div>
+					
+
+
+					{/* <Input type={'textarea'} label={`Опис категорії (description): `} onChangeFunction={onGetDescription} value={description} /> */}
 					<Input type={'text'} label={`Посилання на картинку: `} onChangeFunction={onGetImgUrl} value={imgUrl} />
 					<Input type={'text'} label={`Створено: `} onChangeFunction={onGetDateOfCreate} value={dateOfCreate} disabled={`disabled`} />
 					<Input type={'text'} label={`Внесено зміни: `} onChangeFunction={onGetDateOfUpdate} value={dateOfCreate} disabled={`disabled`} />
