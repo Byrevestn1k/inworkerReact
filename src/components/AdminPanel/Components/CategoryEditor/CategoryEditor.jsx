@@ -1,19 +1,11 @@
 
 import Input from "../Input";
-import styles from './categoryEditor.css'
-import { useState, useContext, useEffect } from 'react';
+import { useState} from 'react';
 import PageWrapper from "../../../PageWrapper/PageWrapper";
-import { addDocumentToDB_Firebase, getAllDocuments_Firebase, setDocForID, updateArray } from "../../helpers";
+import { addDocumentToDB_Firebase,setDocForID } from "../../helpers";
 import { useDispatch, useSelector } from "react-redux";
-import { HIDE_MODAL, PUSH_USEEFFECT_UPDATE } from "../../../../constants/actions";
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
+import { PUSH_USEEFFECT_UPDATE } from "../../../../constants/actions";
+import ChipBox from "../ChipBox/ChipBox";
 
 const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModal }) => {
 	const categoriesList = useSelector(state => state.uploadCategories.uploadCategories);
@@ -24,59 +16,11 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 	const [description, setDescription] = useState(data?.description || undefined);
 	const [keywords, setKeywords] = useState(data?.keywords || undefined);
 	const [parentCategory, setParentCategory] = useState(data?.parentCategory || []);
-	// const [childCategories, setChildCategories] = useState(data?.childCategories);
-	
 	let [dateOfCreate, setDateOfCreate] = useState(data?.dateOfCreate || undefined);
 	let [dateOfUpdate, setDateOfUpdate] = useState(data?.dateOfUpdate || undefined);
 	const [titleChildCategories, setTitleChildCategories] = useState(data?.childCategories || []);
-	const [checkedCategories, setCheckedCategories] = useState([]);
-	const theme = useTheme();
 	const [imgUrl, setImgUrl] = useState(data?.imgUrl || undefined);
 	let dispatch = useDispatch()
-
-	useEffect(()=>{// добуваємо тайтли дочірніх категорій і записуємо в titleChildCategories
-	let arrTitleCategories=[];
-	titleChildCategories.map((el) => {
-			for (let index = 0; index < categoriesList.length; index++) {
-			   if (categoriesList[index].id == el) {
-				arrTitleCategories.push(categoriesList[index].title)
-			   }
-			}
-		 })
-		 setTitleChildCategories(arrTitleCategories)
-	},[])
-	
-	const handleChange = (event) => {
-		const {
-			target: { value },
-		} = event;
-		console.log(event);
-		setTitleChildCategories(
-			// On autofill we get a stringified value.
-			typeof value === 'string' ? value.split(',') : value,
-		);
-		setCheckedCategories(...checkedCategories, value);
-	};
-
-	const ITEM_HEIGHT = 28;
-	const ITEM_PADDING_TOP = 8;
-	const MenuProps = {
-		PaperProps: {
-			style: {
-				maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-				width: 250,
-			},
-		},
-	};
-
-	function getStyles(name, titleChildCategories, theme) {
-		return {
-			fontWeight:
-				titleChildCategories.indexOf(name) === -1
-					? theme.typography.fontWeightRegular
-					: theme.typography.fontWeightMedium,
-		};
-	}
 
 	function onAddDataList() {
 		const dataList = {// об'єкт для додавання в БД
@@ -124,9 +68,6 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 	const onGetDescription = (value) => {
 		setDescription(value);
 	}
-	const onGetCategory = (value) => {
-		setParentCategory(value);
-	}
 
 	const onGetDateOfCreate = (value) => {
 		setDateOfCreate(value);
@@ -157,40 +98,7 @@ const CategoryEditor = ({ data, showModalDeleteQuestion, collection, setShowModa
 					<Input type={'text'} label={`Посилання на картинку: `} onChangeFunction={onGetImgUrl} value={imgUrl} />
 					<Input type={'text'} label={`Створено: `} onChangeFunction={onGetDateOfCreate} value={dateOfCreate} disabled={`disabled`} />
 					<Input type={'text'} label={`Внесено зміни: `} onChangeFunction={onGetDateOfUpdate} value={dateOfCreate} disabled={`disabled`} />
-					<FormControl sx={{ m: 2, width: 450 }}>
-						<InputLabel>Батьківська категорія</InputLabel>
-						<Select
-							// labelId="demo-multiple-chip-label"
-							id={"demo-multiple-chip"}
-							multiple
-							value={titleChildCategories}
-							onChange={handleChange}
-							input={<OutlinedInput id="select-multiple-chip" label="Батьківська категорія" />}
-							renderValue={(selected) => (
-								<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.1 }}>
-									{selected.map((value) => (
-										<Chip key={value} label={value} />
-									))}
-								</Box>
-							)}
-							MenuProps={MenuProps}
-							selected
-						>
-							{categoriesList.map((name) => (
-								<MenuItem
-									key={name.id}
-									value={name.title}
-									style={getStyles(name.title, titleChildCategories, theme)}
-									onClick={(e) => {
-
-									}}
-								>
-									{name.title}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-
+					<ChipBox titleChildCategories={titleChildCategories} setTitleChildCategories={setTitleChildCategories}/>
 					{showModalDeleteQuestion ?
 						<button className={"add-category-item"} type="button" onClick={onSetDataList}>Внести зміни</button>
 						:
