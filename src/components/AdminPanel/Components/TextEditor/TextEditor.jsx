@@ -55,7 +55,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     function onAddDataList() {
 
         const dataList = {// об'єкт для додавання в БД
-            title, description, keywords, path, priority, textvalue, picture, dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), dateOfUpdate: dateOfCreate, published
+            title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
         };
         addDocumentToDB_Firebase(collectionfromPage, dataList)
         dispatch({ type: PUSH_USEEFFECT_UPDATE })
