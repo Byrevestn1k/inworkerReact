@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -9,9 +8,23 @@ import { Link } from "react-router-dom";
 import "./menuPanelItem.css";
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
+import { Popover, Typography } from '@mui/material';
+import { useState } from 'react';
+import PopoverMenu from '../PopoveMenu/PopoveMenu';
 
 const MenuPanelItem = ({ navItemData}) =>  {
   const categoriesList = useSelector(state => state.uploadCategories.uploadCategories)
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 	let arrTitleCategories=[];
 	let childCategories=navItemData.childCategories;	
   childCategories.map((el) => {
@@ -38,45 +51,120 @@ const MenuPanelItem = ({ navItemData}) =>  {
          {navItemData.title}
         </AccordionSummary>
         <AccordionDetails>
-        <Link to={navItemData.path} key={uuidv4()}>
-       <h5 >
-           {navItemData.title}
-         </h5>
-       </Link>
+        <>
+          
+          <Typography
+            aria-owns={open ? 'mouse-over-popover' : undefined}
+            aria-haspopup="true"
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+          >
+            <Link to={navItemData.path} key={uuidv4()}>
+              <h5 >
+                {navItemData.title}
+              </h5>
+            </Link>
+          </Typography>
+
+      <Popover
+        id="mouse-over-popover"
+        sx={{
+          pointerEvents: 'none',
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+      <Typography sx={{ p: 1 }}>I use Popover.</Typography>
+      </Popover>
+        </>
         {arrTitleCategories.map((el)=>{
  
-            return <Link to={el.path} key={uuidv4()}>
-            <h5 >{el.title }</h5>
-            </Link>
-   
+            return <> 
+            
+              <Typography
+                  aria-owns={open ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={handlePopoverOpen}
+                  onMouseLeave={handlePopoverClose}
+              >
+                <Link to={el.path} key={uuidv4()}>
+                    <h5 >{el.title }</h5>
+                </Link>
+              </Typography>
+  
+              <Popover
+                id="mouse-over-popover"
+                sx={{
+                  pointerEvents: 'none',
+                }}
+                open={open}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                onClose={handlePopoverClose}
+                disableRestoreFocus
+              >
+                <Typography sx={{ p: 1 }}>I use Popover.</Typography>
+              </Popover>
+            </>
         })
         }
         </AccordionDetails>
-      </Accordion>:
-      <Link to={navItemData.path} key={uuidv4()}>
-       <h5 className="menu-panel_item">
-           {navItemData.title}
-         </h5>
-       </Link>
+        </Accordion>:
+      
+       <>
+       <Typography
+                  aria-owns={open ? 'mouse-over-popover' : undefined}
+                  aria-haspopup="true"
+                  onMouseEnter={handlePopoverOpen}
+                  onMouseLeave={handlePopoverClose}
+                >
+              <Link to={navItemData.path} key={uuidv4()}>
+                  <h5 className="menu-panel_item">
+                {navItemData.title}
+                </h5>
+                </Link>
+        </Typography>
+        <Popover
+        id="mouse-over-popover"
+        sx={{
+          pointerEvents: 'none',
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <Typography sx={{ p: 1 }}>I use Popover.</Typography>
+      </Popover>  
+         
+      </>
     }
     </div>
   );
 }
 export default MenuPanelItem;
-// import "./menuPanelItem.css";
-// import { Link } from "react-router-dom";
-// import { v4 as uuidv4 } from 'uuid';
-
-// const MenuPanelItem = ({title, url, navItemData}) => {
-
-//     return (
-//     <Link to={url || `null`} key={uuidv4()}>
-//     <h5 className="menu-panel_item">
-//         {title}
-//       </h5>
-//     </Link>
-    
-//     )
-// };
-
-// export default MenuPanelItem;
