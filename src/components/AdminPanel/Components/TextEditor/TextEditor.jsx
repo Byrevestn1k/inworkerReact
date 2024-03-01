@@ -13,11 +13,13 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { PUSH_USEEFFECT_UPDATE } from '../../../../constants/actions';
 import { getDownloadURL, getStorage, listAll, ref } from 'firebase/storage';
+import ChipBox from '../ChipBox/ChipBox';
 
 const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 
     let data = useSelector(state => state.transmitPageData.transmitPageData);
-    let collection = useSelector(state => state.collection.collection)
+    let collection = useSelector(state => state.collection.collection);
+    const categoriesList = useSelector(state => state.uploadCategories.uploadCategories);
     let [addPAge, setAddPAge] = useState(addORedit || false)
     let [title, setTitle] = useState(data?.title || undefined);
     let [description, setDescription] = useState(data?.description || undefined);
@@ -31,6 +33,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     let [priority, setPriority] = useState(data?.priority || undefined);
     let [published, setPublished] = useState(false);
     let [imageList, setImageList] = useState([]);
+	const [titleChildCategories, setTitleChildCategories] = useState(data?.childCategories || []);
 
     let dispatch = useDispatch();
     let navigator = useNavigate()
@@ -55,7 +58,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     function onAddDataList() {
 
         const dataList = {// об'єкт для додавання в БД
-            title, description, keywords, path, priority, textvalue, picture, dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), dateOfUpdate: dateOfCreate, published
+            childCategories:titleChildCategories,  title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
         };
         addDocumentToDB_Firebase(collectionfromPage, dataList)
         dispatch({ type: PUSH_USEEFFECT_UPDATE })
@@ -63,11 +66,17 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     }
 
     function onSetDataList() {
-
-
-
+        let arrTitleCategories=[];
+		titleChildCategories.map((el) => {
+			for (let index = 0; index < categoriesList.length; index++) {
+				
+			   if (categoriesList[index].title == el) {
+				arrTitleCategories.push(categoriesList[index].id)
+			   }
+			}
+		 })
         const dataList = {// об'єкт для додавання в БД
-            title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
+            childCategories:arrTitleCategories, title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
         };
         dispatch({ type: PUSH_USEEFFECT_UPDATE });
         setDocForID(collection, data.id, dataList);
@@ -114,7 +123,6 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
         else {
             navigator(`/admin/pages`);
         }
-
     }
 
     let selector = <select name="images" id="">
@@ -129,13 +137,14 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
             <Input label={`Назва сторінки  (title)`} value={title} onChangeFunction={onChangeTitle} />
             <Input label={`Опис поста (description)`} value={description} onChangeFunction={onChangeDescription} />
             <Input label={`Ключові слова (keywords)`} value={keywords} onChangeFunction={onChangeKeywords} />
-
             <Input label={`Шлях до картинки`} value={picture} onChangeFunction={onChangePicture} />
             <Input label={`Закінчення посилання (path)`} value={path} onChangeFunction={onChangePath} />
             <Input disabled={`disabled`} label={`Дата створення`} value={dateOfCreate} />
-
             <Input type={`number`} label={`Пріоритет відображення`} value={priority} onChangeFunction={onChangePriority} />
             <Input type={'checkbox'} className={'is-publish'} label={`Опублікувати `} onChangeFunction={onGetPublish} name={`publish`} checked={isChecked(published)} />
+            <ChipBox titleChildCategories={titleChildCategories} setTitleChildCategories={setTitleChildCategories}/>
+
+
             <Editor
                 editorState={editorStates}
                 onEditorStateChange={(e) => {
