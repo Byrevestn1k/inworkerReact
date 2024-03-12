@@ -47,3 +47,71 @@ const MenuPanel = ({ dataBD }) => {
 };
 
 export default MenuPanel;
+
+<nav>
+<script async src="https://cse.google.com/cse.js?cx=005559873973306921414:q4xirmihkmt">
+</script>
+<div class="gcse-search"></div>
+<div class="navigation">
+    <h5 class="navigation_item">Lorem, ipsum dolor.</h5>
+
+    <ul class="navigation_linck">
+        <li><a href="">Lorem, ipsum dolor.</a>
+            <ul class="dropdown-item">
+                <li>item 1sfsdfs dfsd sd</li>
+                <li>item 2</li>
+                <li>item 3</li>
+                <li>item 4</li>
+            </ul>
+        </li>
+
+        <li><a href="">Lorem, ipsum dolor.</a>
+            <ul class="dropdown-item">
+                <li>item 1</li>
+                <li>item 2dhf s </li>
+                <li>item 3</li>
+                <li>item 4</li>
+            </ul>
+        </li>
+        <li><a href="">Lorem, ipsum dolor.</a>
+            <ul class="dropdown-item">
+                <li>item </li>
+                <li>item 2</li>
+                <li>item 3 fgh fg hfghf</li>
+                <li>item 4</li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+<div class="navigation">
+    <h5 class="navigation_item">Lorem, ipsum dolor.</h5>
+
+    <ul class="navigation_linck">
+        <li><a href="">Lorem, ipsum dolor.</a></li>
+        <li><a href="">Exercitationem, edsdfsdfsdfsdfdsf nim dolores?</a></li>
+        <li><a href="">Qui, enim officia?</a></li>
+    </ul>
+
+</div>
+<div class="navigation">
+    <h5 class="navigation_item">Lorem, ipsum dolor.</h5>
+
+    <ul class="navigation_linck">
+        <li><a href="">Lorem, ipsum dolor.</a></li>
+        <li><a href="">Exercitationem, enim dolores?</a></li>
+        <li><a href="">Qui, enim officia?</a></li>
+    </ul>
+
+</div>
+<div class="navigation">
+    <h5 class="navigation_item">Lorem, ipsum dolor.</h5>
+
+    <ul class="navigation_linck">
+        <li><a href="">Lorem, ipsum dolor.</a></li>
+        <li><a href="">Esfsd sd fsdf sdfsd sd sdxercitationem, enim dolores?</a></li>
+        <li><a href="">Qui, enim officia?</a></li>
+    </ul>
+
+</div>
+</nav>

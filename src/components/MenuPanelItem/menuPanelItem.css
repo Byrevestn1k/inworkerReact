@@ -2,7 +2,7 @@ h5 {
     font-size: 18px;
     text-transform: uppercase;
     margin: 0;
-    padding: 5px;
+    padding: 5px ;
 }
 .menu-panel_item {
     margin: 0;
@@ -12,34 +12,29 @@ h5 {
     padding: 10px;
     cursor: pointer;
 }
-
-.arrowRight:after {
-    content: "";
-    margin-left: 20px;
-    width: 15px;
-    height: 15px;
-    background: url(../../images/nav/right-arrow-svgrepo-com.svg) no-repeat center center;
-    background-size: cover;
-    rotate: 90deg;
+.dropdown-menu{
+    position: relative;
 }
-
-.dropdown-item {
-    margin: 0;
-    padding: 0;
-    display: none;
-    transition: 1.5s;
-    list-style-type: none;
+.menu-hover{
     position: absolute;
+    display: none;
     top: 0;
     left: 100%;
-    width: max-content;
-    background: rgb(243, 242, 242);
-    /* background: rgb(204, 204, 204);
-    background: linear-gradient(270deg, rgba(204, 204, 204, 1) 0%, rgba(255, 255, 255, 1) 100%); */
+    padding: 10px;
+    background: #fff;
+    text-align: left;
+    box-shadow: 1px 1px 8px grey;
 }
 
-ul.dropdown-item li:hover {
-    border-bottom: 1px solid #88d746 !important;
+.dropdown-menu:hover .menu-hover{
+    display: block;
+}
+
+.menu-hover:hover .menu-hover{
+    display: block;
+}
+
+.menu-hover a:hover {
+    border-bottom: 1px solid #88d746;
     cursor: pointer;
 }
-

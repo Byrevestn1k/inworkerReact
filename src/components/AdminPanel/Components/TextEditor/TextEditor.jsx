@@ -58,7 +58,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
     function onAddDataList() {
 
         const dataList = {// об'єкт для додавання в БД
-            childCategories:titleChildCategories,  title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
+            parentCategories:titleChildCategories,  title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
         };
         addDocumentToDB_Firebase(collectionfromPage, dataList)
         dispatch({ type: PUSH_USEEFFECT_UPDATE })
@@ -76,7 +76,7 @@ const TextEditor = ({ addORedit, setIsShowEditor, collectionfromPage }) => {
 			}
 		 })
         const dataList = {// об'єкт для додавання в БД
-            childCategories:arrTitleCategories, title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
+            parentCategories:arrTitleCategories, title, description, keywords, path, priority, textvalue, picture, dateOfUpdate: new Date().toUTCString(), dateOfCreate: dateOfCreate ? dateOfCreate : new Date().toUTCString(), published
         };
         dispatch({ type: PUSH_USEEFFECT_UPDATE });
         setDocForID(collection, data.id, dataList);
