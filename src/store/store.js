@@ -8,6 +8,7 @@ import { transmitPageName } from "../reducers/transmitPageName";
 import { logoChange } from "../reducers/logoChange";
 import alertReducer from "../auth/reducer/alert.reducer";
 import authReducer from "../auth/reducer/auth.reducer";
+import { showMenu } from "../reducers/showMenu";
 
 
 
@@ -21,6 +22,7 @@ const navigationReducer = combineReducers({
     logoChanger: logoChange,
     alertReducer:alertReducer,
     authReducer:authReducer,
+    showMenu:showMenu,
 })
 
 const store = createStore(navigationReducer);
