@@ -30,8 +30,9 @@ const MenuPanelItem = ({ navItemData}) =>  {
   return (
     <>
       {arrTitleCategories.length>0?
-      <Accordion>
+      <Accordion key={uuidv4()}>
         <AccordionSummary
+          key={uuidv4()}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
@@ -39,16 +40,16 @@ const MenuPanelItem = ({ navItemData}) =>  {
         >
          {navItemData.title}
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails key={uuidv4()}>
 
-            <div className="dropdown-menu">
+            <div key={uuidv4()} className="dropdown-menu">
                 <h5 >
                   {navItemData.title}
                 </h5>
             </div>
         {    
             navItemData.pages?.map((el)=>{
-              return  <div className="dropdown-menu">
+              return  <div key={uuidv4()} className="dropdown-menu">
                           <h5 >
                             {el}
                           </h5>

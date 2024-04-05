@@ -34,12 +34,12 @@ const MenuPanel = () => {
     })
 
     return (
-        <div className="menu-panel" key={uuidv4()} >
+        <div className="menu-panel" >
 
             {isShowPAnel && categoriesList ?
                 categoriesList.map((el) => {
                     return (
-                        <MenuPanelItem navItemData={el} />
+                        <MenuPanelItem key={uuidv4()} navItemData={el} />
                     )
                 }
                 ) :
