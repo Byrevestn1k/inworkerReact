@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import AdaptiveNavButtonCloce from "../AdaptiveNavButtonCloce/AdaptiveNavButtonCloce";
 import { WIDTH_MONITOR } from "../../constants/constants";
 import { useDispatch, useSelector } from "react-redux";
-
+import { v4 as uuidv4 } from 'uuid';
 const Header = () => {
     let [buttonNavigation, setButtonNavigation] = useState(false);// перемикач між кнопкою-нав та навігацією
     let [onClickNavCloseFlag, setOnClickNavCloseFlag] = useState(true);//перемикач між кнопкою-нав та кнопкою Х
@@ -39,17 +39,17 @@ const Header = () => {
 
     return (
             <header>
-                <PageWrapper>
+                <PageWrapper key={uuidv4()}>
                 <div className="container">
-                    <Logotype />
+                    <Logotype key={uuidv4()}/>
                     {buttonNavigation?
-                    <AdaptiveNavButton onClick={setButtonNavigation} onClickClose={setOnClickNavCloseFlag}/>:
+                    <AdaptiveNavButton key={uuidv4()} onClick={setButtonNavigation} onClickClose={setOnClickNavCloseFlag}/>:
                     <>
                     <div id="firebaseui-auth-container"></div>
-                    <Navigation isFooterRender={false} />
+                    <Navigation key={uuidv4()} isFooterRender={false} />
                     
                     {onClickNavCloseFlag?
-                    <AdaptiveNavButtonCloce onClick={setOnClickNavCloseFlag}  onClickClose={setButtonNavigation}/>:
+                    <AdaptiveNavButtonCloce key={uuidv4()} onClick={setOnClickNavCloseFlag}  onClickClose={setButtonNavigation}/>:
                     null}
                     </>}
                 </div>

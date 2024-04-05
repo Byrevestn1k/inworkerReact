@@ -30,24 +30,24 @@ const Main = () => {
     return (
         <div className="main" key={uuidv4()}>
             <PageWrapper key={uuidv4()}>
-                <MenuPanel dataBD={categoriesList} />
+                <MenuPanel key={uuidv4()}  dataBD={categoriesList} />
                 <div className="main-information">
                     <div className="content">
-                        <Routes>
+                        <Routes key={uuidv4()}>
                             {
                                 navigationsList.map((el) => {
-                                    return <Route path={`/${el.path}`} element={<Page data={el} />} />
+                                    return <Route key={uuidv4()} path={`/${el.path}`} element={<Page data={el} />} />
                                 })
                             }
                             {
                                 categoriesList.map((el) => {
-                                    return <Route path={`/${el.path}`} element={<Page data={el} />} />
+                                    return <Route key={uuidv4()} path={`/${el.path}`} element={<Page data={el} />} />
                                 })
                             }
                         </Routes>
                     </div>
                     <div>
-                        <Comments />
+                        <Comments  key={uuidv4()}/>
                     </div>
                 </div>
             </PageWrapper>
