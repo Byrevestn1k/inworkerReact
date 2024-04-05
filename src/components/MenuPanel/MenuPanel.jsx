@@ -5,17 +5,20 @@ import MenuPanelItem from "../MenuPanelItem";
 import { useEffect, useState } from "react";
 
 import { WIDTH_MONITOR } from "../../constants/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { HIDE_MENU, SHOW_MENU } from "../../constants/actions";
 
-const MenuPanel = ({ dataBD }) => {
-
-    let [isShowPAnel, setIisShowPAnel] = useState(false)
+const MenuPanel = () => {
+    const categoriesList = useSelector(state => state.uploadCategories.uploadCategories); //список усых категорый
+    let isShowPAnel = useSelector(state => state.showMenu.showMenu);// перемикач панелі меню
+    let dispatch = useDispatch()
     //адаптивна панель меню при загрузці
     useEffect(() => {
         if (document.documentElement.clientWidth < WIDTH_MONITOR) {
-            setIisShowPAnel(false)
+             dispatch({ type: HIDE_MENU });
         }
         else {
-            setIisShowPAnel(true)
+             dispatch({ type: SHOW_MENU });
         }
     }, [])
     //адаптивна панель меню при загрузці+
@@ -23,18 +26,18 @@ const MenuPanel = ({ dataBD }) => {
     //адаптивна панель меню при зміні розміру вікна
     window.addEventListener("resize", () => {
         if (document.documentElement.clientWidth < WIDTH_MONITOR) {
-            setIisShowPAnel(false)
+             dispatch({ type: HIDE_MENU });
         }
         else {
-            setIisShowPAnel(true)
+             dispatch({ type: SHOW_MENU});
         }
     })
 
     return (
         <div className="menu-panel" key={uuidv4()} >
 
-            {isShowPAnel ?
-                dataBD.map((el) => {
+            {isShowPAnel && categoriesList ?
+                categoriesList.map((el) => {
                     return (
                         <MenuPanelItem navItemData={el} />
                     )

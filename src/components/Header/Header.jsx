@@ -6,11 +6,12 @@ import AdaptiveNavButton from "../AdaptiveNavButton/AdaptiveNavButton"
 import { useEffect, useState } from "react";
 import AdaptiveNavButtonCloce from "../AdaptiveNavButtonCloce/AdaptiveNavButtonCloce";
 import { WIDTH_MONITOR } from "../../constants/constants";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
     let [buttonNavigation, setButtonNavigation] = useState(false);// перемикач між кнопкою-нав та навігацією
     let [onClickNavCloseFlag, setOnClickNavCloseFlag] = useState(true);//перемикач між кнопкою-нав та кнопкою Х
-    let [isShowNavigation, setIsShowNavigation] = useState(true);//перемикач між кнопкою-нав та кнопкою Х
+    let dispatch = useDispatch()
      //адаптивний хеадер при загрузці
        useEffect(()=>{
         if (document.documentElement.clientWidth < WIDTH_MONITOR) {
@@ -46,6 +47,7 @@ const Header = () => {
                     <>
                     <div id="firebaseui-auth-container"></div>
                     <Navigation isFooterRender={false} />
+                    
                     {onClickNavCloseFlag?
                     <AdaptiveNavButtonCloce onClick={setOnClickNavCloseFlag}  onClickClose={setButtonNavigation}/>:
                     null}

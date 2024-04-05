@@ -10,20 +10,23 @@ import {  Typography } from '@mui/material';
 import { useState } from 'react';
 
 const MenuPanelItem = ({ navItemData}) =>  {
-  const categoriesList = useSelector(state => state.uploadCategories.uploadCategories)
+  const categoriesList = useSelector(state => state.uploadCategories.uploadCategories); //список усых категорый
 
-	let arrTitleCategories=[];
-	let childCategories=navItemData.childCategories;	
-  childCategories.map((el) => {
+	let arrTitleCategories=[];// масив зы списком заголовкыв категшорый
+	let childCategories=navItemData?.childCategories;	//масив зы списком дочырных категорый
+  // console.log(`childCategories => `, childCategories);
+  // console.log(`categoriesList => `, categoriesList);
+  childCategories?.map((el) => {
 			for (let index = 0; index < categoriesList.length; index++) {				 
         if (categoriesList[index].id == el) {
+
 				arrTitleCategories.push({title:categoriesList[index].title, path:categoriesList[index].path})	  
       }
 			}
 	});
     
- 
-  // console.log(`arrTitleCategories => `, arrTitleCategories);
+// console.log(`navItemData => `, navItemData);
+//  console.log(`arrTitleCategories => `, arrTitleCategories);
   return (
     <>
       {arrTitleCategories.length>0?
@@ -54,9 +57,10 @@ const MenuPanelItem = ({ navItemData}) =>  {
 
           )}
         </AccordionDetails>
-        </Accordion>:
+        </Accordion>
+       :
       null
-    }
+    } 
     </>
   );
 }
